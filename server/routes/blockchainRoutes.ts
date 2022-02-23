@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getBlocks  } from "../controllers/blockchain.js";
+import { getBlocks } from "../controllers/blockchain";
 
 const router = express.Router();
 

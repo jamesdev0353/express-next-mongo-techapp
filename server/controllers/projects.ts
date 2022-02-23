@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { IPost } from "../models/interface.js";
-import ProjectModel from "../models/projectModel.js";
+import { IPost } from "../models/interface";
+import ProjectModel from "../models/projectModel";
 
 export const getProjects = async (req: any, res: any) => {
   try {

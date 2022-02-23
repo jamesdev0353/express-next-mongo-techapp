@@ -1,7 +1,7 @@
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 
-import User from "../models/userModel.js";
+import User from "../models/userModel";
 
 const list = [];
 
