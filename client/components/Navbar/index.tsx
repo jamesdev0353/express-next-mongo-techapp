@@ -18,7 +18,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
 import { pages } from "./pagesData";
 import { loginform, logoutform } from "./pagesData";
-import styles from "./styles";
+import styles from "../../styles/Navbar.module.scss";
 
 // import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
