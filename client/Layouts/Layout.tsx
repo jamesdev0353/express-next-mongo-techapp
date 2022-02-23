@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import Navbar from "../Navbar";
+import Navbar from "../components/Navbar";
 import Meta from "./Meta";
 
 function Layout({ children }) {
