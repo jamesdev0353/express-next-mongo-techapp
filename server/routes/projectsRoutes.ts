@@ -7,7 +7,7 @@ import {
   getProject,
 } from "../controllers/projects";
 
-import auth from "../middleware/auth";
+
 import ProjectModel from "../models/projectModel";
 
 const router = express.Router();
