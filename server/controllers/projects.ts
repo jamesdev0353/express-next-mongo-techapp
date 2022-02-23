@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { IPost } from "../models/interface";
 import ProjectModel from "../models/projectModel";
-
+import { Request, Response } from "express";
 export const getProjects = async (req: any, res: any) => {
   try {
     const projectModels = await ProjectModel.find();

@@ -28,46 +28,35 @@ import auth from "./middleware/auth";
 
 nextApp.prepare().then(() => {
   const app = express();
-  // express code here
+  // // express code here
 
   app.use(bodyParser.json({ limit: "30mb" }));
   app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
   app.use(cors());
-  //express routes here
-  //projects rutes
-  app.use("/projects/api", projectsRoutes);
-  app.use("/projects/api/likeProject/:id", projectsRoutes);
+  ////express routes here
+  ////projects rutes
+  app.use("/", projectsRoutes);
+  // app.use("/projects/api/likeProject/:id", projectsRoutes);
   // app.patch("/projects/api/:id", auth, updateProject);
   // app.patch("/projects/api/likeProject/:id", auth, likeProject);
 
-  app.get("/projects", async (req: Request, res: Response) => {
-    const actualPage = "/projects";
-    try {
-      const projectModels = await ProjectModel.find();
-      const queryParams: any = projectModels;
-
-      nextApp.render(req, res, actualPage, queryParams);
-    } catch (err) {
-      res.status(401).json({ message: err.message });
-    }
-  });
-  // app.delete("/projects/api/:id", auth, deleteProject);
-  app.get("/about", async (req: Request, res: Response) => {
-    const actualPage = "/about";
-
-    try {
-      nextApp.render(req, res, actualPage);
-    } catch (err) {
-      res.status(401).json({ message: err.message });
-    }
-  });
   app.post("/projects", createProject);
-  //blockcain routes
+  // app.delete("/projects/api/:id", auth, deleteProject);
+  // app.get("/about", async (req: Request, res: Response) => {
+  //   const actualPage = "/about";
+
+  //   try {
+  //     nextApp.render(req, res, actualPage);
+  //   } catch (err) {
+  //     res.status(401).json({ message: err.message });
+  //   }
+  // });
+  ////blockcain routes
   app.use("/blog/blockchain/api", blockchainRoutes);
 
-  //blockcain routes
+  ////blockcain routes
   // app.use("/blog/blockchain/api", blockchainRoutes);
-  // user routes
+  //// user routes
 
   // app.post("/user/signup", signUpUser);
   // app.post("/user/login", logInUser);

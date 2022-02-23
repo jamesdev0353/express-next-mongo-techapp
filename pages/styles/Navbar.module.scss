@@ -1,0 +1,28 @@
+.navBar{
+    width: 100%;
+
+}
+.navbarContainer{
+
+    width: 100%;
+}
+.phoneBar{
+    // width: ;
+    height: 100%;
+    z-index: 4;
+    position: fixed;
+     background-color: rgba(255, 255, 255, 0.9);
+     margin: 0;
+     padding-top: 10rem;
+}
+.icons{
+    margin-left: 0.7rem;
+}
+.burger{
+    margin-left:-1.3rem;
+    // margin-left:-1rem;
+}
+
+@media (min-width:901px) {
+    .burger{display: none;}
+}

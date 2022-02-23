@@ -12,6 +12,9 @@
     "start": "NODE_ENV=production node server/index.ts"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.4.2",
+    "@mui/material": "^5.4.3",
     "@types/bcrypt": "^5.0.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "^1.19.2",
@@ -28,6 +31,7 @@
     "eslint-config-next": "12.1.0",
     "express": "^4.17.3",
     "next": "12.1.0",
+    "node-sass": "^7.0.1",
     "nodemon": "^2.0.15",
     "react": "17.0.2",
     "react-dom": "17.0.2",
