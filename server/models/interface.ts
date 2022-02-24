@@ -1,4 +1,4 @@
-export interface IPost {
+export interface IProject {
   title: string;
   description: string;
   name: string;
@@ -15,8 +15,4 @@ export interface IUser {
   birthDay: string;
   password: string;
   id: string;
-}
-interface Likes {
-  type: Array<string>;
-  default: Array<any>;
 }

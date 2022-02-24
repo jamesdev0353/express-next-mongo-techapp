@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { IPost } from "./interface";
-const projectSchema = new mongoose.Schema<IPost>({
+import { IProject } from "./interface";
+const projectSchema = new mongoose.Schema<IProject>({
   title: String,
   description: String,
   name: String,
@@ -22,6 +22,6 @@ const projectSchema = new mongoose.Schema<IPost>({
   },
 });
 
-const ProjectModel = mongoose.model<IPost>("ProjectModel", projectSchema);
+const ProjectModel = mongoose.model<IProject>("ProjectModel", projectSchema);
 
 export default ProjectModel;

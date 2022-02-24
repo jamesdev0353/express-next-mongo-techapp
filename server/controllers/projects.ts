@@ -1,8 +1,15 @@
 import mongoose from "mongoose";
-import { IPost } from "../models/interface";
+import { IProject } from "../models/interface";
 import ProjectModel from "../models/projectModel";
+import { RequestHandler } from "express";
+import { Request } from "express";
 
-export const getProjects = async (req: any, res: any) => {
+export interface IProjectInfoRequest extends Request {
+  userId: string; // or any other type
+  likes: Array<string>;
+}
+
+export const getProjects: RequestHandler = async (req, res) => {
   try {
     const projectModels = await ProjectModel.find();
     // res.send("This Works!");
@@ -14,7 +21,7 @@ export const getProjects = async (req: any, res: any) => {
   }
 };
 
-export const getProject = async (req: any, res: any) => {
+export const getProject: RequestHandler = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -26,10 +33,13 @@ export const getProject = async (req: any, res: any) => {
   }
 };
 
-export const createProject = async (req: any, res: any) => {
-  // res.send("Project Creation");
-  const project = req.body;
-  console.log(req.userId);
+export const createProject: RequestHandler = async (
+  req: IProjectInfoRequest,
+  res
+): Promise<void> => {
+  const project: IProject = req.body;
+  // console.log(req);
+  // console.log(req.userId);
   const newProject = new ProjectModel({
     ...project,
     creator: req.userId,
@@ -44,27 +54,30 @@ export const createProject = async (req: any, res: any) => {
   }
 };
 
-export const updateProject = async (req: any, res: any) => {
+export const updateProject: RequestHandler = async (
+  req: IProjectInfoRequest,
+  res
+) => {
   const { id: _id } = req.params;
-  const project = req.body;
-
+  const project: IProject = req.body;
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(404).send("no post with this id");
 
-  const updateProject = await ProjectModel.findByIdAndUpdate(
+  const updateProject: IProject = await ProjectModel.findByIdAndUpdate(
     _id,
     { ...project, _id },
     {
       new: true,
     }
   );
-
   res.json(updateProject);
 };
 
-export const deleteProject = async (req: any, res: any) => {
+export const deleteProject: RequestHandler = async (
+  req: IProjectInfoRequest,
+  res
+) => {
   const { id } = req.params;
-  // console.log(req.paramms)
   console.log(id);
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("no post with this id");
@@ -74,33 +87,30 @@ export const deleteProject = async (req: any, res: any) => {
   res.json({ message: "Project Deleted" });
 };
 
-export const likeProject = async (req: any, res: any) => {
+export const likeProject: RequestHandler = async (
+  req: IProjectInfoRequest,
+  res
+) => {
   const { id } = req.params;
-  // console.log(res, "req.body");
-  // console.log(req.id.body);
-
   if (!req.userId) return res.json({ message: "Unauthenticated" });
-
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("no post with this id");
-  const project: any = await ProjectModel.findById(id);
-
-  const index = project.likes.findIndex((id: any) => id === String(req.userId));
+  const project: IProjectInfoRequest = await ProjectModel.findById(id);
+  const index = project.likes.findIndex(
+    (id: string) => id === String(req.userId)
+  );
 
   if (index === -1) {
     project.likes.push(req.userId);
   } else {
     project.likes = project.likes.filter(
-      (id: any) => id !== String(req.userId)
+      (id: string) => id !== String(req.userId)
     );
   }
 
-  const updatedProject = await ProjectModel.findByIdAndUpdate(
-    id,
-    project,
-    // { likeCount: project.likeCount + 1 },
-    { new: true }
-  );
+  const updatedProject = await ProjectModel.findByIdAndUpdate(id, project, {
+    new: true,
+  });
 
   res.json(updatedProject);
 };

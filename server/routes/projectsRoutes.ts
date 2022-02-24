@@ -7,7 +7,9 @@ import {
   getProject,
 } from "../controllers/projects";
 
-
+interface IRoutes {
+  createProject:() => void
+}
 import ProjectModel from "../models/projectModel";
 
 const router = express.Router();
@@ -16,7 +18,7 @@ const router = express.Router();
 router.get("/projects/api", getProjects);
 router.get("/api/likeProject/:id", getProject);
 
-// router.post("/", createProject);
+// router.post("/", createProject );
 // router.patch("/:id", updateProject);
 
 export default router;
