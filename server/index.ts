@@ -42,15 +42,15 @@ nextApp.prepare().then(() => {
 
   app.post("/projects", createProject);
   // app.delete("/projects/api/:id", auth, deleteProject);
-  // app.get("/about", async (req: Request, res: Response) => {
-  //   const actualPage = "/about";
+  app.get("/about", async (req: Request, res: Response) => {
+    const actualPage = "/about";
 
-  //   try {
-  //     nextApp.render(req, res, actualPage);
-  //   } catch (err) {
-  //     res.status(401).json({ message: err.message });
-  //   }
-  // });
+    try {
+      nextApp.render(req, res, actualPage);
+    } catch (err) {
+      res.status(401).json({ message: err.message });
+    }
+  });
   ////blockcain routes
   app.use("/blog/blockchain/api", blockchainRoutes);
 

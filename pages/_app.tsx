@@ -1,13 +1,22 @@
-import App from "next/app";
+import { AppProps } from "next/app";
 import React from "react";
-import "./styles/globals.css";
+import { Provider } from "react-redux";
+import withRedux from "next-redux-wrapper";
+import store from "../client/redux/createStore";
+import { createWrapper } from "next-redux-wrapper";
 import Layout from "../client/Layouts/Layout";
-function MyApp({ Component, pageProps, router }) {
+import "./styles/globals.css";
+
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Provider store={store}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
   );
 }
+const makeStore = () => store;
+const wrapper = createWrapper(makeStore);
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
