@@ -12,7 +12,7 @@ const projectsReducer = (state = INITIAL_STATE, action) => {
         projects: action.payload,
       };
     case projectTypes.DELETE_PROJECT:
-      const projectsd = state.projectsd;
+      const projectsd = state.projects;
       console.log(projectsd);
       return projectsd.map((project) => project._id !== action.payload);
     case projectTypes.FETCH_ALL_PROJECTS:
