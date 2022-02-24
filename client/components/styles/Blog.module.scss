@@ -1,0 +1,30 @@
+.filebase{
+      margin-top:1rem ;
+      // border: 1px solid;
+      width:250px;
+}
+
+.gridContainer{
+    margin-top: 1rem!important;
+
+}
+.comments{
+    font-size: 13px;
+    border-top: 1px solid rgb(204, 204, 204);
+}
+
+@media screen and (min-width: 700px){
+    .commentSection{
+        padding-left: 20rem!important;
+
+    }
+
+}
+
+@media screen and (max-width: 599px){
+    .commentSection{
+        // padding-left: 3rem!important;
+
+    }
+
+}

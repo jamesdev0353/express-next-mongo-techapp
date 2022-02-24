@@ -1,0 +1,105 @@
+.header{
+    // border: 1px solid;
+background: linear-gradient(#e66465, #9198e5);
+    // color: linear-gradient(45deg, #333, #999);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px 3px rgba(99, 99, 99,0.5);
+    // color: white;
+
+  }
+  .header:active{
+
+
+  }
+.btnProjectForm{
+    text-align: start;
+    // width:100%;
+  }
+  .btnProjectFormGroup{
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.filebase{
+      margin-top:1rem ;
+      // border: 1px solid;
+      width:250px;
+}
+.card {
+
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    border-radius: 15px;
+    height: 60%;
+    position: relative;
+
+
+}
+
+.media {
+
+    // width:100px;
+    // padding-top: 56.25%;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+  }
+
+.overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+  }
+
+
+.overlay2{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+  }
+.details{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+  .title {
+    border: 1px solid gray;
+    padding: 1rem 16px;
+    background-color: rgb(0, 0, 0);
+    color: #64e6b0;
+    // margin-top: 5rem;
+  }
+
+  .cardActions{
+          padding: 0 16px 8px 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .projectForm{
+
+    background-color: rgba(255, 255, 255,0.8);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.span {
+  padding-top: 6px!important;
+  font-size: 15px!important;
+}
+
+@media (min-width: 501px) {
+   .card{
+  //  width: 250px;
+}
+  }
+@media (max-width: 900px) {
+  .btnProject{
+    font-size: 10px!important;
+    // align-items: center!important;
+  }
+}
