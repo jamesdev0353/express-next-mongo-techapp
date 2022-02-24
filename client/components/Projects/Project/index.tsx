@@ -12,16 +12,16 @@ import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import styles from "../../styles/Project.module.scss";
-// import {
-//   deleteProject,
-//   likeProject,
-// } from "../../../redux/Projects/projects.actions";
+import {
+  deleteProject,
+  likeProject,
+} from "../../../redux/Projects/projects.actions";
 import ButtonForm from "./../../Form/ButtonForm";
 
 function Project({ project, setCurrentId }) {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // console.log(project.selectedFile);
   // return <Card>{project.title}</Card>;
   return (
