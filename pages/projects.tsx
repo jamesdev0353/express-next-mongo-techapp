@@ -12,7 +12,7 @@ import styles from "./styles/Project.module.scss";
 function ProjectsV(props: any) {
   const dispatch = useDispatch();
 
-  const [currentId, setCurrentId] = useState(0);
+  const [currentId, setCurrentId] = useState<any>(0);
 
   useEffect(() => {
     dispatch(getProjects());

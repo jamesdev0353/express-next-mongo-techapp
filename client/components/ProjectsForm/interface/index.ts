@@ -15,6 +15,6 @@ export interface IProjectInfo extends IProject {
   tags: Array<string>;
 }
 export interface IProps {
-  currentId: string;
-  setCurrentId: (number: number) => {};
+  currentId: any;
+  setCurrentId: any;
 }

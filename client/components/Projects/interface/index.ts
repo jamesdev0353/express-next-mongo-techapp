@@ -8,9 +8,16 @@ export type IProject = {
   likes: Array<string>;
   likeList: Array<string>;
   createdAt: any;
+  _id: string;
+  likeCount: number;
+  currentId: string;
 };
 
 export interface IProjectInfo extends IProject {
   _id: string;
   tags: Array<string>;
+}
+export interface IProps {
+  setCurrentId: any;
+  project?: IProject;
 }

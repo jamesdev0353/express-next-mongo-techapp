@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { Grid, CircularProgress } from "@material-ui/core";
-import { mergeClasses } from "@material-ui/styles";
-import styles from "../styles/Project.module.scss";
-
 import Project from "./Project";
+import { Grid, CircularProgress } from "@material-ui/core";
 import { RootState } from "../../redux/rootReducer";
 
-import { IProjectInfo } from "./interface";
+import { IProjectInfo, IProps } from "./interface";
 
-function Projects({ setCurrentId }) {
+function Projects({ setCurrentId }: IProps) {
   const projects: IProjectInfo[] = useSelector(
     (state: RootState | { projects: any }) => state.projects.projects
   );
@@ -20,12 +17,7 @@ function Projects({ setCurrentId }) {
       {!projects ? (
         <CircularProgress />
       ) : (
-        <Grid
-          container
-          alignItems="stretch"
-          spacing={3}
-          // className={styles.cardsGrid}
-        >
+        <Grid container alignItems="stretch" spacing={3}>
           {projects.map((project: IProjectInfo) => (
             <Grid key={project._id} item xs={12} sm={6}>
               <Project project={project} setCurrentId={setCurrentId} />

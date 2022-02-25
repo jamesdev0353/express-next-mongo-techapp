@@ -19,8 +19,9 @@ import {
   likeProject,
 } from "../../../redux/Projects/projects.actions";
 import ButtonForm from "./../../Form/ButtonForm";
+import { IProps } from "../interface";
 
-function Project({ project, setCurrentId }) {
+function Project({ project, setCurrentId }: IProps) {
   const dispatch = useDispatch();
   return (
     <>
