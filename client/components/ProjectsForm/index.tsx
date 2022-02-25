@@ -74,7 +74,6 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           color="success"
           variant="standard"
           fullWidth
-          autoFocus="none"
           value={postData.title}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setPostData({ ...postData, title: e.target.value })
@@ -84,7 +83,6 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           id="outlined-multiline-static"
           label="Description"
           multiline
-          autoFocus="none"
           value={postData.description}
           rows={4}
           fullWidth
@@ -102,7 +100,6 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           rows={2}
           fullWidth
           sx={{ mt: 1.5 }}
-          autoFocus="none"
           placeholder="#tags"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })

@@ -9,10 +9,10 @@ const styles = (theme) => ({
   },
 });
 
-const InputForm = ({ autoFocus, ...otherProps }) => {
+const InputForm = ({ ...otherProps }) => {
   return (
     <div>
-      <TextField autoFocus={autoFocus} {...otherProps} />
+      <TextField {...otherProps} />
     </div>
   );
 };
