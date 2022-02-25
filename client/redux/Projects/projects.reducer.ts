@@ -1,27 +1,27 @@
-import projectTypes from "./projects.types";
+import { IProjectTypes } from "./projects.types";
 
 const INITIAL_STATE = {
   projects: [],
 };
 
-const projectsReducer = (state = INITIAL_STATE, action) => {
+const projectsReducer = (state = INITIAL_STATE, action: IProjectTypes) => {
   switch (action.type) {
-    case projectTypes.CREATE_PROJECT:
+    case "CREATE_PROJECT":
       return {
         ...state,
         projects: action.payload,
       };
-    case projectTypes.DELETE_PROJECT:
+    case "DELETE_PROJECT":
       const projectsd = state.projects;
       console.log(projectsd);
       return projectsd.map((project) => project._id !== action.payload);
-    case projectTypes.FETCH_ALL_PROJECTS:
+    case "FETCH_ALL_PROJECTS":
       return {
         ...state,
         projects: action.payload,
       };
-    case projectTypes.UPDATE_PROJECT:
-    case projectTypes.LIKE_PROJECT:
+    case "UPDATE_PROJECT":
+    case "LIKE_PROJECT":
       const projects = state.projects;
       // console.log(projects, "projects from actions");
       return projects.map((project) =>

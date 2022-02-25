@@ -20,6 +20,8 @@ import styles from "./../styles/Project.module.scss";
 import { RootState } from "../../redux/rootReducer";
 import { IProjectInfo, IProps } from "./interface";
 
+
+
 const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
   const dispatch = useDispatch();
 
@@ -32,7 +34,7 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
   const [postData, setPostData] = useState({
     title: "",
     description: "",
-    tags: null,
+    tags: "",
     selectedFile: "",
   });
 
@@ -55,12 +57,11 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
     e.preventDefault();
 
     if (currentId) {
-      dispatch(
-        updatedProject(currentId, { ...postData, name: user?.result?.name })
-      );
+      // dispatch();
+      // updatedProject(currentId, { ...postData, name: user?.result?.name })
       resetForm();
     } else {
-      dispatch(createProject({ ...postData, name: user?.result?.name }));
+      dispatch(createProject({ ...postData }));
       resetForm();
     }
 
@@ -74,21 +75,21 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           color="success"
           variant="standard"
           fullWidth
+          autoFocus="none"
           value={postData.title}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setPostData({ ...postData, title: e.target.value })
-          }
+          onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <InputForm
           id="outlined-multiline-static"
           label="Description"
           multiline
+          autoFocus="none"
           value={postData.description}
           rows={4}
           fullWidth
           sx={{ mt: 1.5 }}
           placeholder="write your description here.."
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e) =>
             setPostData({ ...postData, description: e.target.value })
           }
         />
@@ -100,8 +101,9 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           rows={2}
           fullWidth
           sx={{ mt: 1.5 }}
+          autoFocus="none"
           placeholder="#tags"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
         />

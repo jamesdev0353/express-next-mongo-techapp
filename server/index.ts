@@ -36,12 +36,13 @@ nextApp.prepare().then(() => {
   ////express routes here
   ////projects rutes
   app.use("/", projectsRoutes);
+  // app.delete("/api/:id", deleteProject);
   // app.use("/projects/api/likeProject/:id", projectsRoutes);
   // app.patch("/projects/api/:id", auth, updateProject);
   // app.patch("/projects/api/likeProject/:id", auth, likeProject);
 
   app.post("/projects", createProject);
-  // app.delete("/projects/api/:id", auth, deleteProject);
+
   app.get("/about", async (req: Request, res: Response) => {
     const actualPage = "/about";
 

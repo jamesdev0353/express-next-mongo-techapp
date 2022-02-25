@@ -1,22 +1,23 @@
 import React from "react";
 import { IProject } from "../../components/Projects/interface";
 import * as api from "./api";
-import projectTypes, { IProjectTypes } from "./projects.types";
+import { IProjectTypes } from "./projects.types";
 
-const getProjects = () => async (dispatch) => {
+const getProjects = () => async (dispatch: React.Dispatch<IProjectTypes>) => {
   try {
     const { data }: any = await api.fetchProjects();
     console.log(data, "oops");
-    dispatch({ type: projectTypes.FETCH_ALL_PROJECTS, payload: data });
+    dispatch({ type: "FETCH_ALL_PROJECTS", payload: data });
   } catch (error) {
     console.log(error, "get  error");
   }
 };
 
 export const createProject =
-  (project: IProject) => async (dispatch: React.Dispatch<IProjectTypes>) => {
+  (project: any) => async (dispatch: React.Dispatch<IProjectTypes>) => {
     try {
       const { data } = await api.createProject(project);
+
       console.log(data, "data");
       dispatch({ type: "CREATE_PROJECT", payload: data });
     } catch (error) {
@@ -37,7 +38,7 @@ export const updatedProject =
   };
 
 export const deleteProject =
-  (id: string) => async (dispatch: React.Dispatch<IProjectTypes>) => {
+  (id: any) => async (dispatch: React.Dispatch<IProjectTypes>) => {
     try {
       await api.deleteThisProject(id);
       dispatch({ type: "DELETE_PROJECT", payload: id });
