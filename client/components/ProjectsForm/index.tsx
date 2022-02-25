@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEventHandler } from "react";
+import React, { FC, useState, useEffect, FormEventHandler } from "react";
 import InputForm from "../Form/InputForm";
 
 import { Typography, Paper } from "@material-ui/core";
@@ -18,9 +18,9 @@ import BackspaceIcon from "@mui/icons-material/Backspace";
 
 import styles from "./../styles/Project.module.scss";
 import { RootState } from "../../redux/rootReducer";
-import { IProjectInfo } from "./interface";
+import { IProjectInfo, IProps } from "./interface";
 
-const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
+const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
   const dispatch = useDispatch();
 
   const project = useSelector((state: RootState | { projects: any }) =>
@@ -66,15 +66,6 @@ const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
 
     resetForm();
   };
-  // if (!user?.result?.name) {
-  //   return (
-  //     <Paper className={classes.paper}>
-  //       <Typography variant="h6" align="center">
-  //         Please Sign In to create your project.
-  //       </Typography>
-  //     </Paper>
-  //   );
-  // }
   return (
     <>
       <form onSubmit={handleSubmit} className={styles.projectForm}>
