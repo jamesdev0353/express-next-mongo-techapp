@@ -23,10 +23,10 @@ export const fetchProjects = () => {
 
 export const createProject = (newProject: any) => axios.post(url, newProject);
 
-export const updateProject = (id: any, updatedProject: any) =>
+export const updateProject = (id: string, updatedProject: any) =>
   axios.patch(`${url}/${id}`, updatedProject);
 
-export const deleteThisProject = (id: any) => axios.delete(`${url}/${id}`);
+export const deleteThisProject = (id: string) => axios.delete(`${url}/${id}`);
 
 export const likeProject = (id: string) =>
   axios.patch(`${url}/likeProject/${id}`);

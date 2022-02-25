@@ -38,7 +38,7 @@ export const updatedProject =
   };
 
 export const deleteProject =
-  (id: any) => async (dispatch: React.Dispatch<IProjectTypes>) => {
+  (id: string) => async (dispatch: React.Dispatch<IProjectTypes>) => {
     try {
       await api.deleteThisProject(id);
       dispatch({ type: "DELETE_PROJECT", payload: id });
