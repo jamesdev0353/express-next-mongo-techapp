@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  // CardMedia,
-  Button,
-  Typography,
-} from "@material-ui/core/";
+import { Card, CardActions, CardContent, Typography } from "@material-ui/core/";
 import CardMedia from "@mui/material/CardMedia";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -21,7 +14,7 @@ import {
 import ButtonForm from "./../../Form/ButtonForm";
 import { IProps } from "../interface";
 
-function Project({ project, setCurrentId }: IProps) {
+function Project({ project, setCurrentId }: IProps): JSX.Element {
   const dispatch = useDispatch();
   return (
     <>

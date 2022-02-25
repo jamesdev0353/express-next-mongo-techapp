@@ -7,7 +7,7 @@ import { RootState } from "../../redux/rootReducer";
 
 import { IProjectInfo, IProps } from "./interface";
 
-function Projects({ setCurrentId }: IProps) {
+function Projects({ setCurrentId }: IProps): JSX.Element {
   const projects: IProjectInfo[] = useSelector(
     (state: RootState | { projects: any }) => state.projects.projects
   );

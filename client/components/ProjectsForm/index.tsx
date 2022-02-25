@@ -32,7 +32,7 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
   const [postData, setPostData] = useState({
     title: "",
     description: "",
-    tags: "",
+    tags: null,
     selectedFile: "",
   });
 
@@ -76,7 +76,9 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           fullWidth
           autoFocus="none"
           value={postData.title}
-          onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPostData({ ...postData, title: e.target.value })
+          }
         />
         <InputForm
           id="outlined-multiline-static"
@@ -88,7 +90,7 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           fullWidth
           sx={{ mt: 1.5 }}
           placeholder="write your description here.."
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setPostData({ ...postData, description: e.target.value })
           }
         />
@@ -102,7 +104,7 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           sx={{ mt: 1.5 }}
           autoFocus="none"
           placeholder="#tags"
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
         />
