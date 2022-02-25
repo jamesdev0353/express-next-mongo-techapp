@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEventHandler } from "react";
 import InputForm from "../Form/InputForm";
 
 import { Typography, Paper } from "@material-ui/core";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   createProject,
-//   updatedProject,
-// } from "./../../redux/Projects/projects.actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createProject,
+  updatedProject,
+} from "./../../redux/Projects/projects.actions";
 
 import FileBase from "react-file-base64";
 
@@ -17,24 +17,17 @@ import SaveIcon from "@material-ui/icons/Save";
 import BackspaceIcon from "@mui/icons-material/Backspace";
 
 import styles from "./../styles/Project.module.scss";
-
-const mapState = ({ projects }) => ({
-  projects: projects.projects,
-});
+import { RootState } from "../../redux/rootReducer";
+import { IProjectInfo } from "./interface";
 
 const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
-  // const dispatch = useDispatch();
-  // const { projects } = useSelector(mapState);
+  const dispatch = useDispatch();
 
-  // console.log(user?.result?.name);
-  // const project = useSelector((state) =>
-  //   currentId ? state.projects.projects.find((p) => p._id === currentId) : null
-  // );
-
-  // const user = JSON.parse(localStorage.getItem("userProfile"));
-  // console.log(user?.result?.name);
-  // const project = projects.filter((word) => word._id === currentId);
-  // console.log(project, "result");
+  const project = useSelector((state: RootState | { projects: any }) =>
+    currentId
+      ? state.projects.projects.find((p: IProjectInfo) => p._id === currentId)
+      : null
+  );
 
   const [postData, setPostData] = useState({
     title: "",
@@ -43,11 +36,11 @@ const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
     selectedFile: "",
   });
 
-  // useEffect(() => {
-  //   if (project) {
-  //     setPostData({ ...project });
-  //   }
-  // }, [project]);
+  useEffect(() => {
+    if (project) {
+      setPostData({ ...project });
+    }
+  }, [project]);
 
   const resetForm = () => {
     setPostData({
@@ -58,23 +51,20 @@ const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
     });
     setCurrentId(0);
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
 
-    // if (currentId) {
-    //   dispatch(
-    //     updatedProject(currentId, { ...postData, name: user?.result?.name })
-    //   );
-    //   resetForm();
-    //   // console.log(currentId, "currentId");
-    // } else {
-    //   dispatch(createProject({ ...postData, name: user?.result?.name }));
-    //   resetForm();
-    //   // console.log(postData);
-    // }
+    if (currentId) {
+      dispatch(
+        updatedProject(currentId, { ...postData, name: user?.result?.name })
+      );
+      resetForm();
+    } else {
+      dispatch(createProject({ ...postData, name: user?.result?.name }));
+      resetForm();
+    }
 
-    // resetForm();
+    resetForm();
   };
   // if (!user?.result?.name) {
   //   return (
@@ -94,11 +84,8 @@ const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
           variant="standard"
           fullWidth
           autoFocus="none"
-          // sx={{ width: 250, mt: 3 }}
           value={postData.title}
-          // onChange={(e) => setTitle(e.target.value)}
-          // onChange={(e) => setPostData({ ...postData, title: e.target.value })}
-          //   sx={{  }}
+          onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <InputForm
           id="outlined-multiline-static"
@@ -110,7 +97,6 @@ const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
           fullWidth
           sx={{ mt: 1.5 }}
           placeholder="write your description here.."
-          // onChange={(e) => setDescription(e.target.value)}
           onChange={(e) =>
             setPostData({ ...postData, description: e.target.value })
           }
@@ -125,7 +111,6 @@ const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
           sx={{ mt: 1.5 }}
           autoFocus="none"
           placeholder="#tags"
-          // onChange={(e) => setTags(e.target.value)}
           onChange={(e) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
@@ -134,7 +119,6 @@ const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
           <FileBase
             type="file"
             multiple={false}
-            // onDone={({ base64 }) => setFile(base64)}
             fullWidth
             onDone={({ base64 }) =>
               setPostData({ ...postData, selectedFile: base64 })
@@ -148,20 +132,15 @@ const ProjectsForm = ({ currentId, setCurrentId }): JSX.Element => {
           sx={{ mt: 1.5 }}
         >
           <Button
-            // className={styles.btnProjectForm}
-            // sx={{ mt: 1.5 }}
             startIcon={<SaveIcon />}
             type="submit"
             size="large"
             color="primary"
-            // style={{ width: 50 }}
           >
             add
           </Button>
           <Button
             startIcon={<BackspaceIcon />}
-            // className={styles.btnProjectForm}
-            // sx={{ mt: 1.5 }}
             color="secondary"
             size="large"
             onClick={resetForm}
