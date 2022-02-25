@@ -22,8 +22,6 @@ import ButtonForm from "./../../Form/ButtonForm";
 
 function Project({ project, setCurrentId }) {
   const dispatch = useDispatch();
-  // console.log(project.selectedFile);
-  // return <Card>{project.title}</Card>;
   return (
     <>
       <Card className={styles.card}>
@@ -46,19 +44,9 @@ function Project({ project, setCurrentId }) {
             <MoreHorizIcon fontSize="medium" />
           </ButtonForm>
         </div>
-        {/* <div className={styles.overlaytwo}>
-
-          <Button
-            style={{ color: "white" }}
-            size="small"
-            onClick={() => setCurrentId(project._id)}
-          >
-            <MoreHorizIcon fontSize="medium" />
-          </Button>
-        </div>*/}
         <div className={styles.details}>
           <Typography variant="body2" color="textSecondary">
-            {project.tags.map((tag) => `#${tag} `)}
+            {project.tags.map((tag: string) => `#${tag} `)}
           </Typography>
         </div>
 
@@ -74,7 +62,7 @@ function Project({ project, setCurrentId }) {
           <ButtonForm
             size="small"
             color="primary"
-            // onClick={() => dispatch(likeProject(project._id))}
+            onClick={() => dispatch(likeProject(project._id))}
             className={styles.btnProject}
           >
             <span className={styles.span}>{project.likeCount}</span>
@@ -84,31 +72,12 @@ function Project({ project, setCurrentId }) {
           <ButtonForm
             size="small"
             color="secondary"
-            // onClick={() => dispatch(deleteProject(project._id))}
-            className={styles.btnProject}
-          >
-            <DeleteIcon fontSize="small" />
-            Delete
-          </ButtonForm>
-          {/*<Button
-            size="small"
-            color="primary"
-            onClick={() => dispatch(likeProject(project._id))}
-            className={styles.btnProject}
-          >
-            <span className={styles.span}>{project.likeCount}</span>
-            <ThumbUpAltIcon fontSize="small" />
-            <span className={styles.span}>Like</span>
-          </Button>
-          <Button
-            size="small"
-            color="secondary"
             onClick={() => dispatch(deleteProject(project._id))}
             className={styles.btnProject}
           >
             <DeleteIcon fontSize="small" />
             Delete
-          </Button>*/}
+          </ButtonForm>
         </CardActions>
       </Card>
     </>

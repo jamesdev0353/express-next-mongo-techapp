@@ -8,13 +8,11 @@ import styles from "../styles/Project.module.scss";
 import Project from "./Project";
 import { RootState } from "../../redux/rootReducer";
 
-// const mapState = ({ projects }) => ({
-//   projects: projects.projects,
-// });
+import { IProjectInfo } from "./interface";
 
 function Projects({ setCurrentId }) {
-  const projects: any = useSelector(
-    (state: RootState) => state.projects.projects
+  const projects: IProjectInfo[] = useSelector(
+    (state: RootState | { projects: any }) => state.projects.projects
   );
 
   return (
@@ -28,7 +26,7 @@ function Projects({ setCurrentId }) {
           spacing={3}
           // className={styles.cardsGrid}
         >
-          {projects.map((project) => (
+          {projects.map((project: IProjectInfo) => (
             <Grid key={project._id} item xs={12} sm={6}>
               <Project project={project} setCurrentId={setCurrentId} />
             </Grid>
