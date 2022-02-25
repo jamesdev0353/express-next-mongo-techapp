@@ -13,6 +13,7 @@ import Icon from "./icon";
 import styles from "./../styles/Form.module.scss";
 
 import { logInAction } from "./../../redux/User/user.actions";
+import { ResultOptions } from "react-query";
 
 const initialState = {
   email: "",
@@ -26,7 +27,7 @@ function LoginForm() {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState(initialState);
 
-  const googleSuccess = async (res) => {
+  const googleSuccess = async (res: any) => {
     const result = res?.profileObj;
     const token = res?.tokenId;
     try {
@@ -43,11 +44,11 @@ function LoginForm() {
     console.log(error);
     console.log("Google sign in unsuccessful");
   };
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
     console.log(formData, "login");
     dispatch(logInAction(formData, router));
@@ -88,7 +89,7 @@ function LoginForm() {
       <GoogleLogin
         clientId="131233728657-0h9g8a4fo65r7l3ous5skvdtcth8ddv3.apps.googleusercontent.com"
         render={(renderProps) => (
-          <Button
+          <ButtonForm
             className={classes.googleButton}
             color="primary"
             fullWidth
@@ -99,7 +100,7 @@ function LoginForm() {
           >
             {" "}
             Google Log in
-          </Button>
+          </ButtonForm>
         )}
         onSuccess={googleSuccess}
         onFailure={googleFailure}

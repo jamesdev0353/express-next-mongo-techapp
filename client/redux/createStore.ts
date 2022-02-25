@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose, Action } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import rootReducer from "./rootReducer";
+import thunk, { ThunkAction } from "redux-thunk";
+import rootReducer, { RootState } from "./rootReducer";
 
 const middleware = [thunk];
 export const store = createStore(
@@ -10,3 +10,7 @@ export const store = createStore(
 );
 
 export default store;
+
+export type AppDispatch = typeof store.dispatch;
+
+export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;

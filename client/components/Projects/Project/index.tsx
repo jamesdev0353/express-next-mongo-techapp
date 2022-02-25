@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import { Card, CardActions, CardContent, Typography } from "@material-ui/core/";
 import CardMedia from "@mui/material/CardMedia";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
@@ -15,7 +15,7 @@ import ButtonForm from "./../../Form/ButtonForm";
 import { IProps } from "../interface";
 
 function Project({ project, setCurrentId }: IProps): JSX.Element {
-  const dispatch = useDispatch();
+  // const dispatch = useAppDispatch();
   return (
     <>
       <Card className={styles.card}>
@@ -56,7 +56,7 @@ function Project({ project, setCurrentId }: IProps): JSX.Element {
           <ButtonForm
             size="small"
             color="primary"
-            onClick={() => dispatch(likeProject(project._id))}
+            onClick={() => likeProject(project._id)}
             className={styles.btnProject}
           >
             <span className={styles.span}>{project.likeCount}</span>
@@ -66,7 +66,7 @@ function Project({ project, setCurrentId }: IProps): JSX.Element {
           <ButtonForm
             size="small"
             color="secondary"
-            onClick={() => dispatch(deleteProject(project._id))}
+            onClick={() => deleteProject(project._id)}
             className={styles.btnProject}
           >
             <DeleteIcon fontSize="small" />

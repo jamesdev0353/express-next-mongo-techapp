@@ -85,8 +85,6 @@ function SignUpForm() {
           autoFocus
           sx={{ width: 200, input: { color: "white" } }}
           onChange={handleChange}
-          // className={styles.inputControl}
-          // sx={{  }}
         />
       </FormControl>
       <InputForm
@@ -141,7 +139,7 @@ function SignUpForm() {
       <GoogleLogin
         clientId="131233728657-0h9g8a4fo65r7l3ous5skvdtcth8ddv3.apps.googleusercontent.com"
         render={(renderProps) => (
-          <Button
+          <ButtonForm
             className={classes.googleButton}
             color="primary"
             fullWidth
@@ -152,7 +150,7 @@ function SignUpForm() {
           >
             {" "}
             Google Sign in
-          </Button>
+          </ButtonForm>
         )}
         onSuccess={googleSuccess}
         onFailure={googleFailure}
