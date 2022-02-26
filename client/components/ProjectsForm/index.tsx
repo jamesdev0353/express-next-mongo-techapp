@@ -61,7 +61,7 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
       // updatedProject(currentId, { ...postData, name: user?.result?.name })
       resetForm();
     } else {
-      dispatch(createProject({ ...postData }));
+      dispatch(createProject({ ...postData, name: "user?.result?.name " }));
       resetForm();
     }
 

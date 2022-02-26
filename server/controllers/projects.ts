@@ -38,7 +38,7 @@ export const createProject: RequestHandler = async (
   res
 ): Promise<void> => {
   const project: IProject = req.body;
-  // console.log(req);
+
   // console.log(req.userId);
   const newProject = new ProjectModel({
     ...project,
@@ -49,8 +49,8 @@ export const createProject: RequestHandler = async (
     await newProject.save();
 
     // res.status(201).json(newProject);
-  } catch {
-    // res.status(409).json({ message: err.message });
+  } catch (error: any) {
+    res.status(409).json({ message: error.message });
   }
 };
 

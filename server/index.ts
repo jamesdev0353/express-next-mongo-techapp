@@ -36,12 +36,7 @@ nextApp.prepare().then(() => {
   ////express routes here
   ////projects rutes
   app.use("/", projectsRoutes);
-  // app.delete("/api/:id", deleteProject);
-  // app.use("/projects/api/likeProject/:id", projectsRoutes);
-  // app.patch("/projects/api/:id", auth, updateProject);
-  // app.patch("/projects/api/likeProject/:id", auth, likeProject);
-
-  app.post("/projects", createProject);
+  // app.post("/projects", createProject);
 
   app.get("/about", async (req: Request, res: Response) => {
     const actualPage = "/about";
@@ -54,23 +49,6 @@ nextApp.prepare().then(() => {
   });
   ////blockcain routes
   app.use("/blog/blockchain/api", blockchainRoutes);
-
-  ////blockcain routes
-  // app.use("/blog/blockchain/api", blockchainRoutes);
-  //// user routes
-
-  // app.post("/user/signup", signUpUser);
-  // app.post("/user/login", logInUser);
-
-  // app.get("/user", async (req, res) => {
-  //   const actualPage = "/user";
-
-  //   try {
-  //     nextApp.render(req, res, actualPage);
-  //   } catch (err) {
-  //     res.status(401).json({ message: err.message });
-  //   }
-  // });
 
   app.get("*", (req: Request, res: Response) => {
     return handle(req, res); // for all the react stuff

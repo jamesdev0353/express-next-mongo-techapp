@@ -14,7 +14,8 @@ const getProjects = () => async (dispatch: React.Dispatch<IProjectTypes>) => {
 };
 
 export const createProject =
-  (project: any) => async (dispatch: React.Dispatch<IProjectTypes>) => {
+  (project) => async (dispatch: React.Dispatch<IProjectTypes>) => {
+    console.log(project, "project");
     try {
       const { data } = await api.createProject(project);
 
