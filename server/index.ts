@@ -36,7 +36,6 @@ nextApp.prepare().then(() => {
   ////express routes here
   ////projects rutes
   app.use("/", projectsRoutes);
-  // app.post("/projects", createProject);
 
   app.get("/about", async (req: Request, res: Response) => {
     const actualPage = "/about";

@@ -19,5 +19,5 @@ router.get("/projects/api", getProjects);
 router.post("/projects/api", createProject);
 router.get("/projects/api/likeProject/:id", getProject);
 router.delete("/projects/api/:id", deleteProject);
-// router.post("/projects", createProject);
+
 export default router;

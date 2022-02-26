@@ -1,6 +1,7 @@
 import React from "react";
-import { IProject } from "../../components/Projects/interface";
+import { IProject } from "./interface";
 import * as api from "./api";
+import { IPostProjectInfo } from "./interface";
 import { IProjectTypes } from "./projects.types";
 
 const getProjects = () => async (dispatch: React.Dispatch<IProjectTypes>) => {
@@ -14,11 +15,11 @@ const getProjects = () => async (dispatch: React.Dispatch<IProjectTypes>) => {
 };
 
 export const createProject =
-  (project) => async (dispatch: React.Dispatch<IProjectTypes>) => {
+  (project: IPostProjectInfo) =>
+  async (dispatch: React.Dispatch<IProjectTypes>) => {
     console.log(project, "project");
     try {
       const { data } = await api.createProject(project);
-
       console.log(data, "data");
       dispatch({ type: "CREATE_PROJECT", payload: data });
     } catch (error) {

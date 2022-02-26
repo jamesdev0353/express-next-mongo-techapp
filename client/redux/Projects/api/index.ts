@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IPostProjectInfo } from "../interface";
 
 const url = "http://localhost:3000/projects/api";
 
@@ -21,7 +22,8 @@ export const fetchProjects = () => {
 
 // export const fetchProjects = () => axios.get(url);
 
-export const createProject = (newProject: any) => axios.post(url, newProject);
+export const createProject = (newProject: IPostProjectInfo) =>
+  axios.post(url, newProject);
 
 export const updateProject = (id: string, updatedProject: any) =>
   axios.patch(`${url}/${id}`, updatedProject);
