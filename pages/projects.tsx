@@ -6,9 +6,9 @@ import Projects from "../client/components/Projects";
 import ProjectsForm from "../client/components/ProjectsForm";
 
 import { useDispatch, useSelector } from "react-redux";
-import getProjects from "../client/redux/Projects/projects.actions";
+import getProjects from "../client/apis/Projects/projects.actions";
 import styles from "./styles/Project.module.scss";
-import { useProjectData } from "../client/redux/Projects/api";
+import { useProjectData } from "../client/apis/Projects/api";
 
 function ProjectsV(props: any) {
   // const dispatch = useDispatch();
