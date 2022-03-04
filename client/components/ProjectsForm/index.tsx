@@ -23,13 +23,13 @@ import { IProjectInfo, IProps } from "./interface";
 
 
 const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const project = useSelector((state: RootState | { projects: any }) =>
-    currentId
-      ? state.projects.projects.find((p: IProjectInfo) => p._id === currentId)
-      : null
-  );
+  // const project = useSelector((state: RootState | { projects: any }) =>
+  //   currentId
+  //     ? state.projects.projects.find((p: IProjectInfo) => p._id === currentId)
+  //     : null
+  // );
 
   const [postData, setPostData] = useState({
     title: "",
@@ -38,11 +38,11 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
     selectedFile: "",
   });
 
-  useEffect(() => {
-    if (project) {
-      setPostData({ ...project });
-    }
-  }, [project]);
+  // useEffect(() => {
+  //   if (project) {
+  //     setPostData({ ...project });
+  //   }
+  // }, [project]);
 
   const resetForm = () => {
     setPostData({
@@ -61,7 +61,7 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
       // updatedProject(currentId, { ...postData, name: user?.result?.name })
       resetForm();
     } else {
-      dispatch(createProject({ ...postData, name: "user?.result?.name " }));
+      // dispatch(createProject({ ...postData, name: "user?.result?.name " }));
       resetForm();
     }
 

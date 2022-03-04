@@ -8,15 +8,29 @@ import ProjectsForm from "../client/components/ProjectsForm";
 import { useDispatch, useSelector } from "react-redux";
 import getProjects from "../client/redux/Projects/projects.actions";
 import styles from "./styles/Project.module.scss";
+import { useProjectData } from "../client/redux/Projects/api";
 
 function ProjectsV(props: any) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [currentId, setCurrentId] = useState<any>(0);
 
-  useEffect(() => {
-    dispatch(getProjects());
-  }, [currentId, dispatch]);
+  const onSuccess = (data: any) => {
+    console.log({ data });
+  };
+
+  const onError = (error: any) => {
+    console.log({ error });
+  };
+
+  const { isLoading, data, isError, error, refetch } = useProjectData(
+    onSuccess,
+    onError
+  );
+
+  // useEffect(() => {
+  //   dispatch(getProjects());
+  // }, [currentId, dispatch]);
 
   return (
     <Container maxWidth="lg" className={styles.trigger}>

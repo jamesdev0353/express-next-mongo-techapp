@@ -1,22 +1,19 @@
 import { AppProps } from "next/app";
 import React from "react";
-import { Provider } from "react-redux";
-import withRedux from "next-redux-wrapper";
-import store from "../client/redux/createStore";
-import { createWrapper } from "next-redux-wrapper";
 import Layout from "../client/Layouts/Layout";
 import "./styles/globals.css";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [queryClient] = React.useState(() => new QueryClient());
   return (
-    <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </Provider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
-const makeStore = () => store;
-const wrapper = createWrapper(makeStore);
-
-export default wrapper.withRedux(MyApp);
+export default MyApp;

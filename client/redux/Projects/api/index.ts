@@ -1,22 +1,23 @@
 import axios from "axios";
+import { useQuery } from "react-query";
 import { IPostProjectInfo } from "../interface";
+import { requestData } from "../utils/axios-utils";
 
 const url = "http://localhost:3000/projects/api";
 
-export const fetchProjects = () => {
-  return new Promise((resolve, reject) => {
-    axios
-      .get(url)
-      .then((snapshot) => {
-        // console.log(snapshot, "snapshot");
-        console.log("resolve");
+const fetchProjectData = () => {
+  // return axios.get('http://localhost:4000/superheroes')
+  return requestData({ url: "/projects/api" });
+};
 
-        // console.log(resolve.snapshot)
-        resolve(snapshot);
-      })
-      .catch((err) => {
-        reject(err);
-      });
+export const useProjectData = (onSuccess: any, onError: any) => {
+  return useQuery("projectData", fetchProjectData, {
+    onSuccess,
+    onError,
+    // select: data => {
+    //   const superHeroNames = data.data.map(hero => hero.name)
+    //   return superHeroNames
+    // }
   });
 };
 
