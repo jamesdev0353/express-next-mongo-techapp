@@ -14,6 +14,7 @@ import { useMutation } from "react-query";
 import axios from "axios";
 import { useProjectData } from "../../apis/Projects/api";
 import { IResponseData } from "../../apis/Projects/interface";
+import useFriendStatus from "../../hooks";
 // import { useAddProject } from "../../apis/Projects/api";
 
 const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
@@ -42,20 +43,15 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
     tags: "",
     selectedFile: "",
   });
+  const { data, isPending, error } = useFriendStatus(currentId);
   useEffect(() => {
-    const project = currentId
-      ? projects.find((p) => p._id === currentId)
-      : null;
     if (currentId) {
       setPostData({
-        title: project.title,
-        description: project.description,
-        tags: project.tags.join(),
-        selectedFile: project.selectedFile,
+        ...postData,
+        ...data,
       });
     }
-  }, [currentId, projects]);
-
+  }, [data, postData]);
   const resetForm = () => {
     setPostData({
       title: "",
