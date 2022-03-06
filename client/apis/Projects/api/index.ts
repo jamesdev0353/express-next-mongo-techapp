@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { IPostProjectInfo } from "../interface";
 import { requestData } from "../utils/axios-utils";
 
+
 const url = "http://localhost:3000/projects/api";
 
 const fetchProjectData = () => {
@@ -10,7 +11,7 @@ const fetchProjectData = () => {
   return requestData({ url: "/projects/api" });
 };
 
-export const useProjectData = (onSuccess: any, onError: any) => {
+export const useProjectData = (onSuccess: () => {}, onError: () => {}) => {
   return useQuery("projectData", fetchProjectData, {
     onSuccess,
     onError,

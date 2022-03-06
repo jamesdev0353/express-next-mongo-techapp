@@ -15,19 +15,6 @@ function ProjectsV(props: any) {
 
   const [currentId, setCurrentId] = useState<any>(0);
 
-  const onSuccess = (data: any) => {
-    console.log({ data });
-  };
-
-  const onError = (error: any) => {
-    console.log({ error });
-  };
-
-  const { isLoading, data, isError, error, refetch } = useProjectData(
-    onSuccess,
-    onError
-  );
-
   // useEffect(() => {
   //   dispatch(getProjects());
   // }, [currentId, dispatch]);
@@ -60,9 +47,5 @@ function ProjectsV(props: any) {
   );
 }
 
-// projects.getInitialProps = ({ query }) => {
-//   // console.log(query, "fetch_data_query from pages/projects.js");
-//   return { myParams: query };
-// };
 
 export default ProjectsV;

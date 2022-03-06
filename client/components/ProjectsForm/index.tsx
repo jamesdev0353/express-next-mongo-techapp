@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createProject,
   updatedProject,
-} from "./../../redux/Projects/projects.actions";
+} from "../../apis/Projects/projects.actions";
 
 import FileBase from "react-file-base64";
 
@@ -17,7 +17,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import BackspaceIcon from "@mui/icons-material/Backspace";
 
 import styles from "./../styles/Project.module.scss";
-import { RootState } from "../../redux/rootReducer";
+import { RootState } from "../../apis/rootReducer";
 import { IProjectInfo, IProps } from "./interface";
 
 

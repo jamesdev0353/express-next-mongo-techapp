@@ -10,13 +10,13 @@ import styles from "../../styles/Project.module.scss";
 import {
   deleteProject,
   likeProject,
-} from "../../../redux/Projects/projects.actions";
+} from "../../../apis/Projects/projects.actions";
 import ButtonForm from "./../../Form/ButtonForm";
 import { IProps } from "../interface";
 import { useAppDispatch } from "../../../hooks";
 
 function Project({ project, setCurrentId }: IProps): JSX.Element {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   return (
     <>
       <Card className={styles.card}>
@@ -57,7 +57,7 @@ function Project({ project, setCurrentId }: IProps): JSX.Element {
           <ButtonForm
             size="small"
             color="primary"
-            onClick={() => dispatch(likeProject(project._id))}
+            // onClick={() => dispatch(likeProject(project._id))}
             className={styles.btnProject}
           >
             <span className={styles.span}>{project.likeCount}</span>
@@ -67,7 +67,7 @@ function Project({ project, setCurrentId }: IProps): JSX.Element {
           <ButtonForm
             size="small"
             color="secondary"
-            onClick={() => dispatch(deleteProject(project._id))}
+            // onClick={() => dispatch(deleteProject(project._id))}
             className={styles.btnProject}
           >
             <DeleteIcon fontSize="small" />
