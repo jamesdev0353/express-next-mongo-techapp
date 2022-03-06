@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import Icon from "./icon";
 import styles from "./../styles/Form.module.scss";
 
-import { logInAction } from "./../../redux/User/user.actions";
+import { logInAction } from "../../apis/User/user.actions";
 import { ResultOptions } from "react-query";
 
 const initialState = {

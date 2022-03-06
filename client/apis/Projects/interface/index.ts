@@ -19,3 +19,12 @@ export type IProject = {
   likeCount: number;
   currentId: string;
 };
+
+export interface IProjectInfo extends IProject {
+  _id: string;
+  tags: Array<string>;
+}
+
+export interface IResponseData extends Response {
+  data: IProjectInfo[];
+}

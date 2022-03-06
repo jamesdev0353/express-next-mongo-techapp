@@ -4,15 +4,15 @@ import * as api from "./api";
 import { IPostProjectInfo } from "./interface";
 import { IProjectTypes } from "./projects.types";
 
-const getProjects = () => async (dispatch: React.Dispatch<IProjectTypes>) => {
-  try {
-    const { data }: any = await api.fetchProjects();
-    console.log(data, "oops");
-    dispatch({ type: "FETCH_ALL_PROJECTS", payload: data });
-  } catch (error) {
-    console.log(error, "get  error");
-  }
-};
+// const getProjects = () => async (dispatch: React.Dispatch<IProjectTypes>) => {
+//   try {
+//     const { data }: any = await api.fetchProjects();
+//     console.log(data, "oops");
+//     dispatch({ type: "FETCH_ALL_PROJECTS", payload: data });
+//   } catch (error) {
+//     console.log(error, "get  error");
+//   }
+// };
 
 export const createProject =
   (project: IPostProjectInfo) =>
@@ -38,6 +38,26 @@ export const updatedProject =
       console.log(error, "updated error");
     }
   };
+// function dispatch(
+//   arg0: (
+//     dispatch: React.Dispatch<
+//       import("../../../apis/Projects/projects.types").IProjectTypes
+//     >
+//   ) => Promise<void>
+// ) {
+//   throw new Error("Function not implemented.");
+// }
+
+// function dispatchDeleteAction(
+//   arg0: (
+//     dispatch: React.Dispatch<
+//       import("../../../apis/Projects/projects.types").IProjectTypes
+//     >
+//   ) => Promise<void>
+// ) {
+//   throw new Error("Function not implemented.");
+// }
+
 
 export const deleteProject =
   (id: string) => async (dispatch: React.Dispatch<IProjectTypes>) => {
@@ -60,5 +80,5 @@ export const likeProject =
     }
   };
 
-export default getProjects;
+// export default getProjects;
 // export default createProject;

@@ -5,7 +5,6 @@ import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
-import { useDispatch } from "react-redux";
 import styles from "../../styles/Project.module.scss";
 import {
   deleteProject,
@@ -13,10 +12,14 @@ import {
 } from "../../../apis/Projects/projects.actions";
 import ButtonForm from "./../../Form/ButtonForm";
 import { IProps } from "../interface";
-import { useAppDispatch } from "../../../hooks";
-
+import { useMutation } from "react-query";
+import axios from "axios";
+import { useDispatchDeleteProject } from "../../../apis/Projects/api";
 function Project({ project, setCurrentId }: IProps): JSX.Element {
-  // const dispatch = useDispatch();
+  const useDipsatchDelete = useMutation((id: string) => {
+    return axios.delete(`http://localhost:3000/projects/api/${id}`);
+  });
+
   return (
     <>
       <Card className={styles.card}>
@@ -67,7 +70,7 @@ function Project({ project, setCurrentId }: IProps): JSX.Element {
           <ButtonForm
             size="small"
             color="secondary"
-            // onClick={() => dispatch(deleteProject(project._id))}
+            onClick={() => useDipsatchDelete.mutateAsync(project._id)}
             className={styles.btnProject}
           >
             <DeleteIcon fontSize="small" />
@@ -80,3 +83,4 @@ function Project({ project, setCurrentId }: IProps): JSX.Element {
 }
 
 export default Project;
+

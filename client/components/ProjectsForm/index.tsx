@@ -18,18 +18,15 @@ import BackspaceIcon from "@mui/icons-material/Backspace";
 
 import styles from "./../styles/Project.module.scss";
 import { RootState } from "../../apis/rootReducer";
-import { IProjectInfo, IProps } from "./interface";
-
-
+import { IProject, IProjectInfo, IProps } from "./interface";
+import { useAddProject, useProjectData } from "../../apis/Projects/api";
+import { useMutation } from "react-query";
+import axios from "axios";
 
 const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
-  // const dispatch = useDispatch();
-
-  // const project = useSelector((state: RootState | { projects: any }) =>
-  //   currentId
-  //     ? state.projects.projects.find((p: IProjectInfo) => p._id === currentId)
-  //     : null
-  // );
+  const useDipsatchCreateProject = useMutation((myProjectData: IProject) => {
+    return axios.post(`http://localhost:3000/projects/api/`, myProjectData);
+  });
 
   const [postData, setPostData] = useState({
     title: "",
@@ -37,12 +34,6 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
     tags: "",
     selectedFile: "",
   });
-
-  // useEffect(() => {
-  //   if (project) {
-  //     setPostData({ ...project });
-  //   }
-  // }, [project]);
 
   const resetForm = () => {
     setPostData({
@@ -55,16 +46,11 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
   };
   const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
-
-    if (currentId) {
-      // dispatch();
-      // updatedProject(currentId, { ...postData, name: user?.result?.name })
-      resetForm();
-    } else {
-      // dispatch(createProject({ ...postData, name: "user?.result?.name " }));
-      resetForm();
-    }
-
+    const myProjectData: IProject = {
+      ...postData,
+      name: "user?.result?.name ",
+    };
+    useDipsatchCreateProject.mutate(myProjectData);
     resetForm();
   };
   return (
@@ -147,3 +133,5 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
 };
 
 export default ProjectsForm;
+
+

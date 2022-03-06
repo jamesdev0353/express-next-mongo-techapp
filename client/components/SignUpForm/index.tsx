@@ -12,7 +12,7 @@ import useStyles from "./styles";
 import styles from "./../styles/Form.module.scss";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { signUpAction } from "../../redux/User/user.actions";
+import { signUpAction } from "../../apis/User/user.actions";
 
 const initialState = {
   userName: "",

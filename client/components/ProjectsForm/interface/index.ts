@@ -3,7 +3,7 @@ export type IProject = {
   description?: string;
   name?: string;
   creator?: string;
-  tags: Array<string>;
+  tags: Array<string> | string;
   selectedFile?: string;
   likes?: Array<string>;
   likeList?: Array<string>;
