@@ -6,6 +6,7 @@ import {
   getProject,
   deleteProject,
   createProject,
+  updateProject,
 } from "../controllers/projects";
 
 interface IRoutes {
@@ -13,11 +14,11 @@ interface IRoutes {
 }
 import ProjectModel from "../models/projectModel";
 
-const   router = express.Router();
+const router = express.Router();
 
 router.get("/projects/api", getProjects);
 router.post("/projects/api", createProject);
 router.get("/projects/api/likeProject/:id", getProject);
 router.delete("/projects/api/:id", deleteProject);
-
+router.patch("/projects/api/:id", updateProject);
 export default router;

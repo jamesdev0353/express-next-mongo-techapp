@@ -19,39 +19,19 @@ export const useProjectData = (
   });
 };
 
-const deleteProject = (id: string) => {
-  return axios.delete(`${url}/${id}`);
-};
 
-export const useDispatchDeleteProject = (
-
-) => {
-  return useMutation(deleteProject, {
-  });
-};
 
 export const createProject = (newProject: IPostProjectInfo) =>
   axios.post(`${url}/project/api`, newProject);
 
+const deleteProject = (id: string) => {
+  return axios.delete(`${url}/${id}`);
+};
 
-export const useAddProject = () => {
-  const queryClient = useQueryClient();
+export const useDispatchDeleteProject = () => {
+  return useMutation(deleteProject, {});
+};
 
-  return useMutation(createProject, {
-    onSuccess: async data => {
-      console.log(data);
-      const message = "success"
-      alert(message)
-
-    },
-    onError: () => {
-      alert("there was an error")
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries('create');
-    }
-  })
-}
 // return axios.delete(`http://localhost:3000/projects/api/${id}`);
 
 

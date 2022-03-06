@@ -1,14 +1,6 @@
 import React, { FC, useState, useEffect, FormEventHandler } from "react";
 import InputForm from "../Form/InputForm";
 
-import { Typography, Paper } from "@material-ui/core";
-
-import { useDispatch, useSelector } from "react-redux";
-import {
-  createProject,
-  updatedProject,
-} from "../../apis/Projects/projects.actions";
-
 import FileBase from "react-file-base64";
 
 import Button from "@mui/material/Button";
@@ -17,23 +9,52 @@ import SaveIcon from "@material-ui/icons/Save";
 import BackspaceIcon from "@mui/icons-material/Backspace";
 
 import styles from "./../styles/Project.module.scss";
-import { RootState } from "../../apis/rootReducer";
 import { IProject, IProjectInfo, IProps } from "./interface";
-import { useAddProject, useProjectData } from "../../apis/Projects/api";
 import { useMutation } from "react-query";
 import axios from "axios";
+import { useProjectData } from "../../apis/Projects/api";
+import { IResponseData } from "../../apis/Projects/interface";
+// import { useAddProject } from "../../apis/Projects/api";
 
 const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
+  const [projects, setProjects] = useState<IProjectInfo[]>([]);
   const useDipsatchCreateProject = useMutation((myProjectData: IProject) => {
     return axios.post(`http://localhost:3000/projects/api/`, myProjectData);
   });
 
+  const useDipsatchUpdateProject = useMutation((myProjectData: IProject) => {
+    return axios.patch(
+      `http://localhost:3000/projects/api/${currentId}`,
+      myProjectData
+    );
+  });
+  const onSuccess = (data: IResponseData) => {
+    console.log(data.data, "data page");
+    setProjects(data.data);
+  };
+  const onError = (error: Error) => {
+    console.log(error);
+  };
+  const {} = useProjectData(onSuccess, onError);
   const [postData, setPostData] = useState({
     title: "",
     description: "",
     tags: "",
     selectedFile: "",
   });
+  useEffect(() => {
+    const project = currentId
+      ? projects.find((p) => p._id === currentId)
+      : null;
+    if (currentId) {
+      setPostData({
+        title: project.title,
+        description: project.description,
+        tags: project.tags.join(),
+        selectedFile: project.selectedFile,
+      });
+    }
+  }, [currentId, projects]);
 
   const resetForm = () => {
     setPostData({
@@ -46,12 +67,24 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
   };
   const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
-    const myProjectData: IProject = {
-      ...postData,
-      name: "user?.result?.name ",
-    };
-    useDipsatchCreateProject.mutate(myProjectData);
-    resetForm();
+    if (currentId) {
+      console.log("Current id");
+
+      const myProjectData: IProject = {
+        ...postData,
+        name: "user?.result?.name ",
+      };
+      useDipsatchUpdateProject.mutate(myProjectData);
+
+      resetForm();
+    } else {
+      const myProjectData: IProject = {
+        ...postData,
+        name: "user?.result?.name ",
+      };
+      useDipsatchCreateProject.mutate(myProjectData);
+      resetForm();
+    }
   };
   return (
     <>
