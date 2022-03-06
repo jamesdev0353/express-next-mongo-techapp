@@ -15,10 +15,10 @@ import axios from "axios";
 import { useProjectData } from "../../apis/Projects/api";
 import { IResponseData } from "../../apis/Projects/interface";
 import useFriendStatus from "../../hooks";
+import { DoDisturbAltSharp } from "@mui/icons-material";
 // import { useAddProject } from "../../apis/Projects/api";
 
 const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
-  const [projects, setProjects] = useState<IProjectInfo[]>([]);
   const useDipsatchCreateProject = useMutation((myProjectData: IProject) => {
     return axios.post(`http://localhost:3000/projects/api/`, myProjectData);
   });
@@ -29,29 +29,12 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
       myProjectData
     );
   });
-  const onSuccess = (data: IResponseData) => {
-    console.log(data.data, "data page");
-    setProjects(data.data);
-  };
-  const onError = (error: Error) => {
-    console.log(error);
-  };
-  const {} = useProjectData(onSuccess, onError);
   const [postData, setPostData] = useState({
     title: "",
     description: "",
     tags: "",
     selectedFile: "",
   });
-  const { data, isPending, error } = useFriendStatus(currentId);
-  useEffect(() => {
-    if (currentId) {
-      setPostData({
-        ...postData,
-        ...data,
-      });
-    }
-  }, [data, postData]);
   const resetForm = () => {
     setPostData({
       title: "",
@@ -61,6 +44,17 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
     });
     setCurrentId(0);
   };
+  const { data } = useFriendStatus(currentId);
+  useEffect(() => {
+    if (currentId) {
+      setPostData({
+        title: data.title,
+        description: data.description,
+        tags: data.tags,
+        selectedFile: data.selectedFile,
+      });
+    }
+  }, [currentId, data.description, data.selectedFile, data.tags, data.title]);
   const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
     if (currentId) {
