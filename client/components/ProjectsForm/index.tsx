@@ -2,32 +2,23 @@ import React, { FC, useState, useEffect, FormEventHandler } from "react";
 import InputForm from "../Form/InputForm";
 
 import FileBase from "react-file-base64";
-
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import SaveIcon from "@material-ui/icons/Save";
 import BackspaceIcon from "@mui/icons-material/Backspace";
 
 import styles from "./../styles/Project.module.scss";
-import { IProject, IProjectInfo, IProps } from "./interface";
+import { IProject, IProps } from "./interface";
 import { useMutation } from "react-query";
-import axios from "axios";
-import { useProjectData } from "../../apis/Projects/api";
-import { IResponseData } from "../../apis/Projects/interface";
-import useFriendStatus from "../../hooks";
-import { DoDisturbAltSharp } from "@mui/icons-material";
-// import { useAddProject } from "../../apis/Projects/api";
-
+import useUpdateFields from "../../hooks";
+import { createProject, updateProject } from "../../apis/Projects/api";
 const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
   const useDipsatchCreateProject = useMutation((myProjectData: IProject) => {
-    return axios.post(`http://localhost:3000/projects/api/`, myProjectData);
+    return createProject(myProjectData);
   });
 
   const useDipsatchUpdateProject = useMutation((myProjectData: IProject) => {
-    return axios.patch(
-      `http://localhost:3000/projects/api/${currentId}`,
-      myProjectData
-    );
+    return updateProject(currentId, myProjectData);
   });
   const [postData, setPostData] = useState({
     title: "",
@@ -44,7 +35,7 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
     });
     setCurrentId(0);
   };
-  const { data } = useFriendStatus(currentId);
+  const { data } = useUpdateFields(currentId);
   useEffect(() => {
     if (currentId) {
       setPostData({
@@ -86,7 +77,9 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           fullWidth
           autoFocus="none"
           value={postData.title}
-          onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPostData({ ...postData, title: e.target.value })
+          }
         />
         <InputForm
           id="outlined-multiline-static"
@@ -98,7 +91,7 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           fullWidth
           sx={{ mt: 1.5 }}
           placeholder="write your description here.."
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setPostData({ ...postData, description: e.target.value })
           }
         />
@@ -112,7 +105,7 @@ const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
           sx={{ mt: 1.5 }}
           autoFocus="none"
           placeholder="#tags"
-          onChange={(e) =>
+          onChange={(e: any) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
         />

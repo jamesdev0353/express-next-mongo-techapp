@@ -9,10 +9,10 @@ import styles from "../../styles/Project.module.scss";
 import ButtonForm from "./../../Form/ButtonForm";
 import { IProps } from "../interface";
 import { useMutation } from "react-query";
-import axios from "axios";
+import { deleteProject } from "./../../../apis/Projects/api";
 function Project({ project, setCurrentId }: IProps): JSX.Element {
   const useDipsatchDelete = useMutation((id: string) => {
-    return axios.delete(`http://localhost:3000/projects/api/${id}`);
+    return deleteProject(id);
   });
 
   return (

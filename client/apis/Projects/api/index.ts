@@ -20,12 +20,23 @@ export const useProjectData = (
 };
 
 
-
+//this works
 export const createProject = (newProject: IPostProjectInfo) =>
-  axios.post(`${url}/project/api`, newProject);
+  axios.post(`http://localhost:3000/projects/api/`, newProject);
 
-const deleteProject = (id: string) => {
-  return axios.delete(`${url}/${id}`);
+//this works
+export const updateProject = (
+  currentId: string,
+  updatedProject: IPostProjectInfo
+  ) =>
+  axios.patch(
+    `http://localhost:3000/projects/api/${currentId}`,
+    updatedProject
+    );
+
+//this works
+export const deleteProject = (id: string) => {
+   return axios.delete(`http://localhost:3000/projects/api/${id}`);
 };
 
 export const useDispatchDeleteProject = () => {
@@ -34,15 +45,8 @@ export const useDispatchDeleteProject = () => {
 
 // return axios.delete(`http://localhost:3000/projects/api/${id}`);
 
-
-
-
-
-
-export const updateProject = (id: string, updatedProject: any) =>
-  axios.patch(`${url}/${id}`, updatedProject);
-
 // export const deleteThisProject = (id: string) => axios.delete(`${url}/${id}`);
 
 export const likeProject = (id: string) =>
   axios.patch(`${url}/likeProject/${id}`);
+

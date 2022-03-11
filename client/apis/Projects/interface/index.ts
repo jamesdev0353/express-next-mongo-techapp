@@ -1,9 +1,13 @@
 export interface IPostProjectInfo {
-  description: string;
-  name: string;
-  selectedFile: string;
-  tags: Array<string>;
   title: string;
+  description?: string;
+  name?: string;
+  creator?: string;
+  tags: Array<string> | string;
+  selectedFile?: string;
+  likes?: Array<string>;
+  likeList?: Array<string>;
+  createdAt?: any;
 }
 export type IProject = {
   title: string;
