@@ -16,12 +16,12 @@ import { useMutation } from "react-query";
 //   }
 // };
 
-export const useDipsatchCreateProject =
-  (myProjectData: IPostProjectInfo) =>
-  async (dispatch: React.Dispatch<IProjectTypes>) => {
-    useMutation((myProjectData: IProject) => {
-    return axios.post(`http://localhost:3000/projects/api/`, myProjectData);
-  });
+// export const useDipsatchCreateProject =
+//   (myProjectData: IPostProjectInfo) =>
+//   async (dispatch: React.Dispatch<IProjectTypes>) => {
+//     useMutation((myProjectData: IProject) => {
+//     return axios.post(`http://localhost:3000/projects/api/`, myProjectData);
+//   });
 
 // export const updatedProject =
 //   (id: string, project: IProject) =>
@@ -57,4 +57,4 @@ export const useDipsatchCreateProject =
 //   };
 
 // export default getProjects;
-// // export default createProject;
+// export default createProject;

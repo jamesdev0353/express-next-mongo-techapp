@@ -1,7 +1,4 @@
 import axios from "axios";
-import { useMutation, useQueryClient } from "react-query";
-import { createProject } from "../api";
-
 const client = axios.create({ baseURL: "http://localhost:3000" });
 
 export const requestData = async ({ ...options }) => {
@@ -18,4 +15,3 @@ export const requestData = async ({ ...options }) => {
     return onError(error);
   }
 };
-
