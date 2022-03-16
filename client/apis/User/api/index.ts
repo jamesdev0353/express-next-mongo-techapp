@@ -14,26 +14,27 @@ const API = axios.create({
 // });
 
 export const findUser = (formData) => API.get("/", formData);
-export const logIn = (formData) => {
-  console.log(formData, "loginAccept");
-  try {
-    API({
-      method: "post",
-      url: "/user/login",
-      data: {
-        formData,
-      },
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("userProfile")).token
-        }`,
-      },
-    });
-  } catch (error) {
-    console.log(error, "is error");
-  }
-};
+export const logIn = (formData) => API.post("/login", formData);
+// export const logIn = (formData) => {
+//   console.log(formData, "loginAccept");
+//   try {
+//     API({
+//       method: "post",
+//       url: "/login",
+//       data: {
+//         formData,
+//       },
+//       headers: {
+//         "Content-type": "application/json",
+//         Authorization: `Bearer ${
+//           JSON.parse(localStorage.getItem("userProfile")).token
+//         }`,
+//       },
+//     });
+//   } catch (error) {
+//     console.log(error, "is error");
+//   }
+// };
 
 // export const signUp = (formData) => {
 //   API({
