@@ -11,8 +11,9 @@ import { useRouter } from "next/router";
 import Icon from "./icon";
 import styles from "./../styles/Form.module.scss";
 import userReducer from "../../apis/User/user.reducers";
-// import { logInAction } from "../../apis/User/user.actions";
+import { logInAction } from "../../apis/User/user.actions";
 import { ResultOptions } from "react-query";
+import * as api from "./../../apis/User/api";
 
 const initialState = {
   email: "",
@@ -44,7 +45,7 @@ function LoginForm(): JSX.Element {
       console.log(token, "IPROPDATA");
 
       // setFormData({...formData, token: token})
-      dispatch({ type: "AUTH", data: { result, token } });
+      dispatch({ type: "GOOGLE_AUTH", data: { result, token } });
       //   .then(
       router.push("/");
       // );
@@ -61,10 +62,23 @@ function LoginForm(): JSX.Element {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
     console.log(formData, "login");
-    // dispatch(logInAction(formData, router));
+    try {
+      setData(api.logIn(formData));
+
+      console.log(formData, "data actions");
+      dispatch({ type: "AUTH", data });
+      // console.log(localStorage.getItem("userProfile"), "actions");
+      // console.log(
+      //   JSON.parse(localStorage.getItem("userProfile")).token,
+      //   "actions"
+      // );
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <form onSubmit={handleSubmit} className={styles.signUpform}>

@@ -16,9 +16,9 @@ import ProjectModel from "../models/projectModel";
 
 const router = express.Router();
 
-router.get("/projects/api", getProjects);
-router.post("/projects/api", createProject);
-router.get("/projects/api/likeProject/:id", getProject);
-router.delete("/projects/api/:id", deleteProject);
-router.patch("/projects/api/:id", updateProject);
+router.get("/api", getProjects);
+router.post("/api", createProject);
+router.get("/api/likeProject/:id", getProject);
+router.delete("/api/:id", deleteProject);
+router.patch("/api/:id", updateProject);
 export default router;

@@ -23,19 +23,20 @@ import { signUpUser, logInUser } from "./controllers/user";
 
 import ProjectModel from "./models/projectModel";
 import projectsRoutes from "./routes/projectsRoutes";
+import userRoutes from "./routes/userRoutes";
 import blockchainRoutes from "./routes/blockchainRoutes";
 import auth from "./middleware/auth";
 
 nextApp.prepare().then(() => {
   const app = express();
-  // // express code here
-
+  // express code here
   app.use(bodyParser.json({ limit: "30mb" }));
   app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
   app.use(cors());
-  ////express routes here
-  ////projects rutes
-  app.use("/", projectsRoutes);
+  //express routes here
+  //projects rutes
+  app.use("/projects", projectsRoutes);
+  app.use("/user", userRoutes);
 
   app.get("/about", async (req: Request, res: Response) => {
     const actualPage = "/about";
@@ -46,7 +47,7 @@ nextApp.prepare().then(() => {
       res.status(401).json({ message: err.message });
     }
   });
-  ////blockcain routes
+  //blockcain routes
   app.use("/blog/blockchain/api", blockchainRoutes);
 
   app.get("*", (req: Request, res: Response) => {

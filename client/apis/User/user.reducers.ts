@@ -18,21 +18,32 @@ interface IPropData {
   token: string;
 }
 interface Action {
-  payload: IPropData;
-  type: "AUTH" | "SET_USER" | "CREATE_USER" | "LOG_IN_USER" | "LOG_OUT_USER";
+  payload?: IPropData;
+  type:
+    | "AUTH"
+    | "SET_USER"
+    | "CREATE_USER"
+    | "LOG_IN_USER"
+    | "LOG_OUT_USER"
+    | "GOOGLE_AUTH";
   data: IPropData;
 }
 
 const userReducer = (state = INITIAL_STATE, action: Action) => {
   console.log(action, "this is the action");
   switch (action.type) {
+    case "GOOGLE_AUTH":
+      localStorage.setItem("userProfile", JSON.stringify({ ...action?.data }));
+      // localStorage.getItem("userProfile", JSON.stringify({ ...action?.data }));
+      console.log(action?.data, "action data");
+      return { ...state, currentUser: action?.data };
     case "AUTH":
       localStorage.setItem("userProfile", JSON.stringify({ ...action?.data }));
       // localStorage.getItem("userProfile", JSON.stringify({ ...action?.data }));
       console.log(action?.data, "action data");
       return { ...state, currentUser: action?.data };
     case "SET_USER":
-      // localStorage.setItem("userProfile", JSON.stringify({ ...action?.data }));
+      localStorage.setItem("userProfile", JSON.stringify({ ...action?.data }));
       // localStorage.getItem("userProfile", JSON.stringify({ ...action?.data }));
       console.log(action?.data, "action data");
       return {

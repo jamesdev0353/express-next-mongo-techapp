@@ -1,9 +1,9 @@
-// import axios from "axios";
-// import { LocalStorage } from "node-localstorage";
+import axios from "axios";
+import { LocalStorage } from "node-localstorage";
 
-// const API = axios.create({
-//   baseURL: "http://localhost:3000/user",
-// });
+const API = axios.create({
+  baseURL: "http://localhost:3000/user",
+});
 
 // axios.interceptors.request.use((request) => {
 //   if (localStorage.getItem("userProfile")) {
@@ -13,21 +13,21 @@
 //   }
 // });
 
-// export const logIn = (formData) => {
-//   API({
-//     method: "post",
-//     url: "/user/login",
-//     data: {
-//       formData,
-//     },
-//     headers: {
-//       "Content-type": "application/json",
-//       Authorization: `Bearer ${
-//         JSON.parse(localStorage.getItem("userProfile")).token
-//       }`,
-//     },
-//   });
-// };
+export const logIn = (formData) => {
+  API({
+    method: "post",
+    url: "/user/login",
+    data: {
+      formData,
+    },
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem("userProfile")).token
+      }`,
+    },
+  });
+};
 
 // export const signUp = (formData) => {
 //   API({

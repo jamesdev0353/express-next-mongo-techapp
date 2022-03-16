@@ -1,6 +1,6 @@
 import React from "react";
 import { IUserTypes } from "./user.types";
-// import * as api from "./api";
+import * as api from "./api";
 
 // export const signUpAction = (formData, router) => async (dispatch) => {
 //   try {
@@ -29,18 +29,19 @@ import { IUserTypes } from "./user.types";
 //     }
 //   };
 
-// export const logInAction = (formData, router) => async (dispatch) => {
-//   try {
-//     const { data } = await api.logIn(formData);
-//     console.log(data, "data actions");
-//     dispatch({ type: userTypes.AUTH, data });
-//     // console.log(localStorage.getItem("userProfile"), "actions");
-//     // console.log(
-//     //   JSON.parse(localStorage.getItem("userProfile")).token,
-//     //   "actions"
-//     // );
-//     router.push("/");
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const logInAction = (formData, router) => async (dispatch) => {
+  try {
+    api.logIn(formData);
+    // const { data } = await api.logIn(formData);
+    console.log(formData, "data actions");
+    dispatch({ type: "AUTH", formData });
+    // console.log(localStorage.getItem("userProfile"), "actions");
+    // console.log(
+    //   JSON.parse(localStorage.getItem("userProfile")).token,
+    //   "actions"
+    // );
+    router.push("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
