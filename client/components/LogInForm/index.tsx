@@ -71,7 +71,7 @@ function LoginForm(): JSX.Element {
       console.log(formData, "data actions");
       dispatch({ type: "AUTH", data });
       // console.log(localStorage.getItem("userProfile"), "actions");
-
+      //
       router.push("/");
     } catch (error) {
       console.log(error);
