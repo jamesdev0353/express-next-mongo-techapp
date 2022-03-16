@@ -14,8 +14,8 @@ interface IGoogleUserProps {
 }
 
 interface IPropData {
-  result: IGoogleUserProps;
-  token: string;
+  result?: IGoogleUserProps;
+  token?: string;
 }
 interface Action {
   payload?: IPropData;
@@ -39,7 +39,7 @@ const userReducer = (state = INITIAL_STATE, action: Action) => {
       return { ...state, currentUser: action?.data };
     case "AUTH":
       localStorage.setItem("userProfile", JSON.stringify({ ...action?.data }));
-      // localStorage.getItem("userProfile", JSON.stringify({ ...action?.data }));
+      localStorage.getItem("userProfile", JSON.stringify({ ...action?.data }));
       console.log(action?.data, "action data");
       return { ...state, currentUser: action?.data };
     case "SET_USER":

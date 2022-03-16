@@ -1,5 +1,7 @@
-var bcrypt = require("bcryptjs");
-var jwt = require("jsonwebtoken");
+// var bcrypt = require("bcryptjs");
+// var jwt = require("jsonwebtoken");
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 import User from "../models/userModel";
 

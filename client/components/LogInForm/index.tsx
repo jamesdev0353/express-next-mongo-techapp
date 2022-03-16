@@ -67,14 +67,11 @@ function LoginForm(): JSX.Element {
     console.log(formData, "login");
     try {
       setData(api.logIn(formData));
-
+      console.log(api.logIn(formData));
       console.log(formData, "data actions");
       dispatch({ type: "AUTH", data });
       // console.log(localStorage.getItem("userProfile"), "actions");
-      // console.log(
-      //   JSON.parse(localStorage.getItem("userProfile")).token,
-      //   "actions"
-      // );
+
       router.push("/");
     } catch (error) {
       console.log(error);
