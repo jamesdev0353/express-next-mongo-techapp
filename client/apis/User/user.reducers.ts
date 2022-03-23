@@ -67,6 +67,14 @@ const userReducer = (state = INITIAL_STATE || initialState, action: Action) => {
         ...state,
         currentUser: action.payload,
       };
+    // case "SET_USER":
+    //   localStorage.setItem("userProfile", JSON.stringify({ ...action?.data }));
+    //   // localStorage.getItem("userProfile", JSON.stringify({ ...action?.data }));
+    //   console.log(action?.data, "action data");
+    //   return {
+    //     ...state,
+    //     currentUser: action.payload,
+    //   };
 
     case "LOG_OUT_USER":
       localStorage.clear();
