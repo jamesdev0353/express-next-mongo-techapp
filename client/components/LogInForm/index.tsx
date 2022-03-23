@@ -40,11 +40,6 @@ function LoginForm(): JSX.Element {
     const token: string = res?.tokenId;
     setData({ result, token });
     try {
-      console.log("Success");
-      console.log(result, "IPROPDATA");
-      console.log(token, "IPROPDATA");
-
-      // setFormData({...formData, token: token})
       dispatch({ type: "GOOGLE_AUTH", data: { result, token } });
       //   .then(
       router.push("/");
