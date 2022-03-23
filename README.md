@@ -1,4 +1,4 @@
-This is a [Mongo Express React Next.js Typescript webApp](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Mongo Express React Next.js Typescript webApp](https://nextjs.org/) project bootstrapped with [`npx create-next-app@latest --ts`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 ----->Converting the MERN-NEXT-STACK app in to TYPESCRIPT!
