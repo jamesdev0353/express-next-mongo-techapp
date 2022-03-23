@@ -15,6 +15,7 @@ const API = axios.create({
 
 export const findUser = (formData) => API.get("/", formData);
 export const logIn = (formData) => API.post("/login", formData);
+export const signUp = (formData) => API.post("/signup", formData);
 // export const logIn = (formData) => {
 //   console.log(formData, "loginAccept");
 //   try {
@@ -52,4 +53,3 @@ export const logIn = (formData) => API.post("/login", formData);
 // };
 
 // export const logIn = (formData) => API.post("/login", formData);
-// export const signUp = (formData) => API.post("/signup", formData);

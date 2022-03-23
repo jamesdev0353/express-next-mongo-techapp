@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { signUpAction } from "../../apis/User/user.actions";
 import userReducer from "../../apis/User/user.reducers";
+import * as api from "./../../apis/User/api";
 
 const initialState = {
   userName: "",
@@ -30,25 +31,19 @@ function SignUpForm() {
   const [data, setData] = useState<any>();
   const [formData, setFormData] = useState(initialState);
   const [INITIAL_STATE, dispatch] = useReducer(userReducer, formData);
-  // const [username, setUsername] = useState("");
-  // const [lastname, setLastname] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [birthday, setBirthday] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-  const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
+
+  const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
     if (formData.password === formData.confirmPassword) {
       console.log(formData);
-      dispatch(signUpAction(formData, router));
-      // console.log(
-      //   username,
-      //   lastname,
-      //   email,
-      //   birthday,
-      //   password,
-      //   confirmPassword
-      // );
+      try {
+        const { data } = await api.signUp(formData);
+        console.log(data, "data");
+        dispatch({ type: "AUTH", data });
+        router.push("/");
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       alert("password is not the same");
     }
