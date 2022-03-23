@@ -37,7 +37,7 @@ interface IPropsSignUpData {
   confirmPassword: string;
 }
 
-const initialState = {
+const initialState: IPropsSignUpData = {
   userName: "",
   lastName: "",
   email: "",
