@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import ButtonForm from "../Form/ButtonForm";
 import InputForm from "../Form/InputForm";
 import { GoogleLogin } from "react-google-login";
@@ -13,6 +13,7 @@ import styles from "./../styles/Form.module.scss";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { signUpAction } from "../../apis/User/user.actions";
+import userReducer from "../../apis/User/user.reducers";
 
 const initialState = {
   userName: "",
@@ -26,8 +27,9 @@ const initialState = {
 function SignUpForm() {
   const router = useRouter();
   const classes = useStyles();
-  const dispatch = useDispatch();
+  const [data, setData] = useState<any>();
   const [formData, setFormData] = useState(initialState);
+  const [INITIAL_STATE, dispatch] = useReducer(userReducer, formData);
   // const [username, setUsername] = useState("");
   // const [lastname, setLastname] = useState("");
   // const [email, setEmail] = useState("");

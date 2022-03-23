@@ -5,7 +5,7 @@ import cors from "cors";
 import mongoose, { ConnectOptions } from "mongoose";
 
 const CONNECTION_URL =
-  "mongodb+srv://mern_stack:mernstack123@cluster0.omcc9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://konsbe:konsbe123@cluster0.f2hbs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const dev = process.env.NODE_DEV !== "production"; //true false
 const nextApp = next({ dev });

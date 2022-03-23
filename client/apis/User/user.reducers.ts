@@ -28,8 +28,25 @@ interface Action {
     | "GOOGLE_AUTH";
   data: IPropData;
 }
+interface IPropsSignUpData {
+  userName: string;
+  lastName: string;
+  email: string;
+  birthDay: string;
+  password: string;
+  confirmPassword: string;
+}
 
-const userReducer = (state = INITIAL_STATE, action: Action) => {
+const initialState = {
+  userName: "",
+  lastName: "",
+  email: "",
+  birthDay: "",
+  password: "",
+  confirmPassword: "",
+};
+
+const userReducer = (state = INITIAL_STATE || initialState, action: Action) => {
   console.log(action, "this is the action");
   switch (action.type) {
     case "GOOGLE_AUTH":
@@ -39,7 +56,7 @@ const userReducer = (state = INITIAL_STATE, action: Action) => {
       return { ...state, currentUser: action?.data };
     case "AUTH":
       localStorage.setItem("userProfile", JSON.stringify({ ...action?.data }));
-      localStorage.getItem("userProfile", JSON.stringify({ ...action?.data }));
+      // localStorage.getItem("userProfile", JSON.stringify({ ...action?.data }));
       console.log(action?.data, "action data");
       return { ...state, currentUser: action?.data };
     case "SET_USER":
