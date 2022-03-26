@@ -63,13 +63,11 @@ function LoginForm(): JSX.Element {
     e.preventDefault();
     console.log(formData, "login");
     try {
-      const myRes = await api
-        .logIn(formData)
-        .then((res: AxiosResponse<any, any>) => {
-          const result: any = res?.data.result;
-          const token: string = res?.data.token;
-          dispatch({ type: "AUTH", data: { result, token } });
-        });
+      await api.logIn(formData).then((res: AxiosResponse<any, any>) => {
+        const result: any = res?.data.result;
+        const token: string = res?.data.token;
+        dispatch({ type: "AUTH", data: { result, token } });
+      });
 
       router.push("/");
     } catch (error) {
