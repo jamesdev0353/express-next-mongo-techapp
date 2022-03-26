@@ -14,20 +14,10 @@ interface IGoogleUserProps {
 }
 
 interface IPropData {
-  result?: IGoogleUserProps;
+  result?: IGoogleUserProps | IPropsSignInData;
   token?: string;
 }
-interface Action {
-  payload?: IPropData;
-  type:
-    | "AUTH"
-    | "SET_USER"
-    | "CREATE_USER"
-    | "LOG_IN_USER"
-    | "LOG_OUT_USER"
-    | "GOOGLE_AUTH";
-  data: IPropData;
-}
+
 interface IPropsSignUpData {
   userName: string;
   lastName: string;
@@ -35,6 +25,14 @@ interface IPropsSignUpData {
   birthDay: string;
   password: string;
   confirmPassword: string;
+}
+interface IPropsSignInData {
+  __v: number;
+  id: string;
+  birthDay: string;
+  email: string;
+  name: string;
+  password: string;
 }
 
 const initialState: IPropsSignUpData = {
@@ -46,7 +44,22 @@ const initialState: IPropsSignUpData = {
   confirmPassword: "",
 };
 
-const userReducer = (state = INITIAL_STATE || initialState, action: Action) => {
+interface Action {
+  payload?: IPropData;
+  type:
+    | "AUTH"
+    | "SET_USER"
+    | "CREATE_USER"
+    | "LOG_IN_USER"
+    | "LOG_OUT_USER"
+    | "GOOGLE_AUTH";
+  data: IPropData;
+}
+
+const userReducer = (
+  state = INITIAL_STATE || initialState,
+  action: Action | any
+) => {
   console.log(action, "this is the action");
   switch (action.type) {
     case "GOOGLE_AUTH":

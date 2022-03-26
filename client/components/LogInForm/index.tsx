@@ -14,6 +14,7 @@ import userReducer from "../../apis/User/user.reducers";
 import { logInAction } from "../../apis/User/user.actions";
 import { ResultOptions } from "react-query";
 import * as api from "./../../apis/User/api";
+import { AxiosResponse } from "axios";
 
 const initialState = {
   email: "",
@@ -36,8 +37,8 @@ function LoginForm(): JSX.Element {
   const [formData, setFormData] = useState(initialState);
   const [INITIAL_STATE, dispatch] = useReducer(userReducer, data);
   const googleSuccess = async (res: any) => {
-    const result: IGoogleUserProps = res?.profileObj;
-    const token: string = res?.tokenId;
+    const result: IGoogleUserProps = await res?.profileObj;
+    const token: string = await res?.tokenId;
     setData({ result, token });
     try {
       dispatch({ type: "GOOGLE_AUTH", data: { result, token } });
@@ -62,12 +63,14 @@ function LoginForm(): JSX.Element {
     e.preventDefault();
     console.log(formData, "login");
     try {
-      setData(api.logIn(formData));
-      console.log(api.logIn(formData));
-      console.log(formData, "data actions");
-      dispatch({ type: "AUTH", data });
-      // console.log(localStorage.getItem("userProfile"), "actions");
-      //
+      const myRes = await api
+        .logIn(formData)
+        .then((res: AxiosResponse<any, any>) => {
+          const result: any = res?.data.result;
+          const token: string = res?.data.token;
+          dispatch({ type: "AUTH", data: { result, token } });
+        });
+
       router.push("/");
     } catch (error) {
       console.log(error);
