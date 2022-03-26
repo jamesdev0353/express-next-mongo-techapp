@@ -42,15 +42,11 @@ function LoginForm(): JSX.Element {
     setData({ result, token });
     try {
       dispatch({ type: "GOOGLE_AUTH", data: { result, token } });
-      //   .then(
       router.push("/");
-      // );
     } catch (error) {
       console.log(error);
     }
-    // console.log(res);
   };
-  //
   const googleFailure = (error: Error) => {
     console.log(error);
     console.log("Google sign in unsuccessful");
