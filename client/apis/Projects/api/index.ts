@@ -5,6 +5,17 @@ import { requestData } from "../utils/axios-utils";
 
 const url = "http://localhost:3000";
 
+axios.interceptors.request.use((req: any) => {
+  if (localStorage.getItem("userProfile")) {
+    req.headers.Authorization = `Bearer ${
+      JSON.parse(localStorage.getItem("userProfile")).token
+    }`;
+    // req.headers = "asdasdds";
+    return req;
+  }
+});
+
+
 const fetchProjectData = () => {
   return requestData({ url: "/projects/api" });
 };

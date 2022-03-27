@@ -1,12 +1,10 @@
-var jwt = require("jsonwebtoken");
-
-const auth = async (req: any, res: any, next: any) => {
+import jwt from "jsonwebtoken";
+import { Request, Response } from "express";
+const auth = async (req, res, next) => {
   try {
-    // console.log(logInUser(), "those headers");
-
-    // console.log(req, "those headers");
-    // const token = res.headers.test.split(" ")[1];
-    const token = req.headers.test.split(" ")[1];
+    // console.log(req.headers, "those headers");
+    console.log(req.headers.authorization, "those headers");
+    const token = req.headers.authorization.split(" ")[1];
     const isCustomAuth = token.length < 500;
 
     let decodedData;

@@ -15,9 +15,7 @@ export const getProjects: RequestHandler = async (
 ) => {
   try {
     const projectModels = await ProjectModel.find();
-    // res.send("This Works!");
-    // console.log(ProjeModel);
-    // console.log(projectModels);
+
     res.status(200).json(projectModels);
   } catch (err: any) {
     res.status(404).json({ message: err.message });
@@ -32,7 +30,6 @@ export const getProject: RequestHandler = async (
 
   try {
     const project = await ProjectModel.findById(id);
-    // console.log(project, "project");
     res.status(200).json(project);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
@@ -45,7 +42,6 @@ export const createProject: RequestHandler = async (
 ): Promise<void> => {
   const project: IProject = req.body;
 
-  // console.log(req.userId);
   const newProject = new ProjectModel({
     ...project,
     creator: req.userId,
@@ -53,8 +49,6 @@ export const createProject: RequestHandler = async (
   });
   try {
     await newProject.save();
-
-    // res.status(201).json(newProject);
   } catch (error: any) {
     res.status(409).json({ message: error.message });
   }
