@@ -25,6 +25,8 @@ nextApp.prepare().then(() => {
   //projects routes
   app.use("/projects", projectsRoutes);
   app.use("/user", userRoutes);
+  //blockcain routes
+  app.use("/blog", blockchainRoutes);
   app.get("/about", async (req: Request, res: Response) => {
     const actualPage = "/about";
 
@@ -34,8 +36,6 @@ nextApp.prepare().then(() => {
       res.status(401).json({ message: err.message });
     }
   });
-  //blockcain routes
-  app.use("/blog", blockchainRoutes);
 
   app.get("*", (req: Request, res: Response) => {
     return handle(req, res); // for all the react stuff
