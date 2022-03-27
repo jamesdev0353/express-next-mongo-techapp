@@ -10,43 +10,9 @@ axios.interceptors.request.use((req: any) => {
     req.headers.Authorization = `Bearer ${
       JSON.parse(localStorage.getItem("userProfile")).token
     }`;
-    // req.headers = "asdasdds";
     return req;
   }
 });
-axios.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async function (error) {
-    const originalRequest = error.req;
-
-    if (error.response.status === 403 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      const access_token = `Bearer ${
-        JSON.parse(localStorage.getItem("userProfile")).token
-      }`;
-      axios.defaults.headers.common["Authorization"] = "Bearer " + access_token;
-      return axios(originalRequest);
-    }
-    return Promise.reject(error);
-  }
-);
-// API.interceptors.request.use(async (config) => {
-//   if (localStorage.getItem("userProfile")) {
-//     const value = await localStorage.getItem("userProfile");
-//     const keys = JSON.parse(value);
-//     config.headers = {
-//       Authorization: `Bearer ${keys.access_token}`,
-//       Accept: "application/json",
-//       "Content-Type": "application/x-www-form-urlencoded",
-//     };
-//     return config;
-//   }
-//   (error) => {
-//     Promise.reject(error);
-//   };
-// });
 
 export const findUser = (formData) => API.get("/", formData);
 export const logIn = (formData) => API.post("/login", formData);

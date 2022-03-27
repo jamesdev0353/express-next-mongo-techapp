@@ -1,15 +1,13 @@
 import React from "react";
-import Head from "next/head";
 import Link from "next/link";
 import SignUpForm from "../client/components/SignUpForm";
 import styles from "./styles/Form.module.scss";
+import Meta from "../client/components/Layouts/Meta";
+
 function signup() {
   return (
     <div>
-      <Head>
-        <title>Sign Up</title>
-        {/* <meta name="keywords" content="web development, programming" /> */}
-      </Head>
+      <Meta title="Sign Up " />
 
       <SignUpForm />
       <p className={styles.formtext}>

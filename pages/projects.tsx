@@ -1,31 +1,22 @@
 import React, { useState, useEffect } from "react";
 
-import { Container, Typography, Grid, Button } from "@material-ui/core";
+import { Container, Typography, Grid } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import Projects from "../client/components/Projects";
 import ProjectsForm from "../client/components/ProjectsForm";
-
-import { useDispatch, useSelector } from "react-redux";
-import getProjects from "../client/apis/Projects/projects.actions";
+import Meta from "../client/components/Layouts/Meta";
 import styles from "./styles/Project.module.scss";
-import { useProjectData } from "../client/apis/Projects/api";
+// import { useProjectData } from "../client/apis/Projects/api";
 
 function ProjectsV(props: any) {
-  // const dispatch = useDispatch();
-
   const [currentId, setCurrentId] = useState<any>(0);
-
-  // useEffect(() => {
-  //   dispatch(getProjects());
-  // }, [currentId, dispatch]);
 
   return (
     <Container maxWidth="lg" className={styles.trigger}>
-      {/* <Button className={classes.root}> */}
+      <Meta title="Projects" />
       <Typography variant="h2" align="center" className={styles.header}>
         here goes your projects
       </Typography>
-      {/* </Button> */}
       <Box>
         <Container>
           <Grid

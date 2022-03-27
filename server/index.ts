@@ -22,11 +22,9 @@ nextApp.prepare().then(() => {
   app.use(bodyParser.json({ limit: "30mb" }));
   app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
   app.use(cors());
-  ////express routes here
   //projects routes
   app.use("/projects", projectsRoutes);
   app.use("/user", userRoutes);
-
   app.get("/about", async (req: Request, res: Response) => {
     const actualPage = "/about";
 
