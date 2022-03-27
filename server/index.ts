@@ -12,20 +12,9 @@ const nextApp = next({ dev });
 const PORT = process.env.PORT || 3000;
 export const handle = nextApp.getRequestHandler(); //part of next config
 
-import {
-  createProject,
-  updateProject,
-  deleteProject,
-  likeProject,
-} from "./controllers/projects";
-
-import { signUpUser, logInUser } from "./controllers/user";
-
-import ProjectModel from "./models/projectModel";
 import projectsRoutes from "./routes/projectsRoutes";
 import userRoutes from "./routes/userRoutes";
 import blockchainRoutes from "./routes/blockchainRoutes";
-import auth from "./middleware/auth";
 
 nextApp.prepare().then(() => {
   const app = express();
@@ -33,8 +22,8 @@ nextApp.prepare().then(() => {
   app.use(bodyParser.json({ limit: "30mb" }));
   app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
   app.use(cors());
-  //express routes here
-  //projects rutes
+  ////express routes here
+  //projects routes
   app.use("/projects", projectsRoutes);
   app.use("/user", userRoutes);
 
@@ -64,24 +53,3 @@ nextApp.prepare().then(() => {
     .catch((error) => console.log(error.message));
 });
 
-// nextApp.prepare().then(() => {
-//   const app = express();
-//   // express code here
-
-//   app.use(bodyParser.json({ limit: "30mb" }));
-//   app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-//   app.use(cors());
-//   app.all("*", (req: Request, res: Response) => {
-//     return handle(req, res);
-//   });
-//   mongoose
-//     .connect(CONNECTION_URL, {
-
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     } as ConnectOptions)
-//     .then(() =>
-//       app.listen(PORT, () => console.log(`server running on port: ${PORT}`))
-//     )
-//     .catch((error) => console.log(error.message));
-// });

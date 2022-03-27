@@ -7,9 +7,7 @@ interface IPropRequest extends Request {
 
 const auth = async (req: IPropRequest, res: Response, next: NextFunction) => {
   try {
-    console.log(req);
-    // console.log(req.headers, "those headers");
-    console.log(req.headers.authorization, "those headers");
+    // console.log(req.headers.authorization, "those headers");
     const token = req.headers.authorization.split(" ")[1];
     const isCustomAuth = token.length < 500;
 

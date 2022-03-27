@@ -21,5 +21,5 @@ router.get("/api", getProjects);
 router.post("/api", auth, createProject);
 router.get("/api/likeProject/:id", getProject);
 router.delete("/api/:id", auth, deleteProject);
-router.patch("/api/:id", updateProject);
+router.patch("/api/:id", auth, updateProject);
 export default router;
