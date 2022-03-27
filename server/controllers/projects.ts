@@ -2,14 +2,17 @@ import mongoose from "mongoose";
 import { IProject } from "../models/interface";
 import ProjectModel from "../models/projectModel";
 import { RequestHandler } from "express";
-import { Request } from "express";
+import { Response, Request } from "express";
 
 export interface IProjectInfoRequest extends Request {
   userId: string; // or any other type
   likes: Array<string>;
 }
 
-export const getProjects: RequestHandler = async (req, res) => {
+export const getProjects: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const projectModels = await ProjectModel.find();
     // res.send("This Works!");
@@ -21,7 +24,10 @@ export const getProjects: RequestHandler = async (req, res) => {
   }
 };
 
-export const getProject: RequestHandler = async (req, res) => {
+export const getProject: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
   const { id } = req.params;
 
   try {
@@ -35,7 +41,7 @@ export const getProject: RequestHandler = async (req, res) => {
 
 export const createProject: RequestHandler = async (
   req: IProjectInfoRequest,
-  res
+  res: Response
 ): Promise<void> => {
   const project: IProject = req.body;
 
@@ -56,7 +62,7 @@ export const createProject: RequestHandler = async (
 
 export const updateProject: RequestHandler = async (
   req: IProjectInfoRequest,
-  res
+  res: Response
 ) => {
   const { id: _id } = req.params;
   const project: IProject = req.body;
@@ -75,7 +81,7 @@ export const updateProject: RequestHandler = async (
 
 export const deleteProject: RequestHandler = async (
   req: IProjectInfoRequest,
-  res
+  res: Response
 ) => {
   const { id } = req.params;
   console.log(id);
@@ -89,7 +95,7 @@ export const deleteProject: RequestHandler = async (
 
 export const likeProject: RequestHandler = async (
   req: IProjectInfoRequest,
-  res
+  res: Response
 ) => {
   const { id } = req.params;
   if (!req.userId) return res.json({ message: "Unauthenticated" });
