@@ -1,17 +1,19 @@
 // var bcrypt = require("bcryptjs");
 // var jwt = require("jsonwebtoken");
+import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 import User from "../models/userModel";
+import { IUser } from "./interface";
 
 const list = [];
 
-export const logInUser = async (req: any, res: any) => {
+export const logInUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   console.log(req.body, "!req/bpdy");
   try {
-    const existingUser = await User.findOne({ email });
+    const existingUser: IUser = await User.findOne({ email });
 
     if (!existingUser)
       return res.status(404).json({ message: "User doesn't exist." });
@@ -30,41 +32,38 @@ export const logInUser = async (req: any, res: any) => {
     console.log(token);
     list.push(token);
 
-    // console.log(res);
     res.status(200).json({ auth: true, result: existingUser, token });
   } catch (err) {
-    // console.log(err);
     res.status(500).json({ message: "Something wen't wrong" });
   }
 };
 
-export const findUser = async (req: any, res: any) => {
+export const findUser = async (req: Request, res: Response) => {
   const { email } = req.body;
   console.log(email);
   try {
-    const existingUsers = await User.find();
+    const existingUsers: IUser[] = await User.find();
 
     res.status(200).json(existingUsers);
   } catch (err) {
-    // console.log(err);
     res.status(500).json({ message: "Something wen't wrong!!!" });
   }
 };
-export const setUser = async (req: any, res: any) => {
+export const setUser = async (req: Request, res: Response) => {
   console.log(req.params, "req/params");
   console.log(req.body, "req/body");
 };
 
-export const signUpUser = async (req: any, res: any) => {
+export const signUpUser = async (req: Request, res: Response) => {
   const { email, password, userName, lastName, confirmPassword, birthDay } =
     req.body;
 
   try {
-    const existingUser = await User.findOne({ email });
+    const existingUser: IUser = await User.findOne({ email });
     if (existingUser)
-      return res.status(40).json({ message: "User already exist." });
+      return res.status(400).json({ message: "User already exist." });
     if (password !== confirmPassword)
-      return res.status(40).json({ message: "Password don't match." });
+      return res.status(400).json({ message: "Password don't match." });
 
     const hashedPassword = await bcrypt.hash(password, 12);
     const result = await User.create({
@@ -78,7 +77,6 @@ export const signUpUser = async (req: any, res: any) => {
     });
     res.status(200).json({ result, token });
   } catch (err) {
-    // console.log(err);
     res.status(500).json({ message: "Something wen't wrong" });
   }
 };
