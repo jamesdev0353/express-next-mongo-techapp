@@ -1,25 +1,25 @@
 import React, { useEffect } from "react";
 import { Container, Typography, Grid, Button } from "@material-ui/core";
 import Box from "@mui/material/Box";
-import Blogs from "../clientF/components/Blogs";
-import BlogForm from "../clientF/components/BlogForm";
+import Blogs from "../client/components/Blogs";
+import BlogForm from "../client/components/BlogForm";
 
-import Weather from "../clientF/components/Weather";
-import Cryptos from "../clientF/components/Cryptos";
+import Weather from "../client/components/Weather";
+import Cryptos from "../client/components/Cryptos";
 
 import { useDispatch } from "react-redux";
-import { getCryptos } from "../clientF/redux/BlockChain/blockchain.actions";
-import { setUserAction } from "./../clientF/redux/User/user.actions";
+// import { getCryptos } from "../client/redux/BlockChain/blockchain.actions";
+// import { setUserAction } from "./../client/redux/User/user.actions";
 
 import styles from "./styles/Blog.module.scss";
 
 function Blog() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCryptos());
-    dispatch(setUserAction(JSON.parse(localStorage.getItem("userProfile"))));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getCryptos());
+  //   dispatch(setUserAction(JSON.parse(localStorage.getItem("userProfile"))));
+  // }, [dispatch]);
 
   return (
     <div
@@ -48,7 +48,7 @@ function Blog() {
               </Grid>
             </Grid>
             <Grid item xs={12} sm={2}>
-              <Weather />
+              {/* <Weather /> */}
               <Cryptos />
             </Grid>
           </Grid>

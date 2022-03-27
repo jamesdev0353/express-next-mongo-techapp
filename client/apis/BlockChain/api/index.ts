@@ -7,10 +7,7 @@ export const fetchCryptos = () => {
     axios
       .get(url)
       .then((snapshot) => {
-        // console.log(snapshot, "snapshot");
         console.log("resolve");
-
-        // console.log(resolve.snapshot)
         resolve(snapshot);
       })
       .catch((err) => {
@@ -18,10 +15,15 @@ export const fetchCryptos = () => {
       });
   });
 };
+
+export function getCryptoVal(value) {
+  console.log(value, "vlaue");
+  return value;
+}
+
 // const config = {
 
 // };
-
 
 // export const fetchCurrentCryptoDesc  = () => {
 
@@ -46,16 +48,4 @@ export const fetchCryptos = () => {
 //       });
 // };
 
-
-
-
-export function getCryptoVal(value) {
-
-  console.log(value, "vlaue")
-  return value
-
-};
-
 // export const fetchProjects = () => axios.get(url);
-
-
