@@ -40,7 +40,6 @@ export const logInUser = async (req: Request, res: Response) => {
 
 export const findUser = async (req: Request, res: Response) => {
   const { email } = req.body;
-  console.log(email);
   try {
     const existingUsers: IUser[] = await User.find();
 
