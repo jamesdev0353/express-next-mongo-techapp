@@ -51,7 +51,6 @@ const Cryptos = () => {
       setBool(false);
     }
   };
-  useEffect(() => {});
 
   useEffect(() => {
     if (cryptos.length > 1) {
