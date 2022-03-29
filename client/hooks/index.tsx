@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { useProjectData } from "../apis/Projects/api";
 import { IProjectInfo, IResponseData } from "../apis/Projects/interface";
-
+interface IPropCrypt {
+  name: string;
+  price: string;
+  symbol: string;
+}
 export default function useUpdateFields(currentId: string) {
   const [projects, setProjects] = useState<IProjectInfo[]>([]);
   const [data, setData] = useState({

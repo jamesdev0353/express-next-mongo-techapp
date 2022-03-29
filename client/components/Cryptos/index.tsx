@@ -9,55 +9,27 @@ import {
 } from "@material-ui/core/";
 import CardMedia from "@mui/material/CardMedia";
 
-// import { useSelector } from "react-redux";
-
 import {
   fetchCurrentCryptoDesc,
   useCryptoData,
 } from "./../../apis/BlockChain/api/index";
 
 import CryptoForm from "./CryptoForm";
-import { useQuery } from "react-query";
-
-interface IPropCrypt {
-  name: string;
-  price: string;
-  symbol: string;
-}
+import { IPropCrypt } from "./interface";
+import useSetCryptos, { useCryptosData } from "./hooks";
 
 const Cryptos = () => {
   const [cryptoDescr, setCryptoDescr] = useState("");
   const [bool, setBool] = useState(false);
-  const [cryptos, setCryptos] = useState<any[]>();
-  const onSuccess = (data: any) => {
-    setCryptos(data.data);
-    setBool(true);
-  };
-  const onError = (error: Error) => {
-    setBool(false);
-  };
-  const { isLoading, data, isError, error, refetch } = useCryptoData(
-    onSuccess,
-    onError
-  );
-
+  const { bitcoin, ethereum, load, dt, iError, err, rfetch } = useSetCryptos();
+  const { cryptos } = useCryptosData();
   const [searchCrypto, setSearchCrypto] = useState({
     name: "cardano",
     price: "0",
     symbol: "",
   });
-  const [bitcoin, setBitcoin] = useState<IPropCrypt>({
-    name: "bitcoin",
-    price: "0",
-    symbol: "",
-  });
-  const [ethereum, setEthereum] = useState<IPropCrypt>({
-    name: "ethereume",
-    price: "0",
-    symbol: "",
-  });
 
-  const pull_data = async (index, boolData) => {
+  const pull_data = async (index: string, boolData: boolean) => {
     if (boolData === false) {
       setBool(true);
     } else {
@@ -66,29 +38,10 @@ const Cryptos = () => {
         price: cryptos[index].quote.USD.price,
         symbol: cryptos[index].symbol,
       });
-
-      // const asd = getCryptoVal(cryptos[index].symbol);
-
-      // console.log(data);
       setBool(false);
     }
   };
 
-  useEffect(() => {
-    if (cryptos) {
-      setBitcoin({
-        name: bitcoin.name,
-        price: cryptos[0].quote.USD.price,
-        symbol: cryptos[0].symbol,
-      });
-      setEthereum({
-        name: ethereum.name,
-        price: cryptos[1].quote.USD.price,
-        symbol: cryptos[1].symbol,
-      });
-    }
-  }, [bitcoin.name, cryptos, ethereum.name]);
-  console.log(cryptos);
   return (
     <Card className={styles.card}>
       <CardMedia

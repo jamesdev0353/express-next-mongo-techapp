@@ -4,19 +4,20 @@ import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
+import { IPropCrypt } from "../interface";
 
 function CryptoForm({ cryptos, func }) {
   const [boolData, setBoolData] = useState(true);
-  const [searchCrypto, setSearchCrypto] = useState({
+  const [searchCrypto, setSearchCrypto] = useState<IPropCrypt>({
     name: "",
-    price: 0,
+    price: "0",
     symbol: "",
   });
 
   const resetForm = () => {
     setSearchCrypto({
       name: "",
-      price: 0,
+      price: "0",
       symbol: "",
     });
   };
@@ -24,7 +25,7 @@ function CryptoForm({ cryptos, func }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    cryptos.map((crypto, index) => {
+    cryptos.map((crypto: IPropCrypt, index: string) => {
       if (crypto.name.toLowerCase() === searchCrypto.name.toLowerCase()) {
         console.log("found one", index);
         setBoolData(true);
@@ -52,7 +53,9 @@ function CryptoForm({ cryptos, func }) {
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search Crypto"
-        onChange={(e) => setSearchCrypto({ name: e.target.value })}
+        onChange={(e) =>
+          setSearchCrypto({ name: e.target.value, price: "", symbol: "" })
+        }
         value={searchCrypto.name}
       />
     </Paper>
