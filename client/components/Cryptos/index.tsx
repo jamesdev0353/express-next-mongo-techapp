@@ -21,7 +21,7 @@ import { useQuery } from "react-query";
 
 interface IPropCrypt {
   name: string;
-  price: number;
+  price: string;
   symbol: string;
 }
 
@@ -43,17 +43,17 @@ const Cryptos = () => {
 
   const [searchCrypto, setSearchCrypto] = useState({
     name: "cardano",
-    price: 0,
+    price: "0",
     symbol: "",
   });
   const [bitcoin, setBitcoin] = useState<IPropCrypt>({
     name: "bitcoin",
-    price: 0,
+    price: "0",
     symbol: "",
   });
   const [ethereum, setEthereum] = useState<IPropCrypt>({
     name: "ethereume",
-    price: 0,
+    price: "0",
     symbol: "",
   });
 
@@ -74,22 +74,24 @@ const Cryptos = () => {
     }
   };
 
-  // useEffect(() => {
-  // if (cryptos.length > 1) {
-  setBitcoin({
-    price: cryptos[0].quote.USD.price,
-    symbol: cryptos[0].symbol,
-  });
-  setEthereum({
-    price: cryptos[1].quote.USD.price,
-    symbol: cryptos[1].symbol,
-  });
-  // }
-  // }, [cryptos]);
+  useEffect(() => {
+    if (cryptos) {
+      setBitcoin({
+        name: bitcoin.name,
+        price: cryptos[0].quote.USD.price,
+        symbol: cryptos[0].symbol,
+      });
+      setEthereum({
+        name: ethereum.name,
+        price: cryptos[1].quote.USD.price,
+        symbol: cryptos[1].symbol,
+      });
+    }
+  }, [bitcoin.name, cryptos, ethereum.name]);
   console.log(cryptos);
   return (
     <Card className={styles.card}>
-      {/* <CardMedia
+      <CardMedia
         title="cryptotitle"
         component="img"
         src="https://www.crypto-news-flash.com/wp-content/uploads/2021/11/cryptocurrency-6601591__340.jpg"
@@ -132,7 +134,7 @@ const Cryptos = () => {
             </Typography>
           </CardContent>
         </>
-      )} */}
+      )}
     </Card>
   );
 };
