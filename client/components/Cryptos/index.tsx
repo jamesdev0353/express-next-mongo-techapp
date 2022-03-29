@@ -11,29 +11,51 @@ import CardMedia from "@mui/material/CardMedia";
 
 // import { useSelector } from "react-redux";
 
-// import { fetchCurrentCryptoDesc } from "./../../redux/BlockChain/api/index";
+import {
+  fetchCurrentCryptoDesc,
+  useCryptoData,
+} from "./../../apis/BlockChain/api/index";
 
 import CryptoForm from "./CryptoForm";
+import { useQuery } from "react-query";
+
+interface IPropCrypt {
+  name: string;
+  price: number;
+  symbol: string;
+}
 
 const Cryptos = () => {
+  const [cryptoDescr, setCryptoDescr] = useState("");
+  const [bool, setBool] = useState(false);
+  const [cryptos, setCryptos] = useState<any[]>();
+  const onSuccess = (data: any) => {
+    setCryptos(data.data);
+    setBool(true);
+  };
+  const onError = (error: Error) => {
+    setBool(false);
+  };
+  const { isLoading, data, isError, error, refetch } = useCryptoData(
+    onSuccess,
+    onError
+  );
+
   const [searchCrypto, setSearchCrypto] = useState({
     name: "cardano",
     price: 0,
     symbol: "",
   });
-  const [cryptoDescr, setCryptoDescr] = useState("");
-  const [bool, setBool] = useState(false);
-  const [bitcoin, setBitcoin] = useState({
+  const [bitcoin, setBitcoin] = useState<IPropCrypt>({
     name: "bitcoin",
     price: 0,
     symbol: "",
   });
-  const [ethereum, setEthereum] = useState({
+  const [ethereum, setEthereum] = useState<IPropCrypt>({
     name: "ethereume",
     price: 0,
     symbol: "",
   });
-  // const cryptos = useSelector((state) => state.cryptos.cryptos);
 
   const pull_data = async (index, boolData) => {
     if (boolData === false) {
@@ -52,22 +74,22 @@ const Cryptos = () => {
     }
   };
 
-  useEffect(() => {
-    if (cryptos.length > 1) {
-      setBitcoin({
-        price: cryptos[0].quote.USD.price,
-        symbol: cryptos[0].symbol,
-      });
-      setEthereum({
-        price: cryptos[1].quote.USD.price,
-        symbol: cryptos[1].symbol,
-      });
-    }
-  }, [cryptos]);
-
+  // useEffect(() => {
+  // if (cryptos.length > 1) {
+  setBitcoin({
+    price: cryptos[0].quote.USD.price,
+    symbol: cryptos[0].symbol,
+  });
+  setEthereum({
+    price: cryptos[1].quote.USD.price,
+    symbol: cryptos[1].symbol,
+  });
+  // }
+  // }, [cryptos]);
+  console.log(cryptos);
   return (
     <Card className={styles.card}>
-      <CardMedia
+      {/* <CardMedia
         title="cryptotitle"
         component="img"
         src="https://www.crypto-news-flash.com/wp-content/uploads/2021/11/cryptocurrency-6601591__340.jpg"
@@ -110,7 +132,7 @@ const Cryptos = () => {
             </Typography>
           </CardContent>
         </>
-      )}
+      )} */}
     </Card>
   );
 };
