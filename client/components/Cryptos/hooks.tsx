@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useCryptoData } from "../../apis/BlockChain/api";
+import { useCryptoData } from "../../apis/BlockChain/blockchain.actions";
 import { IPropCrypt } from "./interface";
 
 export default function useSetCryptos() {
@@ -53,7 +53,7 @@ export default function useSetCryptos() {
 }
 
 export function useCryptosData() {
-  const [bool, setBool] = useState(false);
+  const [bool, setBool] = useState<boolean>(false);
   const [cryptos, setCryptos] = useState<any[]>();
   const onSuccess = (data: any) => {
     setCryptos(data.data);

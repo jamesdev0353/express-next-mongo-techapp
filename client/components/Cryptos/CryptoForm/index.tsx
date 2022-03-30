@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
@@ -22,16 +21,13 @@ function CryptoForm({ cryptos, func }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
-
     cryptos.map((crypto: IPropCrypt, index: string) => {
       if (crypto.name.toLowerCase() === searchCrypto.name.toLowerCase()) {
-        console.log("found one", index);
         setBoolData(true);
         func(index, boolData);
       }
-
       resetForm();
     });
   };
@@ -53,7 +49,7 @@ function CryptoForm({ cryptos, func }) {
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search Crypto"
-        onChange={(e) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setSearchCrypto({ name: e.target.value, price: "", symbol: "" })
         }
         value={searchCrypto.name}

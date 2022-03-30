@@ -9,10 +9,9 @@ import {
 } from "@material-ui/core/";
 import CardMedia from "@mui/material/CardMedia";
 
-import {
-  fetchCurrentCryptoDesc,
-  useCryptoData,
-} from "./../../apis/BlockChain/api/index";
+import // fetchCurrentCryptoDesc,
+// useCryptoData,
+"./../../apis/BlockChain/api/index";
 
 import CryptoForm from "./CryptoForm";
 import { IPropCrypt } from "./interface";
@@ -23,6 +22,8 @@ const Cryptos = () => {
   const [bool, setBool] = useState(false);
   const { bitcoin, ethereum, load, dt, iError, err, rfetch } = useSetCryptos();
   const { cryptos } = useCryptosData();
+  // const chain = fetchCurrentCryptoDesc("ADA");
+  // console.log(chain);
   const [searchCrypto, setSearchCrypto] = useState({
     name: "cardano",
     price: "0",

@@ -1,3 +1,4 @@
+import { useQuery } from "react-query";
 import * as api from "./api";
 import projectTypes from "./blockchain.types";
 
@@ -9,4 +10,14 @@ export const getCryptos = () => async (dispatch) => {
   } catch (error) {
     console.log(error, "get  error");
   }
+};
+
+export const useCryptoData = (
+  onSuccess: (param: any) => void,
+  onError: (param: Error) => void
+) => {
+  return useQuery("cryptos", api.fetchCryptos, {
+    onSuccess,
+    onError,
+  });
 };
