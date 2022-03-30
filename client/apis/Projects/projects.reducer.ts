@@ -13,7 +13,6 @@ const projectsReducer = (state = INITIAL_STATE, action: IProjectTypes) => {
       };
     case "DELETE_PROJECT":
       const projectsd = state.projects;
-      console.log(projectsd);
       return projectsd.map((project) => project._id !== action.payload);
     case "FETCH_ALL_PROJECTS":
       return {
@@ -23,7 +22,6 @@ const projectsReducer = (state = INITIAL_STATE, action: IProjectTypes) => {
     case "UPDATE_PROJECT":
     case "LIKE_PROJECT":
       const projects = state.projects;
-      // console.log(projects, "projects from actions");
       return projects.map((project) =>
         project._id === action.payload._id ? action.payload : project
       );

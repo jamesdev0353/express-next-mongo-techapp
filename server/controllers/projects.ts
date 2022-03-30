@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 import { IProject } from "../models/interface";
 import ProjectModel from "../models/projectModel";
-import { RequestHandler } from "express";
-import { Response, Request } from "express";
+import { Response, Request, RequestHandler } from "express";
 
 export interface IProjectInfoRequest extends Request {
   userId: string; // or any other type

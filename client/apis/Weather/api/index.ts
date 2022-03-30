@@ -27,7 +27,6 @@ import axios from "axios";
 //   });
 // }
 
-
 export function fetchCurrentWeather(location) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=5ca5ced27e5c0797c3f2970af31ff579`;
   return new Promise((resolve, reject) => {
@@ -57,6 +56,6 @@ export function fetchCurrentWeatherBool(location) {
         resolve("reject");
       });
   });
-};
+}
 
 // export { fetchCurrentWeather };

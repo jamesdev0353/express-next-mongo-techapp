@@ -17,7 +17,7 @@ import WeatherForm from "./WeatherForm";
 import {
   fetchCurrentWeather,
   fetchCurrentWeatherBool,
-} from "../../redux/Weather/api/index";
+} from "./../../apis/Weather/api";
 
 function Weather() {
   const [type, setType] = useState(false);
@@ -34,14 +34,14 @@ function Weather() {
   const list = [];
 
   const pull_data = async (location) => {
-    // const data = fetchCurrentWeather(location);
-    // await data.then(function (result) {
-    //   // setType(true);
-    //   // setList({ ...result });
-    //   list.push(result);
-    //   console.log(list);
-    //   // console.log(data);
-    // });
+    const data = fetchCurrentWeather(location);
+    await data.then(function (result) {
+      // setType(true);
+      // setList({ ...result });
+      list.push(result);
+      console.log(list);
+      // console.log(data);
+    });
     list.splice(0, list.length);
 
     const bool = await fetchCurrentWeatherBool(location);
@@ -56,7 +56,7 @@ function Weather() {
       );
       setWindSpeed(list[0].data.wind.speed);
       setWindDeg(list[0].data.wind.deg);
-      setTemp(list[0].data.main.temp - 273.15);
+      // setTemp(list[0].data.main.temp - 273.15);
       console.log(list[0].data.coord.lat, list[0].data.coord.lon);
       setLati(list[0].data.coord.lat);
       setLong(list[0].data.coord.lon);

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Response, Request, RequestHandler } from "express";
 
 const requestOptions = {
   method: "GET",
@@ -17,51 +18,50 @@ const requestOptions = {
 
 const list: Array<any> = [];
 
-export const getBlocks = async (req: any, res: any) => {
+export const getBlocks: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
   const url =
     "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=bbc113f1-3455-4b02-8bb6-2dd3e357d85f";
   try {
     axios
       .get(url)
       .then((result) => {
-        const snap = JSON.stringify(result.data);
-        const asd = result.data.data;
-        // console.log("resolve", JSON.stringify(result.data.status));
-        // console.log(result);
-        asd.map((data: any) => list.push(data.symbol));
-        // data.push(JSON.stringify(result.data.status));
-        // console.log(data, "data");
+        const blockArray: Array<any> = result.data.data;
+        blockArray.map((data: any) => list.push(data.symbol));
         res.send(result.data.data);
       })
-      .catch((err: any) => {
+      .catch((err: Error) => {
         console.log(err);
       });
-  } catch (error: any) {
-    res.status(401).json({ message: error.message });
+  } catch (error) {
+    const typedError = error as Error;
+    res.status(401).json({ message: typedError.message });
   }
 };
 
-export const getBlocksDescr = async (req: any, res: any, value: any) => {
-  const dataAr: Array<any> = [];
+// export const getBlocksDescr = async (req: any, res: any, value: any) => {
+//   const dataAr: Array<any> = [];
 
-  list.map((value) => {
-    const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?CMC_PRO_API_KEY=bbc113f1-3455-4b02-8bb6-2dd3e357d85f&symbol=${value}`;
-    try {
-      axios
-        .get(url)
-        .then((result) => {
-          const snap = JSON.stringify(result.data);
-          const obj = { name: value, descr: result.data.data.description };
-          console.log(obj);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error: any) {
-      res.status(401).json({ message: error.message });
-    }
-  });
-};
+//   list.map((value) => {
+//     const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?CMC_PRO_API_KEY=bbc113f1-3455-4b02-8bb6-2dd3e357d85f&symbol=${value}`;
+//     try {
+//       axios
+//         .get(url)
+//         .then((result) => {
+//           const snap = JSON.stringify(result.data);
+//           const obj = { name: value, descr: result.data.data.description };
+//           console.log(obj);
+//         })
+//         .catch((err) => {
+//           console.log(err);
+//         });
+//     } catch (error: any) {
+//       res.status(401).json({ message: error.message });
+//     }
+//   });
+// };
 
 // export const getBlocks = async (req, res) => {
 //   // const data = {};

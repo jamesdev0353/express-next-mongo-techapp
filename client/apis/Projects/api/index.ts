@@ -10,11 +10,9 @@ axios.interceptors.request.use((req: any) => {
     req.headers.Authorization = `Bearer ${
       JSON.parse(localStorage.getItem("userProfile")).token
     }`;
-    // req.headers = "asdasdds";
     return req;
   }
 });
-
 
 const fetchProjectData = () => {
   return requestData({ url: "/projects/api" });
