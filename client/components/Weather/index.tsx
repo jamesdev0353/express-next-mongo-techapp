@@ -56,7 +56,7 @@ function Weather() {
       );
       setWindSpeed(list[0].data.wind.speed);
       setWindDeg(list[0].data.wind.deg);
-      // setTemp(list[0].data.main.temp - 273.15);
+      setTemp(list[0].data.main.temp - 273.15);
       console.log(list[0].data.coord.lat, list[0].data.coord.lon);
       setLati(list[0].data.coord.lat);
       setLong(list[0].data.coord.lon);
