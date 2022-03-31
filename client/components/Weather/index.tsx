@@ -19,49 +19,63 @@ import {
   fetchCurrentWeatherBool,
 } from "./../../apis/Weather/api";
 
-function Weather() {
-  const [type, setType] = useState(false);
-  const [descr, setDescr] = useState("");
-  const [main, setMain] = useState("");
-  const [windSpeed, setWindSpeed] = useState("");
-  const [windDeg, setWindDeg] = useState("");
-  const [temp, setTemp] = useState("");
-  const [imgMain, setImgMain] = useState("");
-  const [lati, setLati] = useState(37.9795);
-  const [long, setLong] = useState(23.7162);
-  const [zoom, setZoom] = useState(10);
+interface IWeatherData {
+  type: boolean;
+  descr: string;
+  main: string;
+  windSpeed: string;
+  windDeg: string;
+  temp: number;
+  imgMain: string;
+  lati: number;
+  long: number;
+  zoom: number;
+}
 
+const initalState: IWeatherData = {
+  type: false,
+  descr: "",
+  main: "",
+  windSpeed: "",
+  windDeg: "",
+  temp: 0,
+  imgMain: "",
+  lati: 37.9795,
+  long: 23.7162,
+  zoom: 10,
+};
+
+function Weather() {
+  const [weatherData, setWeatherData] = useState(initalState);
   const list = [];
 
-  const pull_data = async (location) => {
+  const pull_data = async (location: string) => {
     const data = fetchCurrentWeather(location);
     await data.then(function (result) {
-      // setType(true);
-      // setList({ ...result });
       list.push(result);
       console.log(list);
-      // console.log(data);
     });
     list.splice(0, list.length);
 
     const bool = await fetchCurrentWeatherBool(location);
     if (bool === "resolve") {
       const data = await fetchCurrentWeather(location);
-      setType(true);
       list.push(data);
-      setDescr(list[0].data.weather[0].description);
-      setMain(list[0].data.weather[0].main);
-      setImgMain(
-        `http://openweathermap.org/img/wn/${list[0].data.weather[0].icon}@2x.png`
-      );
-      setWindSpeed(list[0].data.wind.speed);
-      setWindDeg(list[0].data.wind.deg);
-      setTemp(list[0].data.main.temp - 273.15);
-      console.log(list[0].data.coord.lat, list[0].data.coord.lon);
-      setLati(list[0].data.coord.lat);
-      setLong(list[0].data.coord.lon);
+      setWeatherData({
+        ...weatherData,
+        type: true,
+        descr: list[0].data.weather[0].description,
+        main: list[0].data.weather[0].main,
+        windSpeed: list[0].data.wind.speed,
+        windDeg: list[0].data.wind.deg,
+        temp: list[0].data.main.temp - 273.15,
+        imgMain: `http://openweathermap.org/img/wn/${list[0].data.weather[0].icon}@2x.png`,
+        lati: list[0].data.coord.lat,
+        long: list[0].data.coord.lon,
+        zoom: 10,
+      });
     } else {
-      setType(false);
+      setWeatherData({ ...weatherData, type: false });
       fetchCurrentWeather("athens");
     }
   };
@@ -79,29 +93,33 @@ function Weather() {
       <Typography variant="h6" className={styles.overlay}>
         <Typography variant="body2">weather</Typography>
       </Typography>
-      {!type ? (
+      {!weatherData.type ? (
         <CircularProgress />
       ) : (
         <>
           <Typography className={styles.title} variant="h6" gutterBottom>
-            wind: {windSpeed}, deg: {windDeg}&#176;
+            wind: {weatherData.windSpeed}, deg: {weatherData.windDeg}&#176;
             <Typography className={styles.arrow} variant="body1">
               <ArrowRightAltIcon
                 style={{
-                  transform: `rotate(${windDeg + 90}deg)`,
+                  transform: `rotate(${weatherData.windDeg + 90}deg)`,
                 }}
               />
             </Typography>
           </Typography>
 
           <Typography className={styles.title} variant="body2" gutterBottom>
-            temperature: {parseFloat(temp).toFixed(2)} &#176;C
+            temperature: {weatherData.temp.toFixed(2)} &#176;C
           </Typography>
           <Typography className={styles.title} variant="caption" gutterBottom>
-            description: {descr}, {main}
-            <Avatar src={imgMain} />
+            description: {weatherData.descr}, {weatherData.main}
+            <Avatar src={weatherData.imgMain} />
           </Typography>
-          <Map latitude={lati} longitude={long} zoom={zoom} />
+          <Map
+            latitude={weatherData.lati}
+            longitude={weatherData.long}
+            zoom={weatherData.zoom}
+          />
         </>
       )}
       <CardContent>

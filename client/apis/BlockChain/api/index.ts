@@ -22,7 +22,6 @@ export const fetchCryptos = () => {
       },
     })
       .then((snapshot: AxiosResponse<IResponseData, IResponseData>) => {
-        console.log(snapshot, "this");
         resolve(snapshot);
       })
       .catch((err) => {
