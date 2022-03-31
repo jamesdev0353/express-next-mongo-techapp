@@ -3,9 +3,9 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose, { ConnectOptions } from "mongoose";
-
-const CONNECTION_URL =
-  "mongodb+srv://konsbe:konsbe123@cluster0.f2hbs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+import dotenv from "dotenv";
+dotenv.config();
+const CONNECTION_URL = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.f2hbs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const dev = process.env.NODE_DEV !== "production"; //true false
 const nextApp = next({ dev });
