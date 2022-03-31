@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import { useQuery } from "react-query";
 
 const url = "http://localhost:3000/blog/blockchain/api";
 
