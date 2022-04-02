@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
@@ -6,20 +6,23 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 
 function WeatherForm({ func }) {
-  const [location, setLocation] = useState("athens");
+  const [location, setLocation] = useState("tarifa");
   const resetForm = () => {
     setLocation("");
   };
-  useEffect(() => {
+  const memoizedCallback = useCallback(() => {
     func(location);
     resetForm();
+  }, [func, location]);
+  useEffect(() => {
+    memoizedCallback();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     e.preventDefault();
-
     func(location);
-
     resetForm();
   };
 
@@ -40,7 +43,9 @@ function WeatherForm({ func }) {
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search Location"
-        onChange={(e) => setLocation(e.target.value)}
+        onChange={(
+          e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+        ) => setLocation(e.target.value)}
         value={location}
       />
     </Paper>

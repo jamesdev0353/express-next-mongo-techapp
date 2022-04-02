@@ -40,8 +40,8 @@ const initalState: IWeatherData = {
   windDeg: "",
   temp: 0,
   imgMain: "",
-  lati: 37.9795,
-  long: 23.7162,
+  lati: 0,
+  long: 0,
   zoom: 10,
 };
 
