@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -10,28 +10,16 @@ import ButtonForm from "./../Form/ButtonForm";
 import InputForm from "./../Form/InputForm";
 import styles from "./../styles/Blog.module.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { LoginContext } from "../Contexts";
 
 // import styles from './../styles/Blog.module.scss'
 
-// const mapState = ({ user }) => ({
-//   user: user.currentUser,
-// });
-
 function BlogForm(props: any) {
   const [currentUser, setCurrentUser] = useState("");
-  // const user = useSelector(async (state) => await state.user.currentUser);
-  // useEffect(() => {
-  //   user
-  //     .then((res) => {
-  //       setCurrentUser(res.result.name);
-  //       console.log(currentUser, "this Current user");
-  //       // setCurrentUser(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [user]);
-  // console.log(user, "this Current user");
+
+  const context: any = useContext(LoginContext);
+  const { userContextData, setUserContextData } = context;
+  const { userName, userId, userEmail } = userContextData;
 
   const [postData, setPostData] = useState({
     title: "",
@@ -45,7 +33,7 @@ function BlogForm(props: any) {
     setPostData({
       title: "",
       message: "",
-      author: `${currentUser}`,
+      author: "",
       selectedFile: "",
       public: true,
     });
@@ -53,7 +41,7 @@ function BlogForm(props: any) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setPostData({ ...postData, author: `${currentUser}` });
+    setPostData({ ...postData, author: `${userName}` });
     console.log(postData);
     resetForm();
   };
@@ -69,7 +57,7 @@ function BlogForm(props: any) {
         {postData.public ? "Public" : "Private"}
       </div>
       <Typography variant="h6">
-        {currentUser ? <p>{currentUser}</p> : <>p</>}
+        {currentUser ? <p>{userName}</p> : <>p</>}
       </Typography>
       <InputForm
         label="Title"
@@ -81,7 +69,7 @@ function BlogForm(props: any) {
           setPostData({
             ...postData,
             title: e.target.value,
-            author: currentUser,
+            author: userName,
           })
         }
       />
