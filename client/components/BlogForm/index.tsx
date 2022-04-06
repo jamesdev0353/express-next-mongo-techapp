@@ -64,7 +64,7 @@ function BlogForm(props: any) {
         {postData.public ? "Public" : "Private"}
       </div>
       <Typography variant="h6">
-        {currentUser ? <p>{userContextData.userName}</p> : <>p</>}
+        {userContextData.userName ? <p>{userContextData.userName}</p> : <></>}
       </Typography>
       <InputForm
         label="Title"
