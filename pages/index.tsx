@@ -7,7 +7,6 @@ import { LoginContext } from "../client/components/Contexts";
 export default function Home() {
   const context: any = useContext(LoginContext);
   const { userContextData, setUserContextData } = context;
-  console.log(context);
   return (
     <div className={styles.container}>
       <p>this is my first touch</p>

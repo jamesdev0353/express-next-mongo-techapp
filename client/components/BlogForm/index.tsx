@@ -42,7 +42,7 @@ function BlogForm(props: any) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setPostData({ ...postData, author: `${userName}` });
-    console.log(postData);
+    // console.log(postData);
     resetForm();
   };
 

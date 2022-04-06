@@ -6,49 +6,24 @@ import { Box } from "@mui/material";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 import { GoogleLogin } from "react-google-login";
-import { Button } from "@mui/material";
 import useStyles from "./styles";
 import { useRouter } from "next/router";
 import Icon from "./icon";
 import styles from "./../styles/Form.module.scss";
 import userReducer from "../../apis/User/user.reducers";
-import { logInAction } from "../../apis/User/user.actions";
-import { ResultOptions } from "react-query";
 import * as api from "./../../apis/User/api";
 import { AxiosResponse } from "axios";
+import { IGoogleUserProps, IUserProps, IPropData } from "./interface";
 
 const initialState = {
   email: "",
   password: "",
 };
 
-interface IGoogleUserProps {
-  email: string;
-  familyName: string;
-  givenName: string;
-  googleId: string;
-  imageUrl: string;
-  name: string;
-}
-
-type IUserProps = {
-  __v: number;
-  _id: string;
-  birthDay: string;
-  email: string;
-  name: string;
-  password: string;
-};
-type IPropsData = {
-  result?: IUserProps;
-  token?: string;
-};
-
 function LoginForm(): JSX.Element {
   const router = useRouter();
   const classes = useStyles();
   const [data, setData] = useState<any>();
-  const [name, setName] = useState<any>();
   const [formData, setFormData] = useState(initialState);
   const [INITIAL_STATE, dispatch] = useReducer(userReducer, data);
 
@@ -75,7 +50,6 @@ function LoginForm(): JSX.Element {
 
   const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
-    console.log(formData, "login");
     try {
       await api.logIn(formData).then(async (res: AxiosResponse<any, any>) => {
         const result: IUserProps = await res?.data.result;
@@ -87,7 +61,6 @@ function LoginForm(): JSX.Element {
           userEmail: res?.data.result.email,
           userId: res?.data.result._id,
         });
-        console.log(context, "context");
       });
 
       router.push("/");

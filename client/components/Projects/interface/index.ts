@@ -35,3 +35,18 @@ export interface IProps {
   setCurrentId: any;
   project?: IProject;
 }
+
+export interface IResponseData extends Response {
+  data: IProjectInfo[];
+}
+
+export type IContextProps = {
+  userName?: string;
+  userEmail?: string;
+  userId?: string;
+};
+
+export interface IPropContext {
+  userContextData: IContextProps;
+  setUserContextData: () => {};
+}
