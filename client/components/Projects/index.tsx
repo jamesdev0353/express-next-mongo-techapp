@@ -10,7 +10,6 @@ function Projects({ setCurrentId }: IProps): JSX.Element {
   const context = useContext(LoginContext) as IPropContext;
   const { userContextData, setUserContextData } = context;
 
-  console.log(context, "context");
   const [bool, setBool] = useState<boolean>(false);
   const [projects, setProjects] = useState<IProjectInfo[]>([]);
   const onSuccess = (data: IResponseData) => {

@@ -9,6 +9,22 @@ export interface IProject {
   likeList: Array<string>;
   createdAt: any;
 }
+
+export interface IPost {
+  author: string;
+  post: string;
+  public: boolean;
+  selectedFile: string;
+  createdAt: any;
+  comments: any;
+}
+
+export interface IComment {
+  author: string;
+  comment: string;
+  createdAt: any;
+}
+
 export interface IUser {
   name: string;
   email: string;
