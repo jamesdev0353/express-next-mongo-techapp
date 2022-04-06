@@ -1,14 +1,17 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useContext } from "react";
 import Project from "./Project";
 import { Grid, CircularProgress } from "@material-ui/core";
 import { useProjectData } from "./../../apis/Projects/api";
 import { IProjectInfo, IProps } from "./interface";
-
+import { LoginContext } from "./../Contexts";
 interface IResponseData extends Response {
   data: IProjectInfo[];
 }
 
 function Projects({ setCurrentId }: IProps): JSX.Element {
+  const context: any = useContext(LoginContext);
+  const { userContextData, setUserContextData } = context;
+  console.log(context);
   const [bool, setBool] = useState<boolean>(false);
   const [projects, setProjects] = useState<IProjectInfo[]>([]);
   const onSuccess = (data: IResponseData) => {

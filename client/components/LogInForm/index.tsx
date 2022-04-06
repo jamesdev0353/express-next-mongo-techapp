@@ -1,4 +1,5 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useContext } from "react";
+import { LoginContext } from "../Contexts";
 import ButtonForm from "../Form/ButtonForm";
 import InputForm from "../Form/InputForm";
 import { Box } from "@mui/material";
@@ -30,12 +31,29 @@ interface IGoogleUserProps {
   name: string;
 }
 
+type IUserProps = {
+  __v: number;
+  _id: string;
+  birthDay: string;
+  email: string;
+  name: string;
+  password: string;
+};
+type IPropsData = {
+  result?: IUserProps;
+  token?: string;
+};
+
 function LoginForm(): JSX.Element {
   const router = useRouter();
   const classes = useStyles();
   const [data, setData] = useState<any>();
+  const [name, setName] = useState<any>();
   const [formData, setFormData] = useState(initialState);
   const [INITIAL_STATE, dispatch] = useReducer(userReducer, data);
+
+  const context: any = useContext(LoginContext);
+  const { userContextData, setUserContextData } = context;
   const googleSuccess = async (res: any) => {
     const result: IGoogleUserProps = await res?.profileObj;
     const token: string = await res?.tokenId;
@@ -60,9 +78,16 @@ function LoginForm(): JSX.Element {
     console.log(formData, "login");
     try {
       await api.logIn(formData).then(async (res: AxiosResponse<any, any>) => {
-        const result: any = await res?.data.result;
+        const result: IUserProps = await res?.data.result;
         const token: string = await res?.data.token;
         dispatch({ type: "AUTH", data: { result, token } });
+        setUserContextData({
+          ...userContextData,
+          userName: res?.data.result.name,
+          userEmail: res?.data.result.email,
+          userId: res?.data.result._id,
+        });
+        console.log(context, "context");
       });
 
       router.push("/");

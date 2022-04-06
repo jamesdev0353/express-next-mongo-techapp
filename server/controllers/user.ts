@@ -11,7 +11,6 @@ const list = [];
 
 export const logInUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
-  console.log(req.body, "!req/bpdy");
   try {
     const existingUser: IUser = await User.findOne({ email });
 
@@ -29,7 +28,6 @@ export const logInUser = async (req: Request, res: Response) => {
       "test",
       { expiresIn: "1h" }
     );
-    console.log(token);
     list.push(token);
 
     res.status(200).json({ auth: true, result: existingUser, token });
@@ -48,10 +46,7 @@ export const findUser = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Something wen't wrong!!!" });
   }
 };
-export const setUser = async (req: Request, res: Response) => {
-  console.log(req.params, "req/params");
-  console.log(req.body, "req/body");
-};
+export const setUser = async (req: Request, res: Response) => {};
 
 export const signUpUser = async (req: Request, res: Response) => {
   const { email, password, userName, lastName, confirmPassword, birthDay } =

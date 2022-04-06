@@ -11,7 +11,6 @@ const auth = async (req: IPropRequest, res: Response, next: NextFunction) => {
     const isCustomAuth = token.length < 500;
 
     let decodedData: any;
-    console.log();
     if (token && isCustomAuth) {
       decodedData = jwt.verify(token, "test");
 
@@ -22,9 +21,7 @@ const auth = async (req: IPropRequest, res: Response, next: NextFunction) => {
       req.userId = decodedData?.sub;
     }
     next();
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };
 
 export default auth;

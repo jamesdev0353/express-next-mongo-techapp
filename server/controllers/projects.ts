@@ -77,7 +77,6 @@ export const deleteProject: RequestHandler = async (
   res: Response
 ) => {
   const { id } = req.params;
-  console.log(id);
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("no post with this id");
 
