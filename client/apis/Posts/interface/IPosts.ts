@@ -11,7 +11,7 @@ export interface IPostPostInfo {
 }
 export interface IPost {
   author: string;
-  message: string;
+  post: string;
   public: boolean;
   selectedFile: string;
   createdAt: any;

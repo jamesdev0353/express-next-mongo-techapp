@@ -12,22 +12,20 @@ import styles from "./../styles/Blog.module.scss";
 import { LoginContext } from "../Contexts";
 import { useMutation } from "react-query";
 import { createPost } from "../../apis/Posts/api/postsAPI";
+import useDataUserContext from "../../hooks/dataUserContext";
 // import styles from './../styles/Blog.module.scss'
 
 function BlogForm(props: any) {
   const useDipsatchCreatePost = useMutation((myPostData: any) => {
     return createPost(myPostData);
   });
+  const { userContextData } = useDataUserContext();
 
   const [currentUser, setCurrentUser] = useState("");
 
-  const context: any = useContext(LoginContext);
-  const { userContextData, setUserContextData } = context;
-  const { userName, userId, userEmail } = userContextData;
-
   const [postData, setPostData] = useState({
     title: "",
-    message: "",
+    post: "",
     author: "",
     selectedFile: "",
     public: true,
@@ -36,7 +34,7 @@ function BlogForm(props: any) {
   const resetForm = () => {
     setPostData({
       title: "",
-      message: "",
+      post: "",
       author: "",
       selectedFile: "",
       public: true,
@@ -45,10 +43,11 @@ function BlogForm(props: any) {
 
   const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
-    setPostData({ ...postData, author: `${userName}` });
+
+    setPostData({ ...postData, author: `${userContextData.userName}` });
     const myPostData: any = {
       ...postData,
-      name: userName,
+      name: userContextData.userName,
     };
     useDipsatchCreatePost.mutate(myPostData);
     resetForm();
@@ -65,7 +64,7 @@ function BlogForm(props: any) {
         {postData.public ? "Public" : "Private"}
       </div>
       <Typography variant="h6">
-        {currentUser ? <p>{userName}</p> : <>p</>}
+        {currentUser ? <p>{userContextData.userName}</p> : <>p</>}
       </Typography>
       <InputForm
         label="Title"
@@ -77,21 +76,21 @@ function BlogForm(props: any) {
           setPostData({
             ...postData,
             title: e.target.value,
-            author: userName,
+            author: userContextData.userName,
           })
         }
       />
       <InputForm
         id="outlined-multiline-static"
-        label="Message"
+        label="Post"
         multiline
-        value={postData.message}
+        value={postData.post}
         rows={4}
         fullWidth
         sx={{ mt: 1.5 }}
-        placeholder="write your message here.."
+        placeholder="write your post here.."
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setPostData({ ...postData, message: e.target.value })
+          setPostData({ ...postData, post: e.target.value })
         }
       />
       <div className={styles.filebase}>
