@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect, useContext } from "react";
 import Project from "./Project";
 import { Grid, CircularProgress } from "@material-ui/core";
-import { useProjectData } from "./../../apis/Projects/api";
+import { useProjectData } from "./../../apis/Projects/api/projectAPI";
 import { IPropContext, IProjectInfo, IProps } from "./interface";
 import { LoginContext } from "./../Contexts";
-import { IResponseData } from "../../apis/Projects/interface";
+import { IResponseData } from "../../apis/Projects/interface/IProject";
 
 function Projects({ setCurrentId }: IProps): JSX.Element {
   const context = useContext(LoginContext) as IPropContext;

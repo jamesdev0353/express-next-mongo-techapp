@@ -12,6 +12,7 @@ export interface IProject {
 
 export interface IPost {
   author: string;
+  creator: string;
   post: string;
   public: boolean;
   selectedFile: string;

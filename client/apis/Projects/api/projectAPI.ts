@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { IPostProjectInfo, IResponseData } from "../interface";
+import { IPostProjectInfo, IResponseData } from "../interface/IProject";
 import { requestData } from "../utils/axios-utils";
 
 const url = "http://localhost:3000";
@@ -45,4 +45,3 @@ export const deleteProject = (id: string) => {
 
 export const likeProject = (id: string) =>
   axios.patch(`${url}/likeProject/${id}`);
-

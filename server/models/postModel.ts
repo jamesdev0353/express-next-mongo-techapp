@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const postSchema = new mongoose.Schema<IPost>({
   author: String,
   post: String,
+  creator: String,
   public: Boolean,
   selectedFile: String,
   comments: [

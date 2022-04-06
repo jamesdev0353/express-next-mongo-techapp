@@ -1,10 +1,10 @@
-import React from "react";
-import { IProject } from "./interface";
-import * as api from "./api";
-import { IPostProjectInfo } from "./interface";
-import { IProjectTypes } from "./projects.types";
-import axios from "axios";
-import { useMutation } from "react-query";
+// import React from "react";
+// import { IProject } from "./interface";
+// import * as api from "./api";
+// import { IPostProjectInfo } from "./interface";
+// import { IProjectTypes } from "./projects.types";
+// import axios from "axios";
+// import { useMutation } from "react-query";
 
 // const getProjects = () => async (dispatch: React.Dispatch<IProjectTypes>) => {
 //   try {

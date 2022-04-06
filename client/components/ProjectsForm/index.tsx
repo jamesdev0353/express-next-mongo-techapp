@@ -11,7 +11,10 @@ import styles from "./../styles/Project.module.scss";
 import { IProject, IProps } from "./interface";
 import { useMutation } from "react-query";
 import useUpdateFields from "../../hooks";
-import { createProject, updateProject } from "../../apis/Projects/api";
+import {
+  createProject,
+  updateProject,
+} from "../../apis/Projects/api/projectAPI";
 const ProjectsForm: FC<IProps> = ({ currentId, setCurrentId }): JSX.Element => {
   const useDipsatchCreateProject = useMutation((myProjectData: IProject) => {
     return createProject(myProjectData);
