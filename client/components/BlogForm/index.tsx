@@ -11,10 +11,15 @@ import InputForm from "./../Form/InputForm";
 import styles from "./../styles/Blog.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginContext } from "../Contexts";
-
+import { useMutation } from "react-query";
+import { createPost } from "../../apis/Posts/api/postsAPI";
 // import styles from './../styles/Blog.module.scss'
 
 function BlogForm(props: any) {
+  const useDipsatchCreatePost = useMutation((myPostData: any) => {
+    return createPost(myPostData);
+  });
+
   const [currentUser, setCurrentUser] = useState("");
 
   const context: any = useContext(LoginContext);
@@ -39,10 +44,14 @@ function BlogForm(props: any) {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
     setPostData({ ...postData, author: `${userName}` });
-    console.log(postData);
+    const myPostData: any = {
+      ...postData,
+      name: userName,
+    };
+    useDipsatchCreatePost.mutate(myPostData);
     resetForm();
   };
 

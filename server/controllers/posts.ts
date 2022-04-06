@@ -12,7 +12,7 @@ export const createPost: RequestHandler = async (
   res
 ): Promise<void> => {
   const post: IPost = req.body;
-
+  // console.log(post);
   const newPost = new PostModel({
     ...post,
     creator: req.userId,

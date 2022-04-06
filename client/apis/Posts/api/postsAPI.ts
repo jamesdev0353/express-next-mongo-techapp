@@ -1,0 +1,38 @@
+import axios from "axios";
+import { useQuery } from "react-query";
+// import { IPostpostInfo, IResponseData } from "../interface/IPosts";
+import { requestData } from "../utils/axios-utils";
+
+const url = "http://localhost:3000";
+
+axios.interceptors.request.use((req: any) => {
+  if (localStorage.getItem("userProfile")) {
+    req.headers.Authorization = `Bearer ${
+      JSON.parse(localStorage.getItem("userProfile")).token
+    }`;
+    return req;
+  }
+});
+
+const fetchpostData = () => {
+  return requestData({ url: "/blog/api" });
+};
+
+// export const usepostData = (
+//   onSuccess: (param: any) => void,
+//   onError: (param: Error) => void
+// ) => {
+//   return useQuery("postData", fetchpostData, {
+//     onSuccess,
+//     onError,
+//   });
+// };
+
+//this works
+export const createPost = (newpost: any) =>
+  axios.post(`${url}/blog/api/`, newpost);
+
+//this works
+export const deletepost = (id: string) => {
+  return axios.delete(`${url}/blog/api/${id}`);
+};
