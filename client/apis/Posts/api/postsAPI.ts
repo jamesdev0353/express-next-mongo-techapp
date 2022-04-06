@@ -9,14 +9,6 @@ export interface IResponseData extends Response {
 
 const url = "http://localhost:3000";
 
-axios.interceptors.request.use((req: any) => {
-  if (localStorage.getItem("userProfile")) {
-    req.headers.Authorization = `Bearer ${
-      JSON.parse(localStorage.getItem("userProfile")).token
-    }`;
-    return req;
-  }
-});
 
 export const fetchPostData = () => {
   return requestData({ url: "/blog/api" });
