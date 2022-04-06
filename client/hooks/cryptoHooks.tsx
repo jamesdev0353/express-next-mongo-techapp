@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useCryptoData } from "../../apis/BlockChain/blockchain.actions";
-import { IPropCrypt } from "./interface";
+import { useCryptoData } from "../apis/BlockChain/blockchain.actions";
+import { IPropCrypt } from "../components/Cryptos/interface";
 
 export default function useSetCryptos() {
   const [bool, setBool] = useState(false);

@@ -31,7 +31,7 @@ function Blog() {
               <Grid className={styles.containerForm}>
                 <BlogForm className={styles.containerForm} />
               </Grid>
-              <Grid className={styles.containerForm}>
+              <Grid>
                 <Blogs />
               </Grid>
             </Grid>

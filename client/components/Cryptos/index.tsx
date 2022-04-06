@@ -11,7 +11,7 @@ import CardMedia from "@mui/material/CardMedia";
 
 import CryptoForm from "./CryptoForm";
 import { IPropCrypt } from "./interface";
-import useSetCryptos, { useCryptosData } from "./hooks";
+import useSetCryptos, { useCryptosData } from "./../../hooks/cryptoHooks";
 
 const Cryptos = () => {
   const [cryptoDescr, setCryptoDescr] = useState("");

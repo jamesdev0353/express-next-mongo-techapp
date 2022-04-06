@@ -15,13 +15,15 @@ export default function useDataUserContext() {
   const { userContextData, setUserContextData } = context;
   const { userName, userId, userEmail } = userContextData;
   useEffect(() => {
-    const storageData = JSON.parse(localStorage.getItem("userProfile"));
-    setUserContextData({
-      ...userContextData,
-      userName: storageData.result.name,
-      userEmail: storageData.result.email,
-      userId: storageData.result._id,
-    });
+    if (localStorage.getItem("userProfile")) {
+      const storageData = JSON.parse(localStorage.getItem("userProfile"));
+      setUserContextData({
+        ...userContextData,
+        userName: storageData.result.name,
+        userEmail: storageData.result.email,
+        userId: storageData.result._id,
+      });
+    }
   }, []);
   return { userContextData };
 }

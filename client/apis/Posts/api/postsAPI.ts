@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useQuery } from "react-query";
+import { IPostInfo } from "../interface/IPosts";
 // import { IPostpostInfo, IResponseData } from "../interface/IPosts";
 import { requestData } from "../utils/axios-utils";
+export interface IResponseData extends Response {
+  data: IPostInfo[];
+}
 
 const url = "http://localhost:3000";
 
@@ -14,19 +18,19 @@ axios.interceptors.request.use((req: any) => {
   }
 });
 
-const fetchpostData = () => {
+export const fetchPostData = () => {
   return requestData({ url: "/blog/api" });
 };
 
-// export const usepostData = (
-//   onSuccess: (param: any) => void,
-//   onError: (param: Error) => void
-// ) => {
-//   return useQuery("postData", fetchpostData, {
-//     onSuccess,
-//     onError,
-//   });
-// };
+export const usePostData = (
+  onSuccess: (param: Response) => void,
+  onError: (param: Error) => void
+) => {
+  return useQuery("postData", fetchPostData, {
+    onSuccess,
+    onError,
+  });
+};
 
 //this works
 export const createPost = (newpost: any) =>
