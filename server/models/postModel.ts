@@ -3,6 +3,7 @@ import { IPost } from "./interface";
 
 const Schema = mongoose.Schema;
 const postSchema = new mongoose.Schema<IPost>({
+  title: String,
   author: String,
   post: String,
   creator: String,

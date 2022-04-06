@@ -13,6 +13,7 @@ export interface IPost {
   author: string;
   post: string;
   public: boolean;
+  title: string;
   selectedFile: string;
   createdAt: any;
   comments: any;
@@ -34,11 +35,6 @@ export interface IPost {
 //   currentId: string;
 // };
 
-export interface IPostInfo extends IPost {
-  _id: string;
-  tags: Array<string>;
-}
-
 export interface IResponseData extends Response {
-  data: IPostInfo[];
+  data: IPost[];
 }

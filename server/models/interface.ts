@@ -11,6 +11,7 @@ export interface IProject {
 }
 
 export interface IPost {
+  title: string;
   author: string;
   creator: string;
   post: string;

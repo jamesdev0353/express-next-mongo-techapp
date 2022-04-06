@@ -3,7 +3,7 @@ import Blog from "./Blog";
 import { Grid } from "@mui/material";
 import styles from "./../styles/Blog.module.scss";
 import { usePostData } from "./../../apis/Posts/api/postsAPI";
-import { IPostInfo, IResponseData } from "../../apis/Posts/interface/IPosts";
+import { IPostInfo, IResponseData } from "./interface";
 import styled from "@emotion/styled";
 function Blogs(props: any) {
   const [bool, setBool] = useState<boolean>(false);
@@ -19,12 +19,11 @@ function Blogs(props: any) {
     console.log(post);
   });
   const {} = usePostData(onSuccess, onError);
-  console.log(posts);
   return (
     <Grid container alignItems="stretch" spacing={3} sx={{ mt: 200 }}>
       {posts.map((post: IPostInfo) => (
         <Grid style={divStyle} item xs={12} sm={12} key={post._id}>
-          <Blog />
+          <Blog blog={post} />
         </Grid>
       ))}
     </Grid>
