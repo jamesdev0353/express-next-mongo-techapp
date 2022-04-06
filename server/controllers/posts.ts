@@ -6,7 +6,16 @@ export interface IPostInfoRequest extends Request {
   userId: string; // or any other type
 }
 
-export const getPosts = () => {};
+
+export const getPosts: RequestHandler = async (req: Request, res: Response) => {
+  try {
+    const postModels = await PostModel.find();
+
+    res.status(200).json(postModels);
+  } catch (err: any) {
+    res.status(404).json({ message: err.message });
+  }
+};
 export const createPost: RequestHandler = async (
   req: IPostInfoRequest,
   res

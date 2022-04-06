@@ -9,7 +9,6 @@ import { Typography } from "@mui/material";
 import ButtonForm from "./../Form/ButtonForm";
 import InputForm from "./../Form/InputForm";
 import styles from "./../styles/Blog.module.scss";
-import { useDispatch, useSelector } from "react-redux";
 import { LoginContext } from "../Contexts";
 import { useMutation } from "react-query";
 import { createPost } from "../../apis/Posts/api/postsAPI";
@@ -74,7 +73,7 @@ function BlogForm(props: any) {
         variant="standard"
         value={postData.title}
         fullWidth
-        onChange={(e) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setPostData({
             ...postData,
             title: e.target.value,
@@ -91,7 +90,9 @@ function BlogForm(props: any) {
         fullWidth
         sx={{ mt: 1.5 }}
         placeholder="write your message here.."
-        onChange={(e) => setPostData({ ...postData, message: e.target.value })}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setPostData({ ...postData, message: e.target.value })
+        }
       />
       <div className={styles.filebase}>
         <FileBase
@@ -122,7 +123,7 @@ function BlogForm(props: any) {
           add
         </Button>
         <Button
-          //   startIcon={<BackspaceIcon />}
+          // startIcon={<BackspaceIcon />}
           // className={styles.btnProjectForm}
           // sx={{ mt: 1.5 }}
           color="secondary"
