@@ -23,7 +23,7 @@ const title = "1st title";
 
 const auth = "Michael John";
 
-function Blog() {
+function Blog(props: any) {
   return (
     <Container style={{ padding: "40px 20px" }}>
       <Grid justifyContent="flex-start" container wrap="nowrap" spacing={2}>

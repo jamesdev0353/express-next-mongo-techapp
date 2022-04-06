@@ -5,7 +5,7 @@ import styles from "./../styles/Blog.module.scss";
 import { usePostData } from "./../../apis/Posts/api/postsAPI";
 import { IPostInfo, IResponseData } from "../../apis/Posts/interface/IPosts";
 import styled from "@emotion/styled";
-function Blogs() {
+function Blogs(props: any) {
   const [bool, setBool] = useState<boolean>(false);
   const [posts, setPosts] = useState<IPostInfo[]>([]);
   const onSuccess = (data: IResponseData) => {
@@ -21,21 +21,20 @@ function Blogs() {
   const {} = usePostData(onSuccess, onError);
   console.log(posts);
   return (
-    <>
-      <Grid container alignItems="stretch" spacing={3} sx={{ mt: 200 }}>
-        {posts.map((post: IPostInfo) => (
-          <Container key={post._id}>
-            <Grid item xs={12} sm={12} sx={{ mt: 200 }} style={divStyle}>
-              <Blog />
-            </Grid>
-          </Container>
-        ))}
-      </Grid>
-    </>
+    <Grid container alignItems="stretch" spacing={3} sx={{ mt: 200 }}>
+      {posts.map((post: IPostInfo) => (
+        <Grid style={divStyle} item xs={12} sm={12} key={post._id}>
+          <Blog />
+        </Grid>
+      ))}
+    </Grid>
   );
 }
+
 const divStyle = {
   backgroundColor: "rgba(255, 255, 255, 0.5)",
+  marginBottom: "100px",
+  borderRadius: "10px",
 };
 export const Container = styled.div<any>((props) => ({
   backgroundColor: "rgba(255, 255, 255, 0.5)",
