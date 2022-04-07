@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useState } from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import ButtonForm from "../Form/ButtonForm";
 import InputForm from "../Form/InputForm";
 import { GoogleLogin } from "react-google-login";
@@ -7,18 +7,14 @@ import { Button } from "@mui/material";
 import FileBase from "react-file-base64";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import FormControl from "@mui/material/FormControl";
-import { ThemeProvider } from "@emotion/react";
 import useStyles from "./styles";
 import styles from "./../styles/Form.module.scss";
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { signUpAction } from "../../apis/User/user.actions";
 import userReducer from "../../apis/User/user.reducers";
 import * as api from "./../../apis/User/api";
 import Profile from "./Profile";
 import { useQuery } from "react-query";
-import { DirectionsCarRounded } from "@material-ui/icons";
-
 const initialState = {
   userName: "",
   lastName: "",
@@ -37,33 +33,26 @@ const fetchCharacters = async (page: number) => {
 
   return promise;
 };
-const ChildCompB = ({ name, image }) => {
-  return (
-    <>
-      {" "}
-      <Profile name={name} image={image} />
-    </>
-  );
-};
 
 function SignUpForm() {
   const router = useRouter();
   const classes = useStyles();
   const [dataForm, setDataForm] = useState<any>();
-  const [image, setImage] = useState<any>();
   const [formData, setFormData] = useState(initialState);
   const [INITIAL_STATE, dispatch] = useReducer(userReducer, formData);
 
   const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
+    if (!formData.profilePicture) {
+      setFormData({ ...formData, profilePicture: data.image });
+      setFormData({ ...formData, profilePicture: data.image });
+    }
     e.preventDefault();
     if (formData.password === formData.confirmPassword) {
-      if (formData.profilePicture === "") {
-        setFormData({ ...formData, profilePicture: data.image });
-      }
+      console.log(formData);
       try {
-        const { data } = await api.signUp(formData);
-        dispatch({ type: "AUTH", data });
-        router.push("/");
+        // const { data } = await api.signUp(formData);
+        // dispatch({ type: "AUTH", data });
+        // router.push("/");
       } catch (error) {
         console.log(error);
       }
@@ -79,6 +68,9 @@ function SignUpForm() {
   );
   const resetForm = () => {
     setFormData(initialState);
+    if (!formData.profilePicture) {
+      setFormData({ ...formData, profilePicture: data.image });
+    }
     console.log("DirectionsCarRounded", formData);
   };
 
@@ -106,10 +98,13 @@ function SignUpForm() {
   );
   const increasePage = () => {
     setPage(page + 1);
+    setFormData({ ...formData, profilePicture: data.image });
   };
   const decrasePage = () => {
     setPage(page - 1);
+    setFormData({ ...formData, profilePicture: data.image });
   };
+
   return (
     <>
       <div>
