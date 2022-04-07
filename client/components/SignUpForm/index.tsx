@@ -41,6 +41,7 @@ function SignUpForm() {
   const router = useRouter();
   const classes = useStyles();
   const [dataForm, setDataForm] = useState<any>();
+  const [image, setImage] = useState<any>();
   const [formData, setFormData] = useState(initialState);
   const [INITIAL_STATE, dispatch] = useReducer(userReducer, formData);
 
@@ -103,7 +104,12 @@ function SignUpForm() {
         {isLoading ? (
           "Loading.."
         ) : (
-          <Profile name={data.name} image={data.image} />
+          <Profile
+            name={data.name}
+            image={
+              formData.profilePicture ? formData.profilePicture : data.image
+            }
+          />
         )}
       </div>
       <Button color="success" onClick={increasePage}>
