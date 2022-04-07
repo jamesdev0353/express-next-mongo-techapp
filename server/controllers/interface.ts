@@ -25,4 +25,5 @@ export interface IUser {
   password: string;
   _v: number;
   _id: string;
+  profilePicture: string;
 }

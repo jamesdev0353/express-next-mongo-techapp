@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema<IUser>({
   birthDay: { type: String, required: true },
   password: { type: String, required: true },
   id: { type: String },
+  profilePicture: { type: String },
 });
 
 export default mongoose.model<IUser>("User", userSchema);

@@ -49,8 +49,15 @@ export const findUser = async (req: Request, res: Response) => {
 export const setUser = async (req: Request, res: Response) => {};
 
 export const signUpUser = async (req: Request, res: Response) => {
-  const { email, password, userName, lastName, confirmPassword, birthDay } =
-    req.body;
+  const {
+    email,
+    password,
+    userName,
+    lastName,
+    confirmPassword,
+    birthDay,
+    profilePicture,
+  } = req.body;
 
   try {
     const existingUser: IUser = await User.findOne({ email });
@@ -65,6 +72,7 @@ export const signUpUser = async (req: Request, res: Response) => {
       password: hashedPassword,
       birthDay,
       name: `${userName} ${lastName}`,
+      profilePicture,
     });
     const token = jwt.sign({ email: result.email, id: result._id }, "test", {
       expiresIn: "1h",

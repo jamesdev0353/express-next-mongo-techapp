@@ -1,16 +1,18 @@
 import axios from "axios";
-import { LocalStorage } from "node-localstorage";
 
 const API = axios.create({
   baseURL: "http://localhost:3000/user",
 });
-
 axios.interceptors.request.use((req: any) => {
-  if (localStorage.getItem("userProfile")) {
-    req.headers.Authorization = `Bearer ${
-      JSON.parse(localStorage.getItem("userProfile")).token
-    }`;
-    return req;
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("userProfile")) {
+      req.headers.Authorization = `Bearer ${
+        JSON.parse(localStorage.getItem("userProfile")).token
+      }`;
+      return req;
+    }
+  } else {
+    console.log("we are running on the server");
   }
 });
 

@@ -19,6 +19,7 @@ export interface IPropsSignUpData {
   birthDay: string;
   password: string;
   confirmPassword: string;
+  profilePicture: string;
 }
 export interface IPropsSignInData {
   __v: number;
@@ -27,6 +28,7 @@ export interface IPropsSignInData {
   email: string;
   name: string;
   password: string;
+  profilePicture: string;
 }
 
 export interface UAction {

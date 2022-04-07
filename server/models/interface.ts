@@ -33,5 +33,5 @@ export interface IUser {
   birthDay: string;
   password: string;
   id: string;
-
+  profilePicture: string;
 }
