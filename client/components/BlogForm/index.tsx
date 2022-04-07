@@ -6,17 +6,15 @@ import FileBase from "react-file-base64";
 
 import { Typography } from "@mui/material";
 
-import ButtonForm from "./../Form/ButtonForm";
 import InputForm from "./../Form/InputForm";
 import styles from "./../styles/Blog.module.scss";
-import { LoginContext } from "../Contexts";
 import { useMutation } from "react-query";
 import { createPost } from "../../apis/Posts/api/postsAPI";
 import useDataUserContext from "../../hooks/dataUserContext";
 import { IPostInfo } from "../Blogs/interface";
 // import styles from './../styles/Blog.module.scss'
 
-const initialState = {
+const initialState: IPostInfo = {
   title: "",
   post: "",
   author: "",
@@ -24,14 +22,13 @@ const initialState = {
   public: true,
 };
 
-function BlogForm(props: any) {
+function BlogForm(props: any): JSX.Element {
   const useDipsatchCreatePost = useMutation((myPostData: IPostInfo) => {
     return createPost(myPostData);
   });
   const { userContextData } = useDataUserContext();
 
-  const [postData, setPostData] = useState(initialState);
-
+  const [postData, setPostData] = useState<IPostInfo>(initialState);
   const resetForm = () => {
     setPostData(initialState);
   };
@@ -92,39 +89,17 @@ function BlogForm(props: any) {
         <FileBase
           type="file"
           multiple={false}
-          // onDone={({ base64 }) => setFile(base64)}
           fullWidth
           onDone={({ base64 }) =>
             setPostData({ ...postData, selectedFile: base64 })
           }
         />
       </div>
-      <ButtonGroup
-        // className={styles}
-        fullWidth
-        size="large"
-        sx={{ mt: 1.5 }}
-      >
-        <Button
-          // className={styles.btnProjectForm}
-          // sx={{ mt: 1.5 }}
-          //   startIcon={<SaveIcon />}
-          type="submit"
-          size="large"
-          color="primary"
-          // style={{ width: 50 }}
-        >
+      <ButtonGroup fullWidth size="large" sx={{ mt: 1.5 }}>
+        <Button type="submit" size="large" color="primary">
           add
         </Button>
-        <Button
-          // startIcon={<BackspaceIcon />}
-          // className={styles.btnProjectForm}
-          // sx={{ mt: 1.5 }}
-          color="secondary"
-          size="large"
-          onClick={resetForm}
-          fullWidth
-        >
+        <Button color="secondary" size="large" onClick={resetForm} fullWidth>
           clear
         </Button>
       </ButtonGroup>

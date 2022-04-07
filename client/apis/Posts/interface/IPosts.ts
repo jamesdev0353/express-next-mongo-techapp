@@ -1,13 +1,17 @@
 export interface IPostInfo {
+  __v?: number;
+  _id?: string;
   author: string;
+  comments?: [];
   post: string;
+  createdAt?: string;
   public: boolean;
-  title: string;
   selectedFile: string;
-  createdAt: any;
-  comments: any;
-  _id: any;
+  title: string;
+  name?: string;
 }
+
+
 export interface IResponseData extends Response {
   data: IPostInfo[];
 }

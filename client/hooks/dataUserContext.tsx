@@ -1,19 +1,14 @@
-import { useState, useEffect, useContext } from "react";
-import { useProjectData } from "../apis/Projects/api/projectAPI";
-import {
-  IProjectInfo,
-  IResponseData,
-} from "../apis/Projects/interface/IProject";
+import { useEffect, useContext } from "react";
 import { LoginContext } from "../components/Contexts";
-interface IPropCrypt {
-  name: string;
-  price: string;
-  symbol: string;
+interface IContextUser {
+  userName: string;
+  userId: string;
+  userEmail: string;
 }
 export default function useDataUserContext() {
   const context: any = useContext(LoginContext);
   const { userContextData, setUserContextData } = context;
-  const { userName, userId, userEmail } = userContextData;
+  const { userName, userId, userEmail }: IContextUser = userContextData;
   useEffect(() => {
     if (localStorage.getItem("userProfile")) {
       const storageData = JSON.parse(localStorage.getItem("userProfile"));

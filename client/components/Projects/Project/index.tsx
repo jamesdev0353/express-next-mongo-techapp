@@ -34,7 +34,6 @@ function Project({ project, setCurrentId }: IProps): JSX.Element {
             size="small"
             onClick={() => {
               setCurrentId(project._id);
-              console.log(project._id);
             }}
           >
             <MoreHorizIcon fontSize="medium" />
