@@ -41,70 +41,75 @@ function SignUpForm() {
   const [formData, setFormData] = useState(initialState);
   const [INITIAL_STATE, dispatch] = useReducer(userReducer, formData);
 
-  const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
-    if (!formData.profilePicture) {
-      setFormData({ ...formData, profilePicture: data.image });
-      setFormData({ ...formData, profilePicture: data.image });
-    }
-    e.preventDefault();
-    if (formData.password === formData.confirmPassword) {
-      console.log(formData);
+    const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
+      if (!formData.profilePicture) {
+        setFormData({ ...formData, profilePicture: data.image });
+      }
+      e.preventDefault();
+      if (formData.password === formData.confirmPassword) {
+        console.log(formData);
+        try {
+          // const { data } = await api.signUp(formData);
+          // dispatch({ type: "AUTH", data });
+          // router.push("/");
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert("password is not the same");
+      }
+    };
+    const handleChange = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      },
+      [formData]
+    );
+    const resetForm = () => {
+      setFormData(initialState);
+      if (!formData.profilePicture) {
+        setFormData({ ...formData, profilePicture: data.image });
+      }
+      console.log("DirectionsCarRounded", formData);
+    };
+
+    const googleSuccess = async (res: any) => {
+      const result = res?.profileObj;
+      const token = res?.tokenId;
       try {
-        // const { data } = await api.signUp(formData);
-        // dispatch({ type: "AUTH", data });
-        // router.push("/");
+        dispatch({ type: "AUTH", data: { result, token } });
+        //   .then(
+        //   router.push("/")
+        // );
       } catch (error) {
         console.log(error);
       }
-    } else {
-      alert("password is not the same");
-    }
-  };
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-    },
-    [formData]
-  );
-  const resetForm = () => {
-    setFormData(initialState);
-    if (!formData.profilePicture) {
-      setFormData({ ...formData, profilePicture: data.image });
-    }
-    console.log("DirectionsCarRounded", formData);
-  };
-
-  const googleSuccess = async (res: any) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
-    try {
-      dispatch({ type: "AUTH", data: { result, token } });
-      //   .then(
-      //   router.push("/")
-      // );
-    } catch (error) {
+      // console.log(res);
+    };
+    const googleFailure = (error: Error) => {
       console.log(error);
-    }
-    // console.log(res);
-  };
-  const googleFailure = (error: Error) => {
-    console.log(error);
-    console.log("Google sign in unsuccessful");
-  };
+      console.log("Google sign in unsuccessful");
+    };
 
-  const [page, setPage] = useState<number>(1);
-  const { data, isLoading, error } = useQuery(["profile", page], () =>
-    fetchCharacters(page)
-  );
-  const increasePage = () => {
-    setPage(page + 1);
-    setFormData({ ...formData, profilePicture: data.image });
-  };
-  const decrasePage = () => {
-    setPage(page - 1);
-    setFormData({ ...formData, profilePicture: data.image });
-  };
-
+    const [page, setPage] = useState<number>(1);
+    const { data, isLoading, error } = useQuery(["profile", page], () =>
+      fetchCharacters(page)
+    );
+    const increasePage = () => {
+      setPage(page + 1);
+      setFormData({ ...formData, profilePicture: data.image });
+    };
+    const decrasePage = () => {
+      setPage(page - 1);
+      setFormData({ ...formData, profilePicture: data.image });
+    };
+    React.useEffect(() => {
+      setFormData({
+        ...formData,
+        profilePicture:
+          "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+      });
+    }, []);
   return (
     <>
       <div>
