@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
+import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import FileBase from "react-file-base64";
 
@@ -13,41 +13,36 @@ import { LoginContext } from "../Contexts";
 import { useMutation } from "react-query";
 import { createPost } from "../../apis/Posts/api/postsAPI";
 import useDataUserContext from "../../hooks/dataUserContext";
+import { IPostInfo } from "../Blogs/interface";
 // import styles from './../styles/Blog.module.scss'
 
+const initialState = {
+  title: "",
+  post: "",
+  author: "",
+  selectedFile: "",
+  public: true,
+};
+
 function BlogForm(props: any) {
-  const useDipsatchCreatePost = useMutation((myPostData: any) => {
+  const useDipsatchCreatePost = useMutation((myPostData: IPostInfo) => {
     return createPost(myPostData);
   });
   const { userContextData } = useDataUserContext();
 
-  const [currentUser, setCurrentUser] = useState("");
-
-  const [postData, setPostData] = useState({
-    title: "",
-    post: "",
-    author: "",
-    selectedFile: "",
-    public: true,
-  });
+  const [postData, setPostData] = useState(initialState);
 
   const resetForm = () => {
-    setPostData({
-      title: "",
-      post: "",
-      author: "",
-      selectedFile: "",
-      public: true,
-    });
+    setPostData(initialState);
   };
 
   const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
 
     setPostData({ ...postData, author: `${userContextData.userName}` });
-    const myPostData: any = {
+    const myPostData: IPostInfo = {
       ...postData,
-      name: userContextData.userName,
+      name: userContextData.userId,
     };
     useDipsatchCreatePost.mutate(myPostData);
     resetForm();
