@@ -15,9 +15,7 @@ function Blogs(props: any) {
   const onError = (error: Error) => {
     setBool(false);
   };
-  posts.map((post) => {
-    console.log(post);
-  });
+
   const {} = usePostData(onSuccess, onError);
   return (
     <Grid container alignItems="stretch" spacing={3} sx={{ mt: 200 }}>
