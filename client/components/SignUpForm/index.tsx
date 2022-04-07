@@ -32,7 +32,6 @@ const fetchCharacters = async (page: number) => {
   const promise = await fetch(
     `https://rickandmortyapi.com/api/character/${page}`
   ).then((res) => {
-    console.log(res);
     return res.json();
   });
 
