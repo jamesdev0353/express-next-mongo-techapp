@@ -28,10 +28,10 @@ const Profile = (props: characterInfo): JSX.Element => {
           }}
           src={props.image}
         />{" "}
-        {props.name}
+        asd
       </Box>
     </>
   );
 };
 
-export default Profile;
+export default React.memo(Profile);

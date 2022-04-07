@@ -37,6 +37,15 @@ const fetchCharacters = async (page: number) => {
 
   return promise;
 };
+const ChildCompB = ({ name, image }) => {
+  return (
+    <>
+      {" "}
+      <Profile name={name} image={image} />
+    </>
+  );
+};
+
 function SignUpForm() {
   const router = useRouter();
   const classes = useStyles();
@@ -48,10 +57,11 @@ function SignUpForm() {
   const handleSubmit = async (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
     if (formData.password === formData.confirmPassword) {
-      console.log(formData);
+      if (formData.profilePicture === "") {
+        setFormData({ ...formData, profilePicture: data.image });
+      }
       try {
         const { data } = await api.signUp(formData);
-        console.log(data, "data");
         dispatch({ type: "AUTH", data });
         router.push("/");
       } catch (error) {
@@ -61,9 +71,12 @@ function SignUpForm() {
       alert("password is not the same");
     }
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    },
+    [formData]
+  );
   const resetForm = () => {
     setFormData(initialState);
     console.log("DirectionsCarRounded", formData);
@@ -91,7 +104,6 @@ function SignUpForm() {
   const { data, isLoading, error } = useQuery(["profile", page], () =>
     fetchCharacters(page)
   );
-  console.log(data);
   const increasePage = () => {
     setPage(page + 1);
   };
