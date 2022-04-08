@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import Blog from "./Blog";
+// import Blog from "./Blog";
 import { Grid } from "@mui/material";
 import styles from "./../styles/Blog.module.scss";
 import { usePostData } from "./../../apis/Posts/api/postsAPI";
 import { IPostInfo, IResponseData } from "./interface";
+import dynamic from "next/dynamic";
 import styled from "@emotion/styled";
+
+const Blog = dynamic(() => import("./Blog"));
+
+
 function Blogs(props: any) {
   const [bool, setBool] = useState<boolean>(false);
   const [posts, setPosts] = useState<IPostInfo[]>([]);

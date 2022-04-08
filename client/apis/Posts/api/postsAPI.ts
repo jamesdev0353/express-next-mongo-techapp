@@ -38,13 +38,11 @@ const fetchCommentData = (id: string) => {
   return requestData({ url: `/blog/api/${id}` });
 };
 export const useCommentData = (
-  isLoading: (param: any) => void,
   onSuccess: (param: IResponseData) => void,
   onError: (param: Error) => void,
   id: string
 ) => {
   return useQuery("commentData", () => fetchCommentData(id), {
-    isLoading,
     onSuccess,
     onError,
   });

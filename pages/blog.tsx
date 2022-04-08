@@ -12,11 +12,7 @@ const Blogs = dynamic(() => import("../client/components/Blogs"));
 
 function Blog() {
   return (
-    <div
-      // maxWidth="lg"
-      // asdasdas
-      className={styles.container}
-    >
+    <div className={styles.container}>
       <Typography variant="h2" align="center" className={styles.header}>
         Your Blog Page
       </Typography>
