@@ -22,6 +22,8 @@ export interface IPost {
 }
 
 export interface IComment {
+  post: string;
+  name: string;
   author: string;
   comment: string;
   createdAt: any;

@@ -11,6 +11,7 @@ export interface IProject {
 }
 export interface IPost {
   author: string;
+  name: string;
   title: string;
   message: string;
   public: boolean;
@@ -26,4 +27,11 @@ export interface IUser {
   _v: number;
   _id: string;
   profilePicture: string;
+}
+export interface IComment {
+  post: string;
+  name: string;
+  author: string;
+  comment: string;
+  createdAt: any;
 }

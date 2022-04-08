@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { IPostInfo, IResponseData } from "../interface/IPosts";
+import { IComment, IPostInfo, IResponseData } from "../interface/IPosts";
 import { requestData } from "../utils/axios-utils";
-
 
 const url = "http://localhost:3000";
 
@@ -32,6 +31,9 @@ export const usePostData = (
 //this works
 export const createPost = (newpost: IPostInfo) =>
   axios.post(`${url}/blog/api/`, newpost);
+//this works
+export const createComment = (newComment: IComment, id: string) =>
+  axios.post(`${url}/blog/api/${id}/comments`, newComment);
 
 //this works
 // export const deletepost = (id: string) => {

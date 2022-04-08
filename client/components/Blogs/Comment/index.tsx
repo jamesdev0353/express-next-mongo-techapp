@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Typography } from "@material-ui/core";
 import InputForm from "../../Form/InputForm";
@@ -6,27 +6,39 @@ import InputForm from "../../Form/InputForm";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import useDataUserContext from "../../../hooks/dataUserContext";
+import { useMutation } from "react-query";
+import { createComment } from "../../../apis/Posts/api/postsAPI";
 
 interface IComment {
   author: string;
   comment: string;
-  createdAt: any;
+  post: string;
 }
 const initalState: IComment = {
-  author: "",
+  author: "asd",
   comment: "",
-  createdAt: "",
+  post: "",
 };
 
-const Comment = () => {
+const Comment = ({ blogId }) => {
+  const useDispatchCreateComment = useMutation((myCommentData: IComment) => {
+    return createComment(myCommentData, myCommentData.post);
+  });
   const { userContextData } = useDataUserContext();
-  const [formData, setFormData] = useState<IComment>(initalState);
+  const [formData, setFormData] = useState<IComment>({
+    ...initalState,
+    post: blogId,
+  });
+
   const resetForm = () => {
     setFormData(initalState);
   };
   const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    const myCommentData: IComment = {
+      ...formData,
+    };
+    useDispatchCreateComment.mutate(myCommentData);
     resetForm();
   };
   return (

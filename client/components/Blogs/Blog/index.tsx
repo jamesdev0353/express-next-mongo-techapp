@@ -16,6 +16,7 @@ const imgLink =
   "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
 
 function Blog({ blog }): JSX.Element {
+
   return (
     <Container style={{ padding: "40px 20px" }}>
       <Grid justifyContent="flex-start" container wrap="nowrap" spacing={2}>
@@ -49,7 +50,7 @@ function Blog({ blog }): JSX.Element {
         <Grid item xs zeroMinWidth className={styles.comments}></Grid>
       </Grid>
       <Divider variant="fullWidth" style={{ margin: "30px 0" }} />
-      <Comment />
+      <Comment blogId={blog._id} />
     </Container>
   );
 }
