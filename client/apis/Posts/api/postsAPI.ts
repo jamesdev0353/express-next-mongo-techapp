@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
+import Blog from "../../../components/Blogs/Blog";
 import { IComment, IPostInfo, IResponseData } from "../interface/IPosts";
 import { requestData } from "../utils/axios-utils";
 
@@ -14,6 +15,7 @@ const url = "http://localhost:3000";
 //   }
 // });
 
+//Posts
 export const fetchPostData = () => {
   return requestData({ url: "/blog/api" });
 };
@@ -28,12 +30,45 @@ export const usePostData = (
   });
 };
 
-//this works
 export const createPost = (newpost: IPostInfo) =>
   axios.post(`${url}/blog/api/`, newpost);
-//this works
+
+//Comments
+const fetchCommentData = (id: string) => {
+  return requestData({ url: `/blog/api/${id}` });
+};
+export const useCommentData = (
+  isLoading: (param: any) => void,
+  onSuccess: (param: IResponseData) => void,
+  onError: (param: Error) => void,
+  id: string
+) => {
+  return useQuery("commentData", () => fetchCommentData(id), {
+    isLoading,
+    onSuccess,
+    onError,
+  });
+};
+
 export const createComment = (newComment: IComment, id: string) =>
   axios.post(`${url}/blog/api/${id}/comments`, newComment);
+
+  // export const fetchCommentData = () => {
+//   return requestData({ url: `/blog/api/` });
+// };
+
+// export const useCommentData = async (
+//   onSuccess: (param: IResponseData) => void,
+//   onError: (param: Error) => void
+// ) => {
+//   return useQuery("commentData", await fetchCommentData(), {
+//     onSuccess,
+//     onError,
+//   });
+// };
+
+//this works
+
 
 //this works
 // export const deletepost = (id: string) => {

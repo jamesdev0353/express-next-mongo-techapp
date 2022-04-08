@@ -16,6 +16,15 @@ export interface IResponseData extends Response {
 export type IPostData = {
   data: IPostInfo;
 };
+export interface IComment {
+  __v?: number;
+  _id?: string;
+  post: string;
+  author?: string;
+  comment: string;
+  createdAt?: string;
+  name?: string;
+}
 
 // __v: 0
 // _id: "624dce715b1384c3b67431ee"
