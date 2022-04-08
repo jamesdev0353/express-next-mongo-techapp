@@ -1,77 +1,25 @@
-import React, { useEffect, useState } from "react";
+import { Avatar, Grid } from "@mui/material";
+import React from "react";
+import styles from "./../../styles/Blog.module.scss";
 
-import { Typography } from "@material-ui/core";
-import InputForm from "../../Form/InputForm";
+const imgLink =
+  "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
 
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import useDataUserContext from "../../../hooks/dataUserContext";
-import { useMutation } from "react-query";
-import { createComment } from "../../../apis/Posts/api/postsAPI";
-
-interface IComment {
-  author: string;
-  comment: string;
-  post: string;
-}
-const initalState: IComment = {
-  author: "asd",
-  comment: "",
-  post: "",
-};
-
-const Comment = ({ blogId }) => {
-  const useDispatchCreateComment = useMutation((myCommentData: IComment) => {
-    return createComment(myCommentData, myCommentData.post);
-  });
-  const { userContextData } = useDataUserContext();
-  const [formData, setFormData] = useState<IComment>({
-    ...initalState,
-    post: blogId,
-  });
-
-  const resetForm = () => {
-    setFormData(initalState);
-  };
-  const handleSubmit = (e: React.SyntheticEvent | React.FormEvent) => {
-    e.preventDefault();
-    const myCommentData: IComment = {
-      ...formData,
-    };
-    useDispatchCreateComment.mutate(myCommentData);
-    resetForm();
-  };
+function Comment(props: any) {
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <Typography variant="h6">
-          {/* {currentUser ? <p>{currentUser}</p> : <>p</>} */}
-        </Typography>
-        <InputForm
-          label="Comment"
-          color="success"
-          variant="standard"
-          value={formData.comment}
-          fullWidth
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setFormData({
-              ...formData,
-              comment: e.target.value,
-              author: userContextData.userName,
-            })
-          }
-        />
-        <ButtonGroup fullWidth size="large" sx={{ mt: 1.5 }}>
-          <Button type="submit" size="large" color="primary">
-            add
-          </Button>
-          <Button color="secondary" size="large" onClick={resetForm} fullWidth>
-            clear
-          </Button>
-        </ButtonGroup>
-      </form>
-    </>
+    <Grid
+      justifyContent="flex-start"
+      className={styles.commentSection}
+      container
+      wrap="nowrap"
+      spacing={2}
+    >
+      <Grid item>
+        <Avatar alt="Remy Sharp" src={imgLink} />
+      </Grid>
+      <Grid item xs zeroMinWidth className={styles.comments}></Grid>
+    </Grid>
   );
-};
+}
 
 export default Comment;
