@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Divider,
@@ -21,62 +21,70 @@ const imgLink =
 function Blog({ blog }): JSX.Element {
   const [comments, setComments] = useState<[]>();
   const [bool, setBool] = useState<boolean>();
-  const isLoading = (data: any) => {
-    console.log("loading...");
-  };
-  const onSuccess = (data: any) => {
-    setComments(data.data.comments);
-    setBool(true);
-  };
-  const onError = (error: Error) => {
-    setBool(false);
-  };
-
-  const {} = useCommentData(isLoading, onSuccess, onError, blog._id);
-  if (comments) {
-    comments.map((comment: IComment) => {
-      console.log(comment.comment);
-    });
-  }
-  // const fetchCommentData = (id: string) => {
-  //   return requestData({ url: `/blog/api/${id}` });
+  // const isLoading = (data: any) => {
+  //   console.log("loading...");
   // };
-  // const { isLoading, error, data } = useQuery("commentData", () =>
-  //   fetchCommentData(blog._id).then((res) => res.json())
-  // );
 
-  return (
-    <Container style={{ padding: "40px 20px" }}>
-      <Grid justifyContent="flex-start" container wrap="nowrap" spacing={2}>
-        <Grid item>
-          <Avatar alt="Remy Sharp" src={imgLink} />
-        </Grid>
-        <Grid pt={50} item xs zeroMinWidth>
-          <Typography gutterBottom>{blog.author}</Typography>
-        </Grid>
-      </Grid>
-      <Grid pt={10} item xs zeroMinWidth>
-        <Typography variant="h5" gutterBottom>
-          {blog.title}
-        </Typography>
-      </Grid>
-      <Grid justifyContent="flex-start" container wrap="nowrap" spacing={2}>
-        <Grid item xs zeroMinWidth>
-          {blog.post}
-        </Grid>
-      </Grid>
-      {comments &&
-        comments.map((comment: IComment) => {
-          <Comment />;
-        })}
-      {/* })
-      ) : (
+  // const onSuccess = (data: any) => {
+  //   setComments(data.data.comments);
+  //   console.log(comments);
+  //   setBool(true);
+  // };
+  // const onError = (error: Error) => {
+  //   setBool(false);
+  // };
 
-      )} */}
-      <Divider variant="fullWidth" style={{ margin: "30px 0" }} />
-      <CommentForm blogId={blog._id} />
-    </Container>
+  // const {} = useCommentData(isLoading, onSuccess, onError, blog._id);
+  // if (comments) {
+  //   comments.map((comment: IComment) => {
+  //     console.log(comment.comment);
+  //   });
+  // }
+  const fetchCommentData = (id: string) => {
+    return requestData({ url: `/blog/api/${id}` });
+  };
+  const { isLoading, error, data } = useQuery("commentData", () =>
+    fetch(`http://localhost:3000/blog/api/${blog._id}`).then((res) => {
+      return res.json();
+    })
   );
+  // console.log(data);
+  if (isLoading) {
+    return <>Loading...</>;
+  } else {
+    return (
+      <Container style={{ padding: "40px 20px" }}>
+        <Grid justifyContent="flex-start" container wrap="nowrap" spacing={2}>
+          <Grid item>
+            <Avatar alt="Remy Sharp" src={imgLink} />
+          </Grid>
+          <Grid pt={50} item xs zeroMinWidth>
+            <Typography gutterBottom>{blog.author}</Typography>
+          </Grid>
+        </Grid>
+        <Grid pt={10} item xs zeroMinWidth>
+          <Typography variant="h5" gutterBottom>
+            {blog.title}
+          </Typography>
+        </Grid>
+        <Grid justifyContent="flex-start" container wrap="nowrap" spacing={2}>
+          <Grid item xs zeroMinWidth>
+            {blog.post}
+          </Grid>
+        </Grid>
+
+        {data.comments ? (
+          data.comments.map((comment: IComment) => {
+            <Comment />;
+          })
+        ) : (
+          <Comment />
+        )}
+        <Divider variant="fullWidth" style={{ margin: "30px 0" }} />
+        <CommentForm blogId={blog._id} />
+      </Container>
+    );
+  }
 }
 
 export default Blog;
