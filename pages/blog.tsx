@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { Container, Typography, Grid, Button } from "@material-ui/core";
 import Box from "@mui/material/Box";
-import Blogs from "../client/components/Blogs";
+// import Blogs from "../client/components/Blogs";
 import BlogForm from "../client/components/BlogForm";
-
+import dynamic from "next/dynamic";
 import Weather from "../client/components/Weather";
 import Cryptos from "../client/components/Cryptos";
 import styles from "./styles/Blog.module.scss";
+
+const Blogs = dynamic(() => import("../client/components/Blogs"));
 
 function Blog() {
   return (

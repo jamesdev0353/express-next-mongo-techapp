@@ -48,12 +48,10 @@ const initalState: IWeatherData = {
 function Weather() {
   const [weatherData, setWeatherData] = useState(initalState);
   const list = [];
-
   const pull_data = async (location: string) => {
     const data = fetchCurrentWeather(location);
     await data.then(function (result) {
       list.push(result);
-      console.log(list);
     });
     list.splice(0, list.length);
 
