@@ -16,6 +16,9 @@ const imgLink =
   "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
 
 function Blog({ blog }): JSX.Element {
+  blog.comments.map((cmnt) => {
+    console.log(cmnt);
+  });
 
   return (
     <Container style={{ padding: "40px 20px" }}>
@@ -37,6 +40,7 @@ function Blog({ blog }): JSX.Element {
           {blog.post}
         </Grid>
       </Grid>
+
       <Grid
         justifyContent="flex-start"
         className={styles.commentSection}

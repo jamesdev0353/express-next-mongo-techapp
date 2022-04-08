@@ -19,6 +19,15 @@ export const getPosts: RequestHandler = async (req: Request, res: Response) => {
     res.status(404).json({ message: err.message });
   }
 };
+export const getPost = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const postModels = await PostModel.findById(id).populate("comments");
+    res.status(200).json(postModels);
+  } catch (err: any) {
+    res.status(404).json({ message: err.message });
+  }
+};
 export const createPost: RequestHandler = async (
   req: IPostInfoRequest,
   res
