@@ -40,6 +40,7 @@ function LoginForm(): JSX.Element {
       console.log(error);
     }
   };
+  //
   const googleFailure = (error: Error) => {
     console.log(error);
     console.log("Google sign in unsuccessful");
