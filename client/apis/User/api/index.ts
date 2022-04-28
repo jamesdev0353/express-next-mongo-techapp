@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/user",
+  baseURL: `${process.env.HOSTNAME}/user`,
 });
 axios.interceptors.request.use((req: any) => {
   if (typeof window !== "undefined") {
@@ -15,7 +15,7 @@ axios.interceptors.request.use((req: any) => {
     console.log("we are running on the server");
   }
 });
-
+//
 export const findUser = (formData) => API.get("/", formData);
 export const logIn = (formData) => API.post("/login", formData);
 export const signUp = (formData) => API.post("/signup", formData);

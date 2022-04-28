@@ -1,6 +1,6 @@
 import axios from "axios";
-const client = axios.create({ baseURL: "http://localhost:3000" });
-
+const client = axios.create({ baseURL: process.env.HOSTNAME });
+//
 export const requestData = async ({ ...options }) => {
   client.defaults.headers.common.Authorization = "Bearer token";
   const isLoading = (response: any) => response;

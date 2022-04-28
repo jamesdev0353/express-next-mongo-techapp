@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { IPostProjectInfo, IResponseData } from "../interface/IProject";
 import { requestData } from "../utils/axios-utils";
 
-const url = "http://localhost:3000";
+const url = process.env.HOSTNAME;
 
 axios.interceptors.request.use((req: any) => {
   if (localStorage.getItem("userProfile")) {
@@ -13,7 +13,7 @@ axios.interceptors.request.use((req: any) => {
     return req;
   }
 });
-
+//
 const fetchProjectData = () => {
   return requestData({ url: "/projects/api" });
 };

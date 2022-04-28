@@ -4,8 +4,8 @@ import Blog from "../../../components/Blogs/Blog";
 import { IComment, IPostInfo, IResponseData } from "../interface/IPosts";
 import { requestData } from "../utils/axios-utils";
 
-const url = "http://localhost:3000";
-
+const url = process.env.HOSTNAME;
+//
 // axios.interceptors.request.use((req: any) => {
 //   if (localStorage.getItem("userProfile")) {
 //     req.headers.Authorization = `Bearer ${

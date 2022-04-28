@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-
-const url = "http://localhost:3000/blog/blockchain/api";
+//
+const url = `${process.env.HOSTNAME}/blog/blockchain/api`;
 
 interface IResponseData {
   config: {};

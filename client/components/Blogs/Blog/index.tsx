@@ -13,7 +13,7 @@ import CommentForm from "../Comment/commentForm";
 import styles from "./../../styles/Blog.module.scss";
 import { IPostData, IPostInfo, IComment } from "./../interface";
 import { useQuery } from "react-query";
-import { requestData } from "../../../apis/Posts/utils/axios-utils";
+import { requestData } from "../../../apis/utils/axios-utils";
 import { useCommentData } from "../../../apis/Posts/api/postsAPI";
 import useCommentDataHook from "../../../hooks/commentHook";
 const imgLink =
@@ -24,7 +24,7 @@ function Blog({ blog }): JSX.Element {
   // const isLoading = (data: any) => {
   //   console.log("loading...");
   // };
-
+  //
   // const onSuccess = (data: any) => {
   //   setComments(data.data.comments);
   //   console.log(comments);

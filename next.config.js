@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     WEATHER_APPID: process.env.WEATHER_APPID,
-    // MYSPACEID: process.env.MYSPACEID,
+    HOSTNAME: process.env.HOSTNAME,
   },
 };
 
