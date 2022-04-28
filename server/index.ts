@@ -14,7 +14,7 @@ export const handle = nextApp.getRequestHandler(); //part of next config
 
 import projectsRoutes from "./routes/projectsRoutes";
 import userRoutes from "./routes/userRoutes";
-import blockchainRoutes from "./routes/blockchainRoutes";
+import blogRoutes from "./routes/blogRoutes";
 
 nextApp.prepare().then(() => {
   const app = express();
@@ -26,7 +26,7 @@ nextApp.prepare().then(() => {
   app.use("/projects", projectsRoutes);
   app.use("/user", userRoutes);
   //blockcain routes
-  app.use("/blog", blockchainRoutes);
+  app.use("/blog", blogRoutes);
   app.get("/about", async (req: Request, res: Response) => {
     const actualPage = "/about";
 
