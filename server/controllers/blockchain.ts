@@ -10,7 +10,7 @@ const requestOptions = {
     convert: "USD",
   },
   headers: {
-    "X-CMC_PRO_API_KEY": "bbc113f1-3455-4b02-8bb6-2dd3e357d85f",
+    "X-CMC_PRO_API_KEY": process.env.CMC_API_KEY,
   },
   json: true,
   gzip: true,
@@ -22,8 +22,7 @@ export const getBlocks: RequestHandler = async (
   req: Request,
   res: Response
 ) => {
-  const url =
-    "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=bbc113f1-3455-4b02-8bb6-2dd3e357d85f";
+  const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${process.env.CMC_API_KEY}`;
   try {
     axios
       .get(url)
@@ -45,7 +44,7 @@ export const getBlocks: RequestHandler = async (
 //   const dataAr: Array<any> = [];
 
 //   list.map((value) => {
-//     const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?CMC_PRO_API_KEY=bbc113f1-3455-4b02-8bb6-2dd3e357d85f&symbol=${value}`;
+//     const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?CMC_PRO_API_KEY=${process.env.CMC_API_KEY}&symbol=${value}`;
 //     try {
 //       axios
 //         .get(url)
@@ -67,7 +66,7 @@ export const getBlocks: RequestHandler = async (
 //   // const data = {};
 //   try {
 //     const url =
-//       "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=bbc113f1-3455-4b02-8bb6-2dd3e357d85f";
+//       "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${process.env.CMC_API_KEY}";
 //     const func = async (url) => {
 //       return new Promise((resolve, reject) => {
 //         axios

@@ -7,9 +7,9 @@ interface IResponseData {
   status: number;
   statusText: string;
 }
-
+// 5ca5ced27e5c0797c3f2970af31ff579
 export function fetchCurrentWeather(location: string) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=5ca5ced27e5c0797c3f2970af31ff579`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.WEATHER_APPID}`;
   return new Promise((resolve, reject) => {
     axios({
       method: "GET",
@@ -39,7 +39,7 @@ export function fetchCurrentWeather(location: string) {
 // }
 
 export function fetchCurrentWeatherBool(location) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=5ca5ced27e5c0797c3f2970af31ff579`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.WEATHER_APPID}`;
   return new Promise((resolve, reject) => {
     axios
       .get(url)
