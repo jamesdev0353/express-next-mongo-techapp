@@ -4,6 +4,10 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose, { ConnectOptions } from "mongoose";
 import dotenv from "dotenv";
+import projectsRoutes from "./routes/projectsRoutes";
+import userRoutes from "./routes/userRoutes";
+import blogRoutes from "./routes/blogRoutes";
+
 dotenv.config();
 const CONNECTION_URL = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.f2hbs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
@@ -12,9 +16,6 @@ const nextApp = next({ dev });
 const PORT = process.env.PORT || 3000;
 export const handle = nextApp.getRequestHandler(); //part of next config
 
-import projectsRoutes from "./routes/projectsRoutes";
-import userRoutes from "./routes/userRoutes";
-import blogRoutes from "./routes/blogRoutes";
 
 nextApp.prepare().then(() => {
   const app = express();
