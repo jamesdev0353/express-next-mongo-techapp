@@ -11,7 +11,7 @@ const Map = ({ latitude, longitude, zoom }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     // id: "liquid-sylph-339314",
-    googleMapsApiKey: "AIzaSyClDGpur3KtYNHpABdDTVTiAsdHcrt5nuA",
+    googleMapsApiKey: process.env.GOOGLE_MAPS_APIKEY,
   });
 
   const [map, setMap] = React.useState(null);
