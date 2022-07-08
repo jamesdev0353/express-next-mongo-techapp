@@ -13,9 +13,8 @@ const CONNECTION_URL = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.D
 
 const dev = process.env.NODE_DEV !== "production"; //true false
 const nextApp = next({ dev });
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 export const handle = nextApp.getRequestHandler(); //part of next config
-
 
 nextApp.prepare().then(() => {
   const app = express();
@@ -51,4 +50,3 @@ nextApp.prepare().then(() => {
     )
     .catch((error) => console.log(error.message));
 });
-

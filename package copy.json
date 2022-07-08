@@ -1,7 +1,7 @@
 {
   "name": "mernstack",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "dev": "node server/index.js",
     "build": "next build",

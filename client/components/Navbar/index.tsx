@@ -8,31 +8,22 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
 import { pages } from "./pagesData";
 import { loginform, logoutform } from "./pagesData";
-import styles from "../../styles/Navbar.module.scss";
-
-// import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-
-// import { setUserAction } from "../../redux/User/user.actions";
-
 import useStyles from "./styles";
+import styles from "../../styles/Navbar.module.scss";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const ResponsiveAppBar: React.FC = (): JSX.Element => {
   const classes = useStyles();
   const router = useRouter();
-  // const dispatch = useDispatch();
-  // const location = useLocation();
   const [state, setState] = React.useState({
     left: false,
   });
@@ -119,7 +110,7 @@ const ResponsiveAppBar: React.FC = (): JSX.Element => {
       <Divider />
       <List>
         {pages.map((page, index) => (
-          <Link key={index} href={page.path}>
+          <Link key={index} href={page.path} passHref>
             <ListItem
               button
               key={index}
@@ -151,7 +142,7 @@ const ResponsiveAppBar: React.FC = (): JSX.Element => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            <Avatar alt="logo" src="/logo.png" />
+            {user && <Avatar alt="logo" src="/logo.png" />}
           </Typography>
 
           <Box
@@ -192,23 +183,25 @@ const ResponsiveAppBar: React.FC = (): JSX.Element => {
             Kober.tech
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page, index) => (
-              <Link key={index} href={page.path}>
-                <Button
-                  key={index}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  className={styles.colorButtons}
-                >
-                  {page.title}
-                </Button>
-              </Link>
-            ))}
+            {pages.map((page, index) => {
+              return (
+                <Link key={index} href={page.path} passHref>
+                  <Button
+                    key={index}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                    className={styles.colorButtons}
+                  >
+                    {page.title}
+                  </Button>
+                </Link>
+              );
+            })}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             {!user ? (
-              <Link href={loginform[0].path}>
+              <Link href={loginform[0].path} passHref>
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
