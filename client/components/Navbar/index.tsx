@@ -142,7 +142,7 @@ const ResponsiveAppBar: React.FC = (): JSX.Element => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            {user && <Avatar alt="logo" src="/logo.png" />}
+            <Avatar alt="logo" src="/logo.png" />
           </Typography>
 
           <Box

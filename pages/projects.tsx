@@ -38,5 +38,4 @@ function ProjectsV(props: any) {
   );
 }
 
-
 export default ProjectsV;
