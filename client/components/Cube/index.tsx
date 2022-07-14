@@ -5,19 +5,8 @@ import styles from "./Cube.module.scss";
 // import me from "./../assets/me.jpg";
 import Image from "next/image";
 import Avatar from "@mui/material/Avatar";
+import ImageComp from "../ImageComp";
 
-// import Image from 'next/image'
-// import mypic from "./../assets/png.jpg";
-const MyImage = (props) => {
-  return (
-    <Image
-      src="/png.png"
-      alt="Picture of the author"
-      width="350px"
-      height="300px"
-    />
-  );
-};
 function Cube() {
   const [rotate, setRotate] = React.useState(0);
   const rotation = (number: number) => {
@@ -57,7 +46,12 @@ function Cube() {
             className={styles.arrow}
             onClick={() => setRotate(3)}
           />
-          {/* <MyImage /> */}
+          <ImageComp
+            src={"/png.png"}
+            height={"350px"}
+            width={"350px"}
+            alt={"hobbies"}
+          />
         </div>
         <div className={styles.left}>
           <h3>Rotate Cube</h3>

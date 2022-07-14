@@ -10,6 +10,8 @@ import Cube from "../client/components/Cube";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailIcon from "@mui/icons-material/Mail";
+import ImageComp from "../client/components/ImageComp";
+import dash1 from "./assets/dash1.png";
 
 export default function Home() {
   const context: any = useContext(LoginContext);
@@ -83,6 +85,14 @@ export default function Home() {
           </span>
         </div>
         <div className={styles.cubeInfo}></div>
+      </div>
+      <div>
+        <ImageComp
+          src={dash1}
+          height={"350px"}
+          width={"350px"}
+          alt={"dashboard"}
+        />
       </div>
     </div>
   );
