@@ -58,6 +58,7 @@
     // background-color:#eaeaea;
     width: 220px;
     height: 200px;
+    transform: rotateY(18deg) rotateX(8deg);  
     transition: transform 2s ease-in-out;
     // transform: rotateX(40deg) rotateY(40deg) rotateZ(40deg);
   }
@@ -120,9 +121,9 @@
   }
   
   .back {
-    background: url('png.png') no-repeat center center/cover;
+    background: no-repeat center center/cover;
     transform: translateZ(-7em);
-    // background-color:blue;
+    background-color:blue;
   }
   .back span{
     transform: rotateY(90deg);

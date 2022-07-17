@@ -130,6 +130,19 @@
     padding:0.5rem;
   }
   .cubeInfo{
+    
+  }
+  .canIdo{
+    
+    display: flex;
+    flex-direction:column;
+    margin:2rem;
+    width:85%;
+  }
+  .canIdo{
+    div{
+      margin: 2rem;
+    }
 
   }
 }
@@ -149,12 +162,16 @@
     border-radius: 10px;
     margin-left: 2rem;
     width:70%
-  
+    
   }
   .cubeInfo{
     margin-right: 3rem;
     width:20%;
     margin-top: 1rem;
+  }
+  .canIdo{
+    display: flex;
+    justify-content:space-around;
   }
   
 }

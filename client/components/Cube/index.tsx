@@ -4,10 +4,36 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import styles from "./Cube.module.scss";
-import me from "./png.png";
-import Image from "next/image";
-import Avatar from "@mui/material/Avatar";
-import ImageComp from "../ImageComp";
+
+interface IArrowProps {
+  arrowLeft: number;
+  arrowUp: number;
+  arrowDown: number;
+  arrowRight: number;
+  setRotate: any;
+}
+export const Arrows = (props: IArrowProps) => {
+  return (
+    <>
+      <ArrowCircleLeftIcon
+        className={styles.arrowLeft}
+        onClick={() => props.setRotate(props.arrowLeft)}
+      />
+      <ArrowCircleUpIcon
+        className={styles.arrowUp}
+        onClick={() => props.setRotate(props.arrowUp)}
+      />
+      <ArrowCircleRightIcon
+        className={styles.arrowRight}
+        onClick={() => props.setRotate(props.arrowRight)}
+      />
+      <ArrowCircleDownIcon
+        className={styles.arrowDown}
+        onClick={() => props.setRotate(props.arrowDown)}
+      />
+    </>
+  );
+};
 
 interface ICubeProps {
   front?: string;
@@ -59,112 +85,54 @@ function Cube(props: ICubeProps) {
       <div className={rotate ? rotation(rotate) : styles.photoCube}>
         <div className={styles.front}>
           <h3>{props?.frontHeader}</h3>
-          <ArrowCircleRightIcon
-            className={styles.arrowRight}
-            onClick={() => setRotate(1)}
-          />
-          <ArrowCircleLeftIcon
-            className={styles.arrowLeft}
-            onClick={() => setRotate(7)}
-          />
-          <ArrowCircleUpIcon
-            className={styles.arrowUp}
-            onClick={() => setRotate(5)}
-          />
-          <ArrowCircleDownIcon
-            className={styles.arrowDown}
-            onClick={() => setRotate(6)}
+          <Arrows
+            arrowLeft={7}
+            arrowUp={5}
+            arrowDown={6}
+            arrowRight={1}
+            setRotate={setRotate}
           />
         </div>
         <div className={styles.top}>
           <h3>{props.upHeader}</h3>
-          <ArrowCircleDownIcon
-            className={styles.arrowDown}
-            onClick={() => setRotate(4)}
-          />
-          <ArrowCircleRightIcon
-            className={styles.arrowRight}
-            onClick={() => setRotate(1)}
-          />
-          <ArrowCircleUpIcon
-            className={styles.arrowUp}
-            onClick={() => setRotate(2)}
-          />
-          <ArrowCircleLeftIcon
-            className={styles.arrowLeft}
-            onClick={() => setRotate(7)}
+          <Arrows
+            arrowLeft={7}
+            arrowUp={2}
+            arrowDown={4}
+            arrowRight={1}
+            setRotate={setRotate}
           />
         </div>
         <div className={styles.right}>
           <h3>{props.rightHeader}</h3>
-          <ArrowCircleRightIcon
-            className={styles.arrowRight}
-            onClick={() => setRotate(2)}
-          />
-          <ArrowCircleLeftIcon
-            className={styles.arrowLeft}
-            onClick={() => setRotate(4)}
-          />
-          <ArrowCircleUpIcon
-            className={styles.arrowUp}
-            onClick={() => setRotate(5)}
-          />
-          <ArrowCircleDownIcon
-            className={styles.arrowDown}
-            onClick={() => setRotate(6)}
+          <Arrows
+            arrowLeft={4}
+            arrowUp={5}
+            arrowDown={6}
+            arrowRight={2}
+            setRotate={setRotate}
           />
         </div>
         <div
           className={styles.back}
-          style={{
-            backgroundImage: `${props.backImg}`,
-            // backgroundImage: `url(${externalImage})`,
-            backgroundSize: "center/cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            // backgroundImage: `url(./png.png)  no-repeat center center/cover`,
-          }}
+          style={{ backgroundImage: `url(${props.backImg})` }}
         >
-          <ArrowCircleLeftIcon
-            className={styles.arrowLeft}
-            onClick={() => setRotate(3)}
+          <Arrows
+            arrowLeft={7}
+            arrowUp={5}
+            arrowDown={6}
+            arrowRight={1}
+            setRotate={setRotate}
           />
-          <ArrowCircleUpIcon
-            className={styles.arrowUp}
-            onClick={() => setRotate(5)}
-          />
-          <ArrowCircleRightIcon
-            className={styles.arrowRight}
-            onClick={() => setRotate(1)}
-          />
-          <ArrowCircleDownIcon
-            className={styles.arrowDown}
-            onClick={() => setRotate(6)}
-          />
-          {/* <ImageComp
-            src={"/png.png"}
-            height={"350px"}
-            width={"350px"}
-            alt={"hobbies"}
-          /> */}
         </div>
         <div className={styles.left}>
           <h3>{props.leftHeader}</h3>
-          <ArrowCircleRightIcon
-            className={styles.arrowRight}
-            onClick={() => setRotate(4)}
-          />
-          <ArrowCircleLeftIcon
-            className={styles.arrowLeft}
-            onClick={() => setRotate(8)}
-          />
-          <ArrowCircleUpIcon
-            className={styles.arrowUp}
-            onClick={() => setRotate(5)}
-          />
-          <ArrowCircleDownIcon
-            className={styles.arrowDown}
-            onClick={() => setRotate(6)}
+          <Arrows
+            arrowLeft={8}
+            arrowUp={5}
+            arrowDown={6}
+            arrowRight={4}
+            setRotate={setRotate}
           />
           <p>{props.left}</p>
           <a href="#" className="button">
@@ -173,21 +141,12 @@ function Cube(props: ICubeProps) {
         </div>
         <div className={styles.bottom}>
           <h3>{props.downHeader}</h3>
-          <ArrowCircleUpIcon
-            className={styles.arrowUp}
-            onClick={() => setRotate(4)}
-          />
-          <ArrowCircleRightIcon
-            className={styles.arrowRight}
-            onClick={() => setRotate(1)}
-          />
-          <ArrowCircleDownIcon
-            className={styles.arrowDown}
-            onClick={() => setRotate(2)}
-          />
-          <ArrowCircleLeftIcon
-            className={styles.arrowLeft}
-            onClick={() => setRotate(7)}
+          <Arrows
+            arrowLeft={7}
+            arrowUp={4}
+            arrowDown={2}
+            arrowRight={1}
+            setRotate={setRotate}
           />
         </div>
       </div>

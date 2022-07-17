@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 import Box from "@mui/material/Box";
 // import Blogs from "../client/components/Blogs";
 import dynamic from "next/dynamic";
-import styles from "./styles/Home.module.css";
+import styles from "./styles/Home.module.scss";
 import { LoginContext } from "../client/components/Contexts";
 import Cube from "../client/components/Cube";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -12,6 +12,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailIcon from "@mui/icons-material/Mail";
 import ImageComp from "../client/components/ImageComp";
 import dash1 from "./assets/dash1.png";
+import png from "./assets/png.png";
 import DimCube from "../client/components/DimCube";
 
 export default function Home() {
@@ -66,7 +67,7 @@ export default function Home() {
             rightHeader="Right Side"
             leftHeader="Left Side"
             backHeader="Back Side"
-            backImg="./assets/png.png"
+            backImg="./png.png"
             left="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi,
             quas?"
           />
@@ -97,13 +98,34 @@ export default function Home() {
         </div>
         <div className={styles.cubeInfo}></div>
       </div>
-      <div>
-        <ImageComp
-          src={dash1}
-          height={"350px"}
-          width={"350px"}
-          alt={"dashboard"}
-        />
+      <div className={styles.canIdo}>
+        <div>
+          <ImageComp
+            cardImg={styles.cardImg}
+            src={dash1}
+            height={"350px"}
+            width={"350px"}
+            alt={"dashboard"}
+          />
+        </div>
+        <div>
+          <ImageComp
+            cardImg={styles.cardImg}
+            src={dash1}
+            height={"350px"}
+            width={"350px"}
+            alt={"dashboard"}
+          />
+        </div>
+        <div>
+          <ImageComp
+            cardImg={styles.cardImg}
+            src={dash1}
+            height={"350px"}
+            width={"350px"}
+            alt={"dashboard"}
+          />
+        </div>
       </div>
     </div>
   );

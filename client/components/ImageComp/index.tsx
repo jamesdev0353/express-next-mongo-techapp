@@ -2,14 +2,16 @@ import Image from "next/image";
 
 interface IProps {
   src: string | StaticImageData;
-  height: string;
-  width: string;
-  alt: string;
+  height?: string;
+  width?: string;
+  alt?: string;
+  cardImg?: string;
 }
 
 const ImageComp = (props: IProps): JSX.Element => {
   return (
     <Image
+      className={props.cardImg}
       src={props.src}
       alt={props.alt}
       width={props.width}
