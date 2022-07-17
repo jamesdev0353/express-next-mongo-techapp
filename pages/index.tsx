@@ -12,6 +12,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailIcon from "@mui/icons-material/Mail";
 import ImageComp from "../client/components/ImageComp";
 import dash1 from "./assets/dash1.png";
+import DimCube from "../client/components/DimCube";
 
 export default function Home() {
   const context: any = useContext(LoginContext);

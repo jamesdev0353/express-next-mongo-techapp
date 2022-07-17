@@ -1,6 +1,8 @@
 import React from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import styles from "./Cube.module.scss";
 // import me from "./../assets/me.jpg";
 import Image from "next/image";
@@ -21,30 +23,92 @@ function Cube() {
         return `${styles.photoCube} ${styles.rotate3}`;
       case 4:
         return `${styles.photoCube} ${styles.rotate4}`;
+      case 5:
+        return `${styles.photoCube} ${styles.rotate5}`;
+      case 6:
+        return `${styles.photoCube} ${styles.rotate6}`;
+      case 7:
+        return `${styles.photoCube} ${styles.rotate7}`;
+      case 8:
+        return `${styles.photoCube} ${styles.rotate8}`;
     }
   };
   return (
     <div className={styles.cubeContainer}>
       <div className={rotate ? rotation(rotate) : styles.photoCube}>
         <div className={styles.front}>
-          <span>This is A text</span>
           <ArrowCircleRightIcon
-            className={styles.arrow}
+            className={styles.arrowRight}
             onClick={() => setRotate(1)}
           />
+          <h3>FRONT SIDE</h3>
+          <ArrowCircleLeftIcon
+            className={styles.arrowLeft}
+            onClick={() => setRotate(7)}
+          />
+          <ArrowCircleUpIcon
+            className={styles.arrowUp}
+            onClick={() => setRotate(5)}
+          />
+          <ArrowCircleDownIcon
+            className={styles.arrowDown}
+            onClick={() => setRotate(6)}
+          />
         </div>
-
-        <div className={styles.right}>
-          <span>Second Side</span>
+        <div className={styles.top}>
+          <h3>Top Side</h3>
+          <ArrowCircleDownIcon
+            className={styles.arrowDown}
+            onClick={() => setRotate(4)}
+          />
           <ArrowCircleRightIcon
-            className={styles.arrow}
+            className={styles.arrowRight}
+            onClick={() => setRotate(1)}
+          />
+          <ArrowCircleUpIcon
+            className={styles.arrowUp}
             onClick={() => setRotate(2)}
+          />
+          <ArrowCircleLeftIcon
+            className={styles.arrowLeft}
+            onClick={() => setRotate(7)}
+          />
+        </div>
+        <div className={styles.right}>
+          <h3>RIGHT Side</h3>
+          <ArrowCircleRightIcon
+            className={styles.arrowRight}
+            onClick={() => setRotate(2)}
+          />
+          <ArrowCircleLeftIcon
+            className={styles.arrowLeft}
+            onClick={() => setRotate(4)}
+          />
+          <ArrowCircleUpIcon
+            className={styles.arrowUp}
+            onClick={() => setRotate(5)}
+          />
+          <ArrowCircleDownIcon
+            className={styles.arrowDown}
+            onClick={() => setRotate(6)}
           />
         </div>
         <div className={styles.back}>
           <ArrowCircleLeftIcon
-            className={styles.arrow}
+            className={styles.arrowLeft}
             onClick={() => setRotate(3)}
+          />
+          <ArrowCircleUpIcon
+            className={styles.arrowUp}
+            onClick={() => setRotate(5)}
+          />
+          <ArrowCircleRightIcon
+            className={styles.arrowRight}
+            onClick={() => setRotate(1)}
+          />
+          <ArrowCircleDownIcon
+            className={styles.arrowDown}
+            onClick={() => setRotate(6)}
           />
           <ImageComp
             src={"/png.png"}
@@ -54,10 +118,22 @@ function Cube() {
           />
         </div>
         <div className={styles.left}>
-          <h3>Rotate Cube</h3>
-          <ArrowCircleLeftIcon
-            className={styles.arrow}
+          <h3>LEFT SIDE</h3>
+          <ArrowCircleRightIcon
+            className={styles.arrowRight}
             onClick={() => setRotate(4)}
+          />
+          <ArrowCircleLeftIcon
+            className={styles.arrowLeft}
+            onClick={() => setRotate(8)}
+          />
+          <ArrowCircleUpIcon
+            className={styles.arrowUp}
+            onClick={() => setRotate(5)}
+          />
+          <ArrowCircleDownIcon
+            className={styles.arrowDown}
+            onClick={() => setRotate(6)}
           />
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi,
@@ -66,6 +142,25 @@ function Cube() {
           <a href="#" className="button">
             Download
           </a>
+        </div>
+        <div className={styles.bottom}>
+          <h3>Bottom Side</h3>
+          <ArrowCircleUpIcon
+            className={styles.arrowUp}
+            onClick={() => setRotate(4)}
+          />
+          <ArrowCircleRightIcon
+            className={styles.arrowRight}
+            onClick={() => setRotate(1)}
+          />
+          <ArrowCircleDownIcon
+            className={styles.arrowDown}
+            onClick={() => setRotate(2)}
+          />
+          <ArrowCircleLeftIcon
+            className={styles.arrowLeft}
+            onClick={() => setRotate(7)}
+          />
         </div>
       </div>
     </div>

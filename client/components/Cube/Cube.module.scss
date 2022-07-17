@@ -8,61 +8,120 @@
     backface-visibility: hidden;
     
   }
-  .arrow:hover{
+  .arrowRight{
+    position: absolute;
+    top: 90px;
+    right:0px;
+  }
+  .arrowLeft{
+    position: absolute;
+    top: 90px;
+    left:0px;
+  }
+  .arrowDown{
+    position: absolute;
+    bottom: 0px;
+    left:100px
+  }
+  .arrowUp{
+    position: absolute;
+    top: 0px;
+    left:100px
+  }
+  .arrowRight:hover{
     color:  rgba(224, 255, 49, 0.6);
   }
-  .arrow:active{
+  .arrowRight:active{
+    color:  rgba(49, 255, 49, 0.6);
+  }
+  .arrowLeft:hover{
+    color:  rgba(224, 255, 49, 0.6);
+  }
+  .arrowLeft:active{
+    color:  rgba(49, 255, 49, 0.6);
+  }
+  .arrowUp:hover{
+    color:  rgba(224, 255, 49, 0.6);
+  }
+  .arrowUp:active{
+    color:  rgba(49, 255, 49, 0.6);
+  }
+  .arrowDown:hover{
+    color:  rgba(224, 255, 49, 0.6);
+  }
+  .arrowDown:active{
     color:  rgba(49, 255, 49, 0.6);
   }
   
   .photoCube {
     transform-style: preserve-3d;
-    background-color:#eaeaea;
+    // background-color:#eaeaea;
     width: 220px;
     height: 200px;
     transition: transform 2s ease-in-out;
+    // transform: rotateX(40deg) rotateY(40deg) rotateZ(40deg);
   }
   
   .rotate {
-   transform: rotateY(-90deg);  
+    transform: rotateY(-108deg);  
   }
   .rotate2 {
-   transform: rotateY(-180deg);  
+   transform: rotateY(-198deg);  
   }
   .rotate3 {
-   transform: rotateY(-270deg);  
+    transform: rotateY(-288deg);  
   }
   .rotate4 {
-   transform: rotateY(0deg);  
+    transform: rotateY(18deg);  
+  }
+  .rotate5 {
+    transform: rotateX(-108deg);  
+  }
+  .rotate6 {
+    transform: rotateX(108deg);  
+  }
+  .rotate7 {
+    transform: rotateY(108deg);  
+  }
+  .rotate8 {
+    transform: rotateY(198deg);  
   }
   
-  .top,
   .front,
   .back,
   .right,
   .left {
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: absolute;
-  
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    // transform: rotateY(-180deg);  
+
   }
-  
+  .bottom,
+  .top{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;  
+    width: 220px;
+    height: 220px;
+  }
   .front {
-    transform: translateZ(110px);
+    transform: translateZ(7em) ;
     background-color:red;
     backface-visibility: hidden;
   }
   
   .right {
-    transform: rotateY(90deg) translateZ(110px);
+    transform: rotateY(90deg) translateZ(7em);
     background-color:green;
     
   }
   
   .back {
     background: url('png.png') no-repeat center center/cover;;
-    transform: translateZ(-110px);
+    transform: translateZ(-7em);
     background-color:blue;
   }
   .back span{
@@ -71,13 +130,18 @@
   }
   
   .left {
-    transform: rotateY(-90deg) translateZ(110px);
+    transform: rotateY(-90deg) translateZ(7em);
     background-color:pink;
     
   }
   .top {
-    transform: rotateX(90deg) translateZ(110px);
+    transform: rotateX(90deg) rotateY(0deg) translateZ(7em);
     background-color:aqua;
+    
+  }
+  .bottom {
+    transform: rotateX(-90deg) rotateY(0deg) translateZ(6em);
+    background-color:blueviolet;
     
   }
   
