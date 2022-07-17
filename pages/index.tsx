@@ -59,7 +59,17 @@ export default function Home() {
           </span>
         </div>
         <div className={styles.cubeInfo}>
-          <Cube />
+          <Cube
+            frontHeader="Front Side"
+            upHeader="Top Side"
+            downHeader="Bottom Side"
+            rightHeader="Right Side"
+            leftHeader="Left Side"
+            backHeader="Back Side"
+            backImg="./assets/png.png"
+            left="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi,
+            quas?"
+          />
         </div>
       </div>
       <div className={styles.mainDiv}>

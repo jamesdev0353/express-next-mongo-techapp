@@ -4,12 +4,33 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import styles from "./Cube.module.scss";
-// import me from "./../assets/me.jpg";
+import me from "./png.png";
 import Image from "next/image";
 import Avatar from "@mui/material/Avatar";
 import ImageComp from "../ImageComp";
 
-function Cube() {
+interface ICubeProps {
+  front?: string;
+  frontHeader?: string;
+  frontImg?: string | StaticImageData;
+  back?: string;
+  backHeader?: string;
+  backImg: string | StaticImageData;
+  left?: string;
+  leftHeader?: string;
+  leftImg?: string | StaticImageData;
+  right?: string;
+  rightHeader?: string;
+  rightImg?: string | StaticImageData;
+  up?: string;
+  upHeader?: string;
+  upImg?: string | StaticImageData;
+  down?: string;
+  downHeader?: string;
+  downImg?: string | StaticImageData;
+}
+
+function Cube(props: ICubeProps) {
   const [rotate, setRotate] = React.useState(0);
   const rotation = (number: number) => {
     switch (number) {
@@ -37,11 +58,11 @@ function Cube() {
     <div className={styles.cubeContainer}>
       <div className={rotate ? rotation(rotate) : styles.photoCube}>
         <div className={styles.front}>
+          <h3>{props?.frontHeader}</h3>
           <ArrowCircleRightIcon
             className={styles.arrowRight}
             onClick={() => setRotate(1)}
           />
-          <h3>FRONT SIDE</h3>
           <ArrowCircleLeftIcon
             className={styles.arrowLeft}
             onClick={() => setRotate(7)}
@@ -56,7 +77,7 @@ function Cube() {
           />
         </div>
         <div className={styles.top}>
-          <h3>Top Side</h3>
+          <h3>{props.upHeader}</h3>
           <ArrowCircleDownIcon
             className={styles.arrowDown}
             onClick={() => setRotate(4)}
@@ -75,7 +96,7 @@ function Cube() {
           />
         </div>
         <div className={styles.right}>
-          <h3>RIGHT Side</h3>
+          <h3>{props.rightHeader}</h3>
           <ArrowCircleRightIcon
             className={styles.arrowRight}
             onClick={() => setRotate(2)}
@@ -93,7 +114,17 @@ function Cube() {
             onClick={() => setRotate(6)}
           />
         </div>
-        <div className={styles.back}>
+        <div
+          className={styles.back}
+          style={{
+            backgroundImage: `${props.backImg}`,
+            // backgroundImage: `url(${externalImage})`,
+            backgroundSize: "center/cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            // backgroundImage: `url(./png.png)  no-repeat center center/cover`,
+          }}
+        >
           <ArrowCircleLeftIcon
             className={styles.arrowLeft}
             onClick={() => setRotate(3)}
@@ -110,15 +141,15 @@ function Cube() {
             className={styles.arrowDown}
             onClick={() => setRotate(6)}
           />
-          <ImageComp
+          {/* <ImageComp
             src={"/png.png"}
             height={"350px"}
             width={"350px"}
             alt={"hobbies"}
-          />
+          /> */}
         </div>
         <div className={styles.left}>
-          <h3>LEFT SIDE</h3>
+          <h3>{props.leftHeader}</h3>
           <ArrowCircleRightIcon
             className={styles.arrowRight}
             onClick={() => setRotate(4)}
@@ -135,16 +166,13 @@ function Cube() {
             className={styles.arrowDown}
             onClick={() => setRotate(6)}
           />
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi,
-            quas?
-          </p>
+          <p>{props.left}</p>
           <a href="#" className="button">
             Download
           </a>
         </div>
         <div className={styles.bottom}>
-          <h3>Bottom Side</h3>
+          <h3>{props.downHeader}</h3>
           <ArrowCircleUpIcon
             className={styles.arrowUp}
             onClick={() => setRotate(4)}

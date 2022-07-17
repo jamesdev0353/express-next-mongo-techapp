@@ -120,9 +120,9 @@
   }
   
   .back {
-    background: url('png.png') no-repeat center center/cover;;
+    background: url('png.png') no-repeat center center/cover;
     transform: translateZ(-7em);
-    background-color:blue;
+    // background-color:blue;
   }
   .back span{
     transform: rotateY(90deg);
@@ -140,7 +140,7 @@
     
   }
   .bottom {
-    transform: rotateX(-90deg) rotateY(0deg) translateZ(6em);
+    transform: rotateX(-90deg) rotateY(0deg) translateZ(5.8em);
     background-color:blueviolet;
     
   }
