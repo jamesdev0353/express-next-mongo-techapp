@@ -6,6 +6,7 @@ interface IProps {
   width?: string;
   alt?: string;
   cardImg?: string;
+  onClick?: any;
 }
 
 const ImageComp = (props: IProps): JSX.Element => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { Typography } from "@material-ui/core";
 import Box from "@mui/material/Box";
@@ -14,15 +14,40 @@ import ImageComp from "../client/components/ImageComp";
 import dash1 from "./assets/dash1.png";
 import png from "./assets/png.png";
 import DimCube from "../client/components/DimCube";
-
+import ModalComponent from "../client/components/ModalComponent";
+// import { FaTimes } from "@react-icons/all-files/fa/FaTimes";
 export default function Home() {
   const context: any = useContext(LoginContext);
+  const [hideModal, setHideModal] = useState(true);
+  const [image, setImage] = useState<string | StaticImageData>(png);
+  const [modalHeader, setModalHeader] = useState<string>();
+  const [modalContent, setModalContent] = useState<string>();
 
+  const toggleModal = (
+    image: React.SetStateAction<string | StaticImageData>,
+    title: React.SetStateAction<string>,
+    description: React.SetStateAction<string>
+  ) => {
+    setImage(image);
+    setModalHeader(title);
+    setModalContent(description);
+    setHideModal(!hideModal);
+  };
+  const toggleCloseModal = () => {
+    if (!hideModal) setHideModal(!hideModal);
+  };
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={() => toggleCloseModal()}>
       <Typography variant="h2" align="center" className={styles.header}>
         Your Blog Page
       </Typography>
+      <ModalComponent
+        hideModal={hideModal}
+        toggleModal={toggleModal}
+        src={image}
+        modalContentBody={modalContent}
+        modalHeader={modalHeader}
+      />
       <div className={styles.mainDiv}>
         <div className={styles.detailsInfo}>
           <span>
@@ -61,7 +86,7 @@ export default function Home() {
         </div>
         <div className={styles.cubeInfo}>
           <Cube
-            frontHeader="Front Side"
+            frontHeader="Full Stack Node.js Engineer "
             upHeader="Top Side"
             downHeader="Bottom Side"
             rightHeader="Right Side"
@@ -99,7 +124,11 @@ export default function Home() {
         <div className={styles.cubeInfo}></div>
       </div>
       <div className={styles.canIdo}>
-        <div>
+        <div
+          onClick={() =>
+            toggleModal(dash1, "Dashboards", "Graphs & Dashboards")
+          }
+        >
           <ImageComp
             cardImg={styles.cardImg}
             src={dash1}
@@ -108,7 +137,11 @@ export default function Home() {
             alt={"dashboard"}
           />
         </div>
-        <div>
+        <div
+          onClick={() =>
+            toggleModal(png, "Kiting", "go kiting see you in a year")
+          }
+        >
           <ImageComp
             cardImg={styles.cardImg}
             src={dash1}
@@ -117,7 +150,11 @@ export default function Home() {
             alt={"dashboard"}
           />
         </div>
-        <div>
+        <div
+          onClick={() =>
+            toggleModal(dash1, "Dashboards", "Graphs & Dashboards")
+          }
+        >
           <ImageComp
             cardImg={styles.cardImg}
             src={dash1}

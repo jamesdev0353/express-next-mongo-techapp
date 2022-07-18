@@ -83,7 +83,10 @@ function Cube(props: ICubeProps) {
   return (
     <div className={styles.cubeContainer}>
       <div className={rotate ? rotation(rotate) : styles.photoCube}>
-        <div className={styles.front}>
+        <div
+          className={styles.front}
+          style={{ backgroundImage: `url(${props.frontImg})` }}
+        >
           <h3>{props?.frontHeader}</h3>
           <Arrows
             arrowLeft={7}

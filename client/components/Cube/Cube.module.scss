@@ -109,12 +109,14 @@
     height: 220px;
   }
   .front {
+    background: no-repeat center center/cover;
     transform: translateZ(7em) ;
     background-color:red;
     backface-visibility: hidden;
   }
   
   .right {
+    background: no-repeat center center/cover;
     transform: rotateY(90deg) translateZ(7em);
     background-color:green;
     
@@ -127,20 +129,23 @@
   }
   .back span{
     transform: rotateY(90deg);
-  
+    
   }
   
   .left {
+    background: no-repeat center center/cover;
     transform: rotateY(-90deg) translateZ(7em);
     background-color:pink;
     
   }
   .top {
+    background: no-repeat center center/cover;
     transform: rotateX(90deg) rotateY(0deg) translateZ(7em);
     background-color:aqua;
     
   }
   .bottom {
+    background: no-repeat center center/cover;
     transform: rotateX(-90deg) rotateY(0deg) translateZ(5.8em);
     background-color:blueviolet;
     
