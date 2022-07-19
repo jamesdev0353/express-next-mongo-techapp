@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
@@ -17,13 +17,24 @@ interface ICubeSideProps {
   arrowDown: number;
   arrowRight: number;
   setRotate: any;
+  isModal: boolean;
 }
 export const CubeSide = (props: ICubeSideProps): JSX.Element => {
+  const styleNone = props.isModal ? { display: "none" } : { display: "true" };
+
+  const styleMirror =
+    props.cssStyles === styles.back
+      ? props.isModal
+        ? styles.backToModal
+        : props.cssStyles
+      : props.cssStyles;
   return (
     <div
-      className={props.cssStyles}
+      className={styleMirror}
       style={{
         backgroundImage: props.backgroundImg
+          ? `url(${props.backgroundImg})`
+          : props.isModal
           ? `url(${props.backgroundImg})`
           : "",
       }}
@@ -46,6 +57,7 @@ export const CubeSide = (props: ICubeSideProps): JSX.Element => {
         onClick={() => props.setRotate(props.arrowLeft)}
       />
       <ArrowCircleUpIcon
+        style={styleNone}
         className={styles.arrowUp}
         onClick={() => props.setRotate(props.arrowUp)}
       />
@@ -54,6 +66,7 @@ export const CubeSide = (props: ICubeSideProps): JSX.Element => {
         onClick={() => props.setRotate(props.arrowRight)}
       />
       <ArrowCircleDownIcon
+        style={styleNone}
         className={styles.arrowDown}
         onClick={() => props.setRotate(props.arrowDown)}
       />
@@ -62,6 +75,7 @@ export const CubeSide = (props: ICubeSideProps): JSX.Element => {
 };
 
 interface ICubeProps {
+  isModal: boolean;
   frontHeader?: string;
   frontDescription?: string;
   frontIcon?: React.FC;
@@ -69,7 +83,7 @@ interface ICubeProps {
   backIcon?: React.FC;
   backHeader?: string;
   backDescription?: string;
-  backImg: string | StaticImageData;
+  backImg?: string | StaticImageData;
   leftIcon?: React.FC;
   leftDescription?: string;
   leftHeader?: string;
@@ -90,36 +104,80 @@ interface ICubeProps {
 
 function Cube(props: ICubeProps) {
   const [rotate, setRotate] = React.useState(0);
-  const rotation = (number: number) => {
-    switch (number) {
-      case 0:
-        return `${styles.photoCube}`;
-      case 1:
-        return `${styles.photoCube} ${styles.rotate}`;
-      case 2:
-        return `${styles.photoCube} ${styles.rotate2}`;
-      case 3:
-        return `${styles.photoCube} ${styles.rotate3}`;
-      case 4:
-        return `${styles.photoCube} ${styles.rotate4}`;
-      case 5:
-        return `${styles.photoCube} ${styles.rotate5}`;
-      case 6:
-        return `${styles.photoCube} ${styles.rotate6}`;
-      case 7:
-        return `${styles.photoCube} ${styles.rotate7}`;
-      case 8:
-        return `${styles.photoCube} ${styles.rotate8}`;
-    }
-  };
+
+  const rotation = useCallback(
+    (number: number) => {
+      if (!props.isModal) {
+        switch (number) {
+          case 0:
+            return `${styles.photoCube}`;
+          case 1:
+            return `${styles.photoCube} ${styles.rotate}`;
+          case 2:
+            return `${styles.photoCube} ${styles.rotate2}`;
+          case 3:
+            return `${styles.photoCube} ${styles.rotate3}`;
+          case 4:
+            return `${styles.photoCube} ${styles.rotate4}`;
+          case 5:
+            return `${styles.photoCube} ${styles.rotate5}`;
+          case 6:
+            return `${styles.photoCube} ${styles.rotate6}`;
+          case 7:
+            return `${styles.photoCube} ${styles.rotate7}`;
+          case 8:
+            return `${styles.photoCube} ${styles.rotate8}`;
+        }
+      } else {
+        switch (number) {
+          case 0:
+            return `${styles.photoCube}`;
+          case 1:
+            return `${styles.photoCube} ${styles.rotateModal}`;
+          case 2:
+            return `${styles.photoCube} ${styles.rotateModal2}`;
+          case 3:
+            return `${styles.photoCube} ${styles.rotateModal3}`;
+          case 4:
+            return `${styles.photoCube} ${styles.rotateModal4}`;
+          case 5:
+            return `${styles.photoCube} ${styles.rotateModal5}`;
+          case 6:
+            return `${styles.photoCube} ${styles.rotateModal6}`;
+          case 7:
+            return `${styles.photoCube} ${styles.rotateModal7}`;
+          case 8:
+            return `${styles.photoCube} ${styles.rotateModal8}`;
+        }
+      }
+    },
+    [props.isModal]
+  );
+  // const cubeWrapper = !props.isModal ? styles.modalCube :styles.photoCube
   return (
-    <div className={styles.cubeContainer}>
-      <div className={rotate ? rotation(rotate) : styles.photoCube}>
+    <div
+      className={
+        !props.isModal ? styles.cubeContainer : styles.cubeContainerModal
+      }
+    >
+      <div
+        className={
+          !props.isModal
+            ? rotate
+              ? rotation(rotate)
+              : styles.photoCube
+            : rotate
+            ? rotation(rotate)
+            : styles.modalCube
+        }
+        style={{ width: props.isModal ? "200%" : "" }}
+      >
         <CubeSide
+          isModal={props.isModal}
           muiIcon={props.frontIcon}
           title={props.frontHeader}
           description={props.frontDescription}
-          cssStyles={styles.front}
+          cssStyles={!props.isModal ? styles.front : styles.frontToModal}
           arrowLeft={7}
           arrowUp={5}
           arrowDown={6}
@@ -128,6 +186,7 @@ function Cube(props: ICubeProps) {
           backgroundImg={props.frontImg}
         />
         <CubeSide
+          isModal={props.isModal}
           muiIcon={props.upIcon}
           title={props.upHeader}
           description={props.upDescription}
@@ -136,10 +195,11 @@ function Cube(props: ICubeProps) {
           arrowDown={4}
           arrowRight={1}
           setRotate={setRotate}
-          cssStyles={styles.top}
+          cssStyles={!props.isModal ? styles.top : styles.upDownModal}
           backgroundImg={""}
         />
         <CubeSide
+          isModal={props.isModal}
           muiIcon={props.rightIcon}
           title={props.rightHeader}
           description={props.rightDescription}
@@ -148,21 +208,23 @@ function Cube(props: ICubeProps) {
           arrowDown={6}
           arrowRight={2}
           setRotate={setRotate}
-          cssStyles={styles.right}
+          cssStyles={!props.isModal ? styles.right : styles.rightToModal}
           backgroundImg={""}
         />
         <CubeSide
+          isModal={props.isModal}
           title={props.backHeader}
           description={props.backDescription}
-          arrowLeft={7}
+          arrowLeft={1}
           arrowUp={5}
           arrowDown={6}
-          arrowRight={1}
+          arrowRight={!props.isModal ? 1 : 3}
           setRotate={setRotate}
           backgroundImg={props.backImg}
-          cssStyles={styles.back}
+          cssStyles={!props.isModal ? styles.back : styles.backToModal}
         />
         <CubeSide
+          isModal={props.isModal}
           title={props.leftHeader}
           description={props.leftDescription}
           arrowLeft={8}
@@ -171,17 +233,18 @@ function Cube(props: ICubeProps) {
           arrowRight={4}
           setRotate={setRotate}
           backgroundImg={props.leftImg}
-          cssStyles={styles.left}
+          cssStyles={!props.isModal ? styles.left : styles.leftToModal}
         />
         <CubeSide
           title={props.downHeader}
+          isModal={props.isModal}
           description={props.downDescription}
           arrowLeft={7}
           arrowUp={4}
           arrowDown={2}
           arrowRight={1}
           setRotate={setRotate}
-          cssStyles={styles.bottom}
+          cssStyles={!props.isModal ? styles.bottom : styles.upDownModal}
           backgroundImg={props.downImg}
         />
       </div>
@@ -189,4 +252,4 @@ function Cube(props: ICubeProps) {
   );
 }
 
-export default Cube;
+export default React.memo(Cube);

@@ -42,7 +42,7 @@ export default function Home() {
       <ModalComponent
         hideModal={hideModal}
         toggleModal={toggleModal}
-        src={image}
+        src={"./png.png"}
         modalContentBody={modalContent}
         modalHeader={modalHeader}
       />
@@ -88,6 +88,7 @@ export default function Home() {
           </div>
           <div className={styles.cubeInfo}>
             <Cube
+              isModal={false}
               frontHeader="Full Stack Node.js Engineer"
               frontDescription="Full Stack Node.js Engineer"
               frontIcon={GitHubIcon}
