@@ -15,9 +15,10 @@ import dash1 from "./assets/dash1.png";
 import png from "./assets/png.png";
 import DimCube from "../client/components/DimCube";
 import ModalComponent from "../client/components/ModalComponent";
+import { StaticImageData } from "next/image";
 // import { FaTimes } from "@react-icons/all-files/fa/FaTimes";
 export default function Home() {
-  // const context: any = useContext(LoginContext);
+  const context: any = useContext(LoginContext);
   const [hideModal, setHideModal] = useState(true);
   const [image, setImage] = useState<string | StaticImageData>(png);
   const [modalHeader, setModalHeader] = useState<string>();
@@ -37,10 +38,7 @@ export default function Home() {
     if (!hideModal) setHideModal(!hideModal);
   };
   return (
-    <div className={styles.container} onClick={() => toggleCloseModal()}>
-      <Typography variant="h2" align="center" className={styles.header}>
-        Your Blog Page
-      </Typography>
+    <>
       <ModalComponent
         hideModal={hideModal}
         toggleModal={toggleModal}
@@ -48,122 +46,135 @@ export default function Home() {
         modalContentBody={modalContent}
         modalHeader={modalHeader}
       />
-      <div className={styles.mainDiv}>
-        <div className={styles.detailsInfo}>
-          <span>
-            whoami:
-            <br /> Full Stack Node.js Engineer from Greece passionate with
-            coding and algorithms. With critical and analytical skills in
-            solving problems, fast learning in depth, tracking new technologies
-            to bring the best effort in the team and in product. Able to
-            colaborate with a team or work as a unit, with time pressure and
-            deadlines.
-            <br /> I like challenges because challenges make us better and
-            better over time
-          </span>
-          <hr />
-          <span>
-            studies:
-            <br /> 2021 - Now (Greece - Athens) MSc, in Computer Science at
-            University of Piraeus, Integrated Master
-            <br /> 2020 (Greece – Athens) MSc, Soil Science & Agricultural
-            Chemistry, Agricultural University of Athens, Integrated Master
-            <br />
-            2013 - 2020 (Greece– Athens) Natural Resources Management &
-            Agricultural Engineering, Agricultural University of Athens,
-            Bachelor
-            <br /> 2019 (Spain - Gijon) Capacity building on Creating, Designing
-            and Managing Innovative Ideas (TEAM LEADER), Erasmus +
-          </span>
-          <hr />
-          <span>
-            utopia:
-            <br /> Technologies and algorithms will not only help our lives run
-            smoothly, will help us improve our civilization and expand life on
-            earth or maybe on a diffrent planets.
-            <br /> So is it our duty to help tech improve ?
-          </span>
-        </div>
-        <div className={styles.cubeInfo}>
-          <Cube
-            frontHeader="Full Stack Node.js Engineer "
-            upHeader="Top Side"
-            downHeader="Bottom Side"
-            rightHeader="Right Side"
-            leftHeader="Left Side"
-            backHeader="Back Side"
-            backImg="./png.png"
-            left="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi,
+      <div className={styles.container} onClick={() => toggleCloseModal()}>
+        <Typography variant="h2" align="center" className={styles.header}>
+          Your Blog Page
+        </Typography>
+        <div className={styles.mainDiv}>
+          <div className={styles.detailsInfo}>
+            <span>
+              whoami:
+              <br /> Full Stack Node.js Engineer from Greece passionate with
+              coding and algorithms. With critical and analytical skills in
+              solving problems, fast learning in depth, tracking new
+              technologies to bring the best effort in the team and in product.
+              Able to colaborate with a team or work as a unit, with time
+              pressure and deadlines.
+              <br /> I like challenges because challenges make us better and
+              better over time
+            </span>
+            <hr />
+            <span>
+              studies:
+              <br /> 2021 - Now (Greece - Athens) MSc, in Computer Science at
+              University of Piraeus, Integrated Master
+              <br /> 2020 (Greece – Athens) MSc, Soil Science & Agricultural
+              Chemistry, Agricultural University of Athens, Integrated Master
+              <br />
+              2013 - 2020 (Greece– Athens) Natural Resources Management &
+              Agricultural Engineering, Agricultural University of Athens,
+              Bachelor
+              <br /> 2019 (Spain - Gijon) Capacity building on Creating,
+              Designing and Managing Innovative Ideas (TEAM LEADER), Erasmus +
+            </span>
+            <hr />
+            <span>
+              utopia:
+              <br /> Technologies and algorithms will not only help our lives
+              run smoothly, will help us improve our civilization and expand
+              life on earth or maybe on a diffrent planets.
+              <br /> So is it our duty to help tech improve ?
+            </span>
+          </div>
+          <div className={styles.cubeInfo}>
+            <Cube
+              frontHeader="Full Stack Node.js Engineer"
+              frontDescription="Full Stack Node.js Engineer"
+              frontIcon={GitHubIcon}
+              upHeader="Full Stack Node.js Engineer"
+              upDescription="Small Description Engineer"
+              upIcon={LinkedInIcon}
+              downHeader="Down Side"
+              downDescription={"small description"}
+              rightHeader="Full Stack Node.js Engineer"
+              rightDescription="Small Description Engineer"
+              rightIcon={MailIcon}
+              leftHeader="Left Side"
+              leftDescription="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi,
             quas?"
-          />
+              backHeader="Back Side"
+              backDescription={"small description"}
+              backImg="./png.png"
+            />
+          </div>
+        </div>
+        <div className={styles.mainDiv}>
+          <div className={styles.detailsInfo}>
+            <span>
+              Technologies:
+              <br />• Languages: Typescript. Javascript
+              <br />• Libraries: Node.js, React, Remix.js, Next.js, Express.js,
+              React Query, Redux, eslint, husky, JQuery.
+              <br />• Styling: CSS, SCSS, Material UI/ MUI, Tailwind CSS,
+              Bootstrap
+              <br />• Versioning tool: Git
+              <br />• Versioning platforms: Github, Gitlab build with
+              <br />• Testing: Jest enzyme, React test
+              <br />• Databases: MongoDB, SQL, Firebase
+              <br />• DevOps tools: LINUX, AWS cloud, VM’s, Docker
+              <br />• PaaS: Heroku, Netlify
+              <br />• Methodologies: agile, scrum
+            </span>
+            <hr />
+            <span>
+              Other Programming Knowledge:
+              <br />• Languages: JAVA, Python, Shell Scripting, C#
+            </span>
+          </div>
+          <div className={styles.cubeInfo}></div>
+        </div>
+        <div className={styles.canIdo}>
+          <div
+            onClick={() =>
+              toggleModal(dash1, "Dashboards", "Graphs & Dashboards")
+            }
+          >
+            <ImageComp
+              cardImg={styles.cardImg}
+              src={dash1}
+              height={"350px"}
+              width={"350px"}
+              alt={"dashboard"}
+            />
+          </div>
+          <div
+            onClick={() =>
+              toggleModal(png, "Kiting", "go kiting see you in a year")
+            }
+          >
+            <ImageComp
+              cardImg={styles.cardImg}
+              src={dash1}
+              height={"350px"}
+              width={"350px"}
+              alt={"dashboard"}
+            />
+          </div>
+          <div
+            onClick={() =>
+              toggleModal(dash1, "Dashboards", "Graphs & Dashboards")
+            }
+          >
+            <ImageComp
+              cardImg={styles.cardImg}
+              src={dash1}
+              height={"350px"}
+              width={"350px"}
+              alt={"dashboard"}
+            />
+          </div>
         </div>
       </div>
-      <div className={styles.mainDiv}>
-        <div className={styles.detailsInfo}>
-          <span>
-            Technologies:
-            <br />• Languages: Typescript. Javascript
-            <br />• Libraries: Node.js, React, Remix.js, Next.js, Express.js,
-            React Query, Redux, eslint, husky, JQuery.
-            <br />• Styling: CSS, SCSS, Material UI/ MUI, Tailwind CSS,
-            Bootstrap
-            <br />• Versioning tool: Git
-            <br />• Versioning platforms: Github, Gitlab build with
-            <br />• Testing: Jest enzyme, React test
-            <br />• Databases: MongoDB, SQL, Firebase
-            <br />• DevOps tools: LINUX, AWS cloud, VM’s, Docker
-            <br />• PaaS: Heroku, Netlify
-            <br />• Methodologies: agile, scrum
-          </span>
-          <hr />
-          <span>
-            Other Programming Knowledge:
-            <br />• Languages: JAVA, Python, Shell Scripting, C#
-          </span>
-        </div>
-        <div className={styles.cubeInfo}></div>
-      </div>
-      <div className={styles.canIdo}>
-        <div
-          onClick={() =>
-            toggleModal(dash1, "Dashboards", "Graphs & Dashboards")
-          }
-        >
-          <ImageComp
-            cardImg={styles.cardImg}
-            src={dash1}
-            height={"350px"}
-            width={"350px"}
-            alt={"dashboard"}
-          />
-        </div>
-        <div
-          onClick={() =>
-            toggleModal(png, "Kiting", "go kiting see you in a year")
-          }
-        >
-          <ImageComp
-            cardImg={styles.cardImg}
-            src={dash1}
-            height={"350px"}
-            width={"350px"}
-            alt={"dashboard"}
-          />
-        </div>
-        <div
-          onClick={() =>
-            toggleModal(dash1, "Dashboards", "Graphs & Dashboards")
-          }
-        >
-          <ImageComp
-            cardImg={styles.cardImg}
-            src={dash1}
-            height={"350px"}
-            width={"350px"}
-            alt={"dashboard"}
-          />
-        </div>
-      </div>
-    </div>
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import ImageComp from "../ImageComp";
 import styles from "./Modal.module.scss";
 
