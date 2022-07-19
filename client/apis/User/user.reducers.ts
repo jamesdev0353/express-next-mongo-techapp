@@ -13,6 +13,7 @@ const initialState: IPropsSignUpData = {
   birthDay: "",
   password: "",
   confirmPassword: "",
+  profilePicture: "",
 };
 
 const userReducer = (
