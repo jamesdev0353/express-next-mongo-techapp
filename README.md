@@ -1,6 +1,6 @@
 This is a [Mongo Express React Next.js Typescript webApp](https://nextjs.org/) project bootstrapped with [`npx create-next-app@latest --ts`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-##UPDATE
+##UPDATE<br>
 ``` 4574  npm install next@latest```<br>
 ``` 4576  npm install react@latest react-dom@latest```<br>
 ``` 4578  npm install --save @types/react```<br>
