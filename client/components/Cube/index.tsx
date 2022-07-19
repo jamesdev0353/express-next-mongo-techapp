@@ -85,7 +85,9 @@ function Cube(props: ICubeProps) {
       <div className={rotate ? rotation(rotate) : styles.photoCube}>
         <div
           className={styles.front}
-          style={{ backgroundImage: `url(${props.frontImg})` }}
+          style={{
+            backgroundImage: props.frontImg ? `url(${props.frontImg})` : "",
+          }}
         >
           <h3>{props?.frontHeader}</h3>
           <Arrows

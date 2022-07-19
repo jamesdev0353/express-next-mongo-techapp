@@ -17,7 +17,7 @@ import DimCube from "../client/components/DimCube";
 import ModalComponent from "../client/components/ModalComponent";
 // import { FaTimes } from "@react-icons/all-files/fa/FaTimes";
 export default function Home() {
-  const context: any = useContext(LoginContext);
+  // const context: any = useContext(LoginContext);
   const [hideModal, setHideModal] = useState(true);
   const [image, setImage] = useState<string | StaticImageData>(png);
   const [modalHeader, setModalHeader] = useState<string>();

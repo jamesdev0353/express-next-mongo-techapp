@@ -1,13 +1,13 @@
 This is a [Mongo Express React Next.js Typescript webApp](https://nextjs.org/) project bootstrapped with [`npx create-next-app@latest --ts`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ##UPDATE<br>
-``` 4574  npm install next@latest```<br>
-``` 4576  npm install react@latest react-dom@latest```<br>
-``` 4578  npm install --save @types/react```<br>
-``` 4579  npm install```<br>
-``` 4581  npm install --save @types/react-dom```<br>
-``` 4582  npm install --save @types/react-dom```<br>
-``` 4583  npm install --save @types/react-router-dom```<br>
+``` npm install next@latest```<br>
+``` npm install react@latest react-dom@latest```<br>
+``` npm install --save @types/react```<br>
+``` npm install```<br>
+``` npm install --save @types/react-dom```<br>
+``` npm install --save @types/react-dom```<br>
+``` npm install --save @types/react-router-dom```<br>
 
 
 ## Getting Started
