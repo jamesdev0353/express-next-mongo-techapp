@@ -64,15 +64,13 @@
   }
   .modalCube {
     transform-style: preserve-3d;
-    // background-color:#eaeaea;
     width: 220px;
     height: 200px;
     transform: rotateY(0deg) rotateX(0deg);  
     transition: transform 2s ease-in-out;
     width: 100%;
-    // transform: rotateX(40deg) rotateY(40deg) rotateZ(40deg);
   }
-  
+
   .rotate {
     transform: rotateY(-108deg);  
   }
@@ -231,14 +229,30 @@
   .upDownModal{
     display: none;
   }
-  .cubeContainerModal {
-    opacity: 0.7;
-    display: flex;
-    width: 200%;
-    text-align: center;
-    box-shadow: 0 18px 40px 5px rgba(0,0,0,.4);
-    perspective: 800px;
-    backface-visibility: hidden;
-
-      
-    }
+  
+    @media screen and (min-width: 601px){
+      .cubeContainerModal {
+        opacity: 0.7;
+        display: flex;
+        width: 200%;
+        text-align: center;
+        box-shadow: 0 18px 40px 5px rgba(0,0,0,.4);
+        perspective: 800px;
+        backface-visibility: hidden;
+    
+          
+        }
+  }
+    @media screen and (max-width: 599px){
+      .cubeContainerModal {
+        opacity: 0.7;
+        display: flex;
+        width: 130%;
+        text-align: center;
+        box-shadow: 0 18px 40px 5px rgba(0,0,0,.4);
+        perspective: 800px;
+        backface-visibility: hidden;
+    
+          
+        }
+  }

@@ -5,10 +5,22 @@ import styles from "./Modal.module.scss";
 
 interface IModalProps {
   hideModal: boolean;
-  toggleModal: (image: any, title: any, description: any) => void;
-  src: string | StaticImageData;
-  modalContentBody: string;
-  modalHeader: string;
+  toggleModal: (
+    image: any,
+    title: any,
+    description: any,
+    frontImage: string | StaticImageData,
+    backImage: string | StaticImageData,
+    rightImage: string | StaticImageData,
+    leftImage: string | StaticImageData
+  ) => void;
+  src?: string | StaticImageData;
+  modalContentBody?: string;
+  modalHeader?: string;
+  modalFrontImg?: string | StaticImageData;
+  modalBackImg?: string | StaticImageData;
+  modalRightImg?: string | StaticImageData;
+  modalLeftImg?: string | StaticImageData;
 }
 
 const ModalComponent = (props: IModalProps) => {
@@ -18,14 +30,15 @@ const ModalComponent = (props: IModalProps) => {
       <div className={styles.modal}>
         <div className={styles.modalContent}>
           <div className={styles.modalHeader}>
-            {props.src && (
-              // <ImageComp
-              //   cardImg={styles.cardImg}
-              //   src={props.src}
-              //   height={"380px"}
-              //   width={"500px"}
-              //   alt={"dashboard"}
-              // />
+            {props.src ? (
+              <ImageComp
+                cardImg={styles.cardImg}
+                src={props.src}
+                height={"380px"}
+                width={"500px"}
+                alt={"dashboard"}
+              />
+            ) : (
               <Cube
                 isModal={true}
                 frontHeader="Full Stack Node.js Engineer"
@@ -41,7 +54,10 @@ const ModalComponent = (props: IModalProps) => {
             quas?"
                 backHeader="Back Side"
                 backDescription={"small description"}
-                frontImg={props.src}
+                backImg={props.modalBackImg}
+                frontImg={props.modalFrontImg}
+                rightImg={props.modalRightImg}
+                leftImg={props.modalLeftImg}
               />
             )}
             <h3>{props.modalHeader}</h3>
