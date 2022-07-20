@@ -1,3 +1,4 @@
+export { default as ErrorBoundary } from "@/components/ErrorBoundary";
 import { StaticImageData } from "next/image";
 import Cube from "../Cube";
 import ImageComp from "../ImageComp";

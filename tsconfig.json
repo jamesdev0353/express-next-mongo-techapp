@@ -3,7 +3,9 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
-      "@/public/*": ["public/*"]
+      "@/public/*": ["public/*"],
+      "@/components/*": ["client/components/*"],
+
     },
     "lib": [
       "dom",

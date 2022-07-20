@@ -5,6 +5,7 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import styles from "./Cube.module.scss";
 import { StaticImageData } from "next/image";
+export { default as ErrorBoundary } from "@/components/ErrorBoundary";
 
 interface ICubeSideProps {
   muiIcon?: React.FC;

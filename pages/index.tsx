@@ -16,6 +16,7 @@ import png from "@/public/png.png";
 import DimCube from "../client/components/DimCube";
 import ModalComponent from "../client/components/ModalComponent";
 import { StaticImageData } from "next/image";
+
 // import { FaTimes } from "@react-icons/all-files/fa/FaTimes";
 export default function Home() {
   const context: any = useContext(LoginContext);
