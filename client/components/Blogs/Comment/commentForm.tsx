@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import InputForm from "../../Form/InputForm";
 
 import Button from "@mui/material/Button";

@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 
-
 const IContextUserState: IContextProps = {
   userName: "",
   userEmail: "",
@@ -14,7 +13,9 @@ type IContextProps = {
 };
 export const LoginContext = createContext<Partial<IContextProps>>({});
 
-export const AuthWrapperContext: React.FC = ({ children }) => {
+export const AuthWrapperContext: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
   const [userContextData, setUserContextData] =
     useState<IContextProps>(IContextUserState);
   const state: any = {

@@ -59,6 +59,7 @@ const ModalComponent = (props: IModalProps) => {
                 frontImg={props.modalFrontImg}
                 rightImg={props.modalRightImg}
                 leftImg={props.modalLeftImg}
+                style={styles.cubeStyles}
               />
             )}
             <h3>{props.modalHeader}</h3>

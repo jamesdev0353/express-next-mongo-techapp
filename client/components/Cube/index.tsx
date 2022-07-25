@@ -101,6 +101,7 @@ interface ICubeProps {
   downDescription?: string;
   downHeader?: string;
   downImg?: string | StaticImageData;
+  style?: any;
 }
 
 function Cube(props: ICubeProps) {

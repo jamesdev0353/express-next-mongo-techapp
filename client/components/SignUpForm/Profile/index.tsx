@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar } from "@mui/material";
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 // importing interface
 export interface characterInfo {

@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect, useContext } from "react";
 import Project from "./Project";
-import { Grid, CircularProgress } from "@material-ui/core";
+import { Grid, CircularProgress } from "@mui/material";
 import { useProjectData } from "./../../apis/Projects/api/projectAPI";
 import { IPropContext, IProjectInfo, IProps } from "./interface";
 import { LoginContext } from "./../Contexts";

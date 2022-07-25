@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardActions, CardContent, Typography } from "@material-ui/core/";
+import { Card, CardActions, CardContent, Typography } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
