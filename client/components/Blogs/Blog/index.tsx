@@ -5,7 +5,7 @@ import {
   Avatar,
   Paper,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import { Grid } from "@mui/material";
 import Comment from "../Comment";
 import CommentForm from "../Comment/commentForm";

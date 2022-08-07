@@ -1,5 +1,5 @@
-import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
 import BookIcon from "@mui/icons-material/Book";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import LoginIcon from "@mui/icons-material/Login";

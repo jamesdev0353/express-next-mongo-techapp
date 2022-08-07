@@ -6,7 +6,7 @@ import {
   CardContent,
   Typography,
   CircularProgress,
-} from "@material-ui/core/";
+} from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 
 import CryptoForm from "./CryptoForm";

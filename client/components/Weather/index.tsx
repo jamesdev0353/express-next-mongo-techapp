@@ -9,7 +9,7 @@ import {
   Typography,
   CircularProgress,
   Avatar,
-} from "@material-ui/core/";
+} from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 
 import WeatherForm from "./WeatherForm";

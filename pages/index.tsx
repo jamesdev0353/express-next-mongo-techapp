@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 // import Blogs from "../client/components/Blogs";
 import dynamic from "next/dynamic";
